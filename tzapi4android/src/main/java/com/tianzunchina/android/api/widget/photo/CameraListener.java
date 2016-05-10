@@ -73,7 +73,9 @@ public class CameraListener implements OnClickListener {
 	public void onClick(View v) {
 		if (pbox.isBrowse()) {
 			Intent intent = new Intent(activity, PreviewActivity.class);
-			intent.putExtra("path", pbox.fileImage.getAbsolutePath());
+			if(pbox.fileImage!=null){
+				intent.putExtra("path", pbox.fileImage.getAbsolutePath());
+			}
 			intent.putExtra("imageUrl", pbox.url);
 			activity.startActivity(intent);
 			return;
