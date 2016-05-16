@@ -5,7 +5,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.1.0-alpha5'
+        classpath 'com.android.tools.build:gradle:2.1.0'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -16,73 +16,73 @@ allprojects {
         jcenter()
     }
 }
-
-task clean(type: Delete) {
-    delete rootProject.buildDir
-}
-apply plugin: 'maven'
-apply plugin: 'signing' //使用signing plugin做数字签名
-
-//定义GroupID和Version，ArtefactID会自动使用Project名
-group = 'com.github.sljjyy'
-version = '1.5.4'
-
-repositories {
-    mavenCentral();
-}
-
-artifacts {
-    archives file('tzapi4android-1.5.4.aar')
-}
-
-signing {
-    sign configurations.archives
-}
-
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            //为Pom文件做数字签名
-            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
-
-            //指定项目部署到的中央库地址，UserName和Password就是Part 1中注册的账号。
-            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
-                authentication(userName: ossrhUsername, password: ossrhPassword)
-            }
-            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
-                authentication(userName: ossrhUsername, password: ossrhPassword)
-            }
-
-            //构造项目的Pom文件，参见Part 2中Pom文件的规范，不要遗漏必填项
-            pom.project {
-                name project.name
-                packaging 'aar'
-                description 'com.github.sljjyy'
-                url 'https://github.com/sljjyy/TZAPIForAndroid'
-
-                scm {
-                    url 'scm:git@github.com:sljjyy/TZAPIForAndroid.git'
-                    connection 'scm:git@github.com:sljjyy/TZAPIForAndroid.git'
-                    developerConnection 'git@github.com:sljjyy/TZAPIForAndroid.git'
-                }
-
-                licenses {
-                    license {
-                        name 'The Apache Software License, Version 2.0'
-                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                        distribution 'sljjyy'
-                    }
-                }
-
-                developers {
-                    developer {
-                        id 'sljjyy'
-                        name 'SunLiang'
-                        email 'sljjyy@hotmail.com'
-                    }
-                }
-            }
-        }
-    }
-}
-
+//
+//task clean(type: Delete) {
+//    delete rootProject.buildDir
+//}
+//apply plugin: 'maven'
+//apply plugin: 'signing' //使用signing plugin做数字签名
+//
+////定义GroupID和Version，ArtefactID会自动使用Project名
+//group = 'com.github.sljjyy'
+//version = '1.5.4'
+//
+//repositories {
+//    mavenCentral();
+//}
+//
+//artifacts {
+//    archives file('tzapi4android-1.5.4.aar')
+//}
+//
+//signing {
+//    sign configurations.archives
+//}
+//
+//uploadArchives {
+//    repositories {
+//        mavenDeployer {
+//            //为Pom文件做数字签名
+//            beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+//
+//            //指定项目部署到的中央库地址，UserName和Password就是Part 1中注册的账号。
+//            repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+//                authentication(userName: ossrhUsername, password: ossrhPassword)
+//            }
+//            snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+//                authentication(userName: ossrhUsername, password: ossrhPassword)
+//            }
+//
+//            //构造项目的Pom文件，参见Part 2中Pom文件的规范，不要遗漏必填项
+//            pom.project {
+//                name project.name
+//                packaging 'aar'
+//                description 'com.github.sljjyy'
+//                url 'https://github.com/sljjyy/TZAPIForAndroid'
+//
+//                scm {
+//                    url 'scm:git@github.com:sljjyy/TZAPIForAndroid.git'
+//                    connection 'scm:git@github.com:sljjyy/TZAPIForAndroid.git'
+//                    developerConnection 'git@github.com:sljjyy/TZAPIForAndroid.git'
+//                }
+//
+//                licenses {
+//                    license {
+//                        name 'The Apache Software License, Version 2.0'
+//                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+//                        distribution 'sljjyy'
+//                    }
+//                }
+//
+//                developers {
+//                    developer {
+//                        id 'sljjyy'
+//                        name 'SunLiang'
+//                        email 'sljjyy@hotmail.com'
+//                    }
+//                }
+//            }
+//        }
+//    }
+//}
+//
