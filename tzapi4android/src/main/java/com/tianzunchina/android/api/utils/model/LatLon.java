@@ -6,7 +6,7 @@ package com.tianzunchina.android.api.utils.model;
  * @author SunLiang
  */
 public class LatLon {
-    double lat,lon;
+    public double lat,lon;
     public LatLon(double lat, double lon){
         this.lat = lat;
         this.lon = lon;
