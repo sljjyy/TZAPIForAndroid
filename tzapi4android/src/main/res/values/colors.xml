@@ -3,9 +3,14 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="app_background_bule">#2964C1</color>
-    <color name="app_background_gray">#F2F2F2</color>
-    <color name="activity_head_text">#FFFFFF</color>
+    <color name="app_background_bule">#2964c1</color>
+    <color name="app_background_gray">#505050</color>
+    <color name="activity_head_text">#505050</color>
 
-    <color name="photo_box_stroke">#DFDFDF</color>
+    <color name="transparent">#00000000</color>
+
+    <color name="photo_box_stroke">#505050</color>
+
+    <color name="form_title_text">#505050</color>
+    <color name="form_content_text">#505050</color>
 </resources>

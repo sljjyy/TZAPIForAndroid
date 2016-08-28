@@ -4,10 +4,25 @@
     <attr name="boxWidth" format="dimension" />
     <attr name="boxHeight" format="dimension" />
     <attr name="boxLayoutMode" format="string" />
+
+    <attr name="title" format="string" />
+    <attr name="hint" format="string" />
     <declare-styleable name="TZPhotoBoxGroup">
         <attr name="boxCount" />
         <attr name="boxWidth" />
         <attr name="boxHeight" />
         <attr name="boxLayoutMode" />
+    </declare-styleable>
+    <declare-styleable name="AutofitTextView">
+        <attr name="minTextSize" format="dimension" />
+        <!-- Amount of precision used to calculate the correct text size to fit within its
+        bounds. Lower precision is more precise and takes more time. -->
+        <attr name="precision" format="float" />
+        <!-- Defines whether to automatically resize text to fit to the view's bounds. -->
+        <attr name="sizeToFit" format="boolean" />
+    </declare-styleable>
+    <declare-styleable name="FormItemView">
+        <attr name="title" />
+        <attr name="hint" />
     </declare-styleable>
 </resources>

@@ -3,6 +3,7 @@ package com.tianzunchina.android.api.view.recycler;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.databinding.ViewDataBinding;
 import android.graphics.Bitmap;
 import android.graphics.Paint;
 import android.graphics.Typeface;
@@ -40,6 +41,7 @@ public class TZRecyclerViewHolder extends RecyclerView.ViewHolder {
     private SparseArray<View> mViews;
     private Context mContext;
     private int mLayoutId;
+    private ViewDataBinding binding;
 
     public TZRecyclerViewHolder(View itemView) {
         super(itemView);
@@ -305,5 +307,13 @@ public class TZRecyclerViewHolder extends RecyclerView.ViewHolder {
         RatingBar v = getView(viewId);
         v.setRating(number);
         return this;
+    }
+
+    public ViewDataBinding getBinding() {
+        return binding;
+    }
+
+    public void setBinding(ViewDataBinding binding) {
+        this.binding = binding;
     }
 }

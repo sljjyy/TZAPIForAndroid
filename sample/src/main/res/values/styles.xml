@@ -6,12 +6,24 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-    </style>
-    <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:textColorPrimaryInverse">@color/alter_album_background</item>
+        <item name="android:windowBackground">?attr/editTextColor</item>
     </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Theme.Sample" parent="Theme.AppCompat.Light.NoActionBar" >
+        <item name="colorPrimary">@color/light_blue_600</item>
+        <item name="android:colorForeground">@color/background_material_dark</item>
+        <item name="android:textColorPrimary">@color/background_material_dark</item>
+        <item name="colorAccent">@android:color/holo_blue_light</item>
+        <item name="colorPrimaryDark">@color/app_background_bule</item>
+        <item name="android:textColorSecondary">@color/background_material_dark</item>
+        <item name="android:textColorSecondaryInverse">@color/background_material_dark</item>
+    </style>
 
 </resources>

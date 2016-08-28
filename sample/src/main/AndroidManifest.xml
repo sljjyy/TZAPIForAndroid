@@ -1,16 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="tianzunchina.sample">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.tianzunchina.sample">
 
-    <application android:allowBackup="true" android:label="@string/app_name"
+    <application
+        android:allowBackup="true"
+        android:label="@string/app_name"
+        android:name=".app.SysApplication"
         android:supportsRtl="true">
-        <activity android:name="com.tianzunchina.sample.MainActivity"
-            android:label="@string/app_name" android:theme="@style/AppTheme.NoActionBar">
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.Sample">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".event.EventActivity"
+            android:label="@string/title_activity_event"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

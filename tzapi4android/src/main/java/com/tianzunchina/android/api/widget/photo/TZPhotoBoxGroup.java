@@ -63,7 +63,6 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
     public void initLayout(String mode){
         switch (mode){
             case "boxLayoutMode":
-
         }
     }
 
@@ -85,7 +84,6 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
 
     private void initClickListener(){
         this.addOnItemTouchListener(new RecyclerItemClickListener(getContext(), this, new RecyclerItemClickListener.OnItemClickListener() {
-
             @Override
             public void onItemLongClick(View view, int position) {
                 boxes.get(position).ivPhoto.performLongClick();
@@ -112,7 +110,6 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
         EasyImage.handleActivityResult(requestCode, resultCode, data, activity, new DefaultCallback() {
             @Override
             public void onImagePickerError(Exception e, EasyImage.ImageSource source, int type) {
-                //Some error handling
             }
 
             @Override

@@ -15,7 +15,8 @@ import com.tianzunchina.android.api.base.TZApplication;
 public class Config {
     private SharedPreferences share = null;
     private Editor editor = null;
-    private static  final String PREFERENCE_NAME = "saveInfo";
+    private static final String PREFERENCE_NAME = "saveInfo";
+
     /**
      * @return 获取一个唯一的私有的SharedPreferences
      */
