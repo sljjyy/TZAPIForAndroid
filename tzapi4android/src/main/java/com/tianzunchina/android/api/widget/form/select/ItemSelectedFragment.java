@@ -1,6 +1,5 @@
 package com.tianzunchina.android.api.widget.form.select;
 
-import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,13 +10,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.tianzunchina.android.api.R;
+import com.tianzunchina.android.api.base.TZFragment;
 import com.tianzunchina.android.api.view.list.TZCommonAdapter;
 import com.tianzunchina.android.api.view.list.TZViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ItemSelectedFragment extends Fragment implements AdapterView.OnItemClickListener{
+public class ItemSelectedFragment extends TZFragment implements AdapterView.OnItemClickListener{
 	private List<ArrayAdapterItem> items = new ArrayList<>();
 
 	@Override

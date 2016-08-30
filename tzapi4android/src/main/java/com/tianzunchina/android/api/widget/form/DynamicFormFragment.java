@@ -1,8 +1,6 @@
 package com.tianzunchina.android.api.widget.form;
 
-import android.app.Fragment;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,12 +8,8 @@ import android.widget.LinearLayout;
 
 import com.alibaba.fastjson.JSON;
 import com.tianzunchina.android.api.R;
+import com.tianzunchina.android.api.base.TZFragment;
 import com.tianzunchina.android.api.log.TZLog;
-import com.tianzunchina.android.api.widget.form.FormItem;
-import com.tianzunchina.android.api.widget.form.FormItemEditView;
-import com.tianzunchina.android.api.widget.form.FormTable;
-import com.tianzunchina.android.api.widget.form.SelectFormItemTextView;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +24,7 @@ import java.util.List;
  Transaction.add(fragment, TAG);
  fTransaction.commit();
  */
-public class DynamicFormFragment extends Fragment {
+public class DynamicFormFragment extends TZFragment {
     public List<View> childrenView = new ArrayList<>();
     public static final String TAG = "DynamicFormFragment";
 
