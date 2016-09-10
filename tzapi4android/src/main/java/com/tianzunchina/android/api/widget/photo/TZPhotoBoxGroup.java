@@ -123,6 +123,10 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
         });
     }
 
+    /**
+     * 获取所有照片路径的集合
+     * @return
+     */
     public ArrayList<String> getPaths(){
         ArrayList<String> paths = new ArrayList<>();
         for (TZPhotoBox box : boxes){
@@ -133,10 +137,29 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
         return paths;
     }
 
+    /**
+     * 获取指定索引下的图片路径
+     * @param index
+     * @return
+     */
+    public String getPath(int index){
+        if(index < boxes.size()){
+            return boxes.get(index).getFileImage().getAbsolutePath();
+        }
+        return null;
+    }
+
+    /**
+     * 判断是否为待删除状态
+     * @return
+     */
     public boolean isReadyDelete(){
         return isReadyDel;
     }
 
+    /**
+     * 取消删除状态
+     */
     public void cancelDelete(){
         for(TZPhotoBox box : boxes){
             box.cancelDelete();

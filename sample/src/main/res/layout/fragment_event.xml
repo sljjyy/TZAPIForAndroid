@@ -1,7 +1,24 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:api="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="event"
+            type="com.tianzunchina.sample.event.Event" />
+    </data>
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.tianzunchina.sample.event.EventActivityFragment"
     tools:showIn="@layout/activity_event">
+
+    <com.tianzunchina.android.api.widget.photo.TZPhotoBoxGroup
+        android:id="@+id/pbg"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        api:boxCount="3"
+        api:boxHeight="200dp"
+        api:boxWidth="200dp"/>
+
 </RelativeLayout>
+</layout>

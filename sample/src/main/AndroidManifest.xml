@@ -20,6 +20,7 @@
             android:name=".event.EventActivity"
             android:label="@string/title_activity_event"/>
         <activity android:name=".form.DynamicFormActivity" />
+        <activity android:name="com.tianzunchina.android.api.widget.photo.PreviewActivity" />
     </application>
 
 </manifest>
