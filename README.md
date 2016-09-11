@@ -15,3 +15,17 @@ public class SysApplication extends TZApplication{
 	}
 }
 ```
+二、 控件
+　1、TZPhotoBoxGroup  拍照控件 
+``` xml
+　<com.tianzunchina.android.api.widget.photo.TZPhotoBoxGroup
+	android:id="@+id/pbg"
+	android:layout_height="wrap_content"
+	android:layout_width="wrap_content"
+	api:boxCount="3"
+	api:boxHeight="200dp"
+	api:boxWidth="200dp"/>
+```
+
+
+三、 工具类
