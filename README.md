@@ -16,7 +16,7 @@ public class SysApplication extends TZApplication{
 }
 ```
 二、 控件
-　1、TZPhotoBoxGroup  拍照控件 
+1、TZPhotoBoxGroup  拍照控件 
 ``` xml
 　<com.tianzunchina.android.api.widget.photo.TZPhotoBoxGroup
 	android:id="@+id/pbg"
