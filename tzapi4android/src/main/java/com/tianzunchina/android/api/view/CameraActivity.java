@@ -19,12 +19,11 @@ import android.view.View.OnClickListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.tianzunchina.android.api.R;
 import com.tianzunchina.android.api.log.TZToastTool;
-import com.tianzunchina.android.api.utils.FileCache;
-import com.tianzunchina.android.api.utils.PhotoTools;
+import com.tianzunchina.android.api.util.FileCache;
+import com.tianzunchina.android.api.util.PhotoTools;
 
 import java.io.File;
 import java.lang.reflect.Method;

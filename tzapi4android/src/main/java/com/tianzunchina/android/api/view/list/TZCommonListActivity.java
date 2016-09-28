@@ -16,7 +16,7 @@ import com.tianzunchina.android.api.log.TZToastTool;
 import com.tianzunchina.android.api.network.TZCommonListSOAPWebAPI;
 import com.tianzunchina.android.api.network.TZRequest;
 import com.tianzunchina.android.api.network.WebCallBackListenner;
-import com.tianzunchina.android.api.utils.TimeConverter;
+import com.tianzunchina.android.api.util.TimeConverter;
 import com.tianzunchina.android.api.view.InstalList;
 
 import org.json.JSONArray;

@@ -1,4 +1,4 @@
-package com.tianzunchina.android.api.utils;
+package com.tianzunchina.android.api.util;
 
 import android.widget.TextView;
 

@@ -1,4 +1,4 @@
-package com.tianzunchina.android.api.utils.model;
+package com.tianzunchina.android.api.util.model;
 
 /**
  * 经纬度信息实体类

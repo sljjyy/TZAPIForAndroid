@@ -1,4 +1,4 @@
-package com.tianzunchina.android.api.utils;
+package com.tianzunchina.android.api.util;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -17,7 +17,6 @@ import android.net.Uri;
 import android.provider.MediaStore;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -45,7 +44,7 @@ public class PhotoTools {
     }
 
     private PhotoTools(){
-        converter = UnitConverter.getInstence();
+        converter = UnitConverter.getInstance();
     }
 
     public File getCache(String path) {

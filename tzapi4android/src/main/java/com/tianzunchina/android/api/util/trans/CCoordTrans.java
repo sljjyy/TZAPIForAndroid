@@ -1,4 +1,4 @@
-package com.tianzunchina.android.api.utils.trans;
+package com.tianzunchina.android.api.util.trans;
 
 public class CCoordTrans {
 	private double a;

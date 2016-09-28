@@ -1,11 +1,11 @@
-package com.tianzunchina.android.api.utils;
+package com.tianzunchina.android.api.util;
 
 import android.app.Application;
 import android.util.Base64;
 
 import com.tianzunchina.android.api.base.TZApplication;
-import com.tianzunchina.android.api.utils.model.LatLon;
-import com.tianzunchina.android.api.utils.trans.Trans;
+import com.tianzunchina.android.api.util.model.LatLon;
+import com.tianzunchina.android.api.util.trans.Trans;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -22,11 +22,21 @@ public class UnitConverter {
     private static UnitConverter converter;
     private Application app = TZApplication.getInstance();
 
-    public static UnitConverter getInstence(){
+    public static UnitConverter getInstance(){
         if(converter == null){
             converter = new UnitConverter();
         }
         return converter;
+    }
+
+    public static UnitConverter getInstance(Application app){
+        if(converter == null){
+            converter = new UnitConverter(app);
+        }
+        return converter;
+    }
+    private UnitConverter(Application app) {
+        this.app = app;
     }
 
     private UnitConverter(){

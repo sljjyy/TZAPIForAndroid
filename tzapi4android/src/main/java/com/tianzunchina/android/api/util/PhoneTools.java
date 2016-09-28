@@ -1,4 +1,4 @@
-package com.tianzunchina.android.api.utils;
+package com.tianzunchina.android.api.util;
 
 import android.app.Activity;
 import android.content.ComponentName;

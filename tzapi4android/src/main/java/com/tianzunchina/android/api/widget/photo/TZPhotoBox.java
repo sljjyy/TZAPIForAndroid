@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 import com.tianzunchina.android.api.R;
-import com.tianzunchina.android.api.utils.PhotoTools;
+import com.tianzunchina.android.api.util.PhotoTools;
 
 import java.io.File;
 

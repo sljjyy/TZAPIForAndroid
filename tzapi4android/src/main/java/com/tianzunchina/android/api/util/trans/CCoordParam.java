@@ -1,4 +1,4 @@
-package com.tianzunchina.android.api.utils.trans;
+package com.tianzunchina.android.api.util.trans;
 
 public class CCoordParam {
 	public static double[] a = new double[] { 6378245.0, 6378140.0, 6378137.0 };

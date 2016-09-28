@@ -10,7 +10,7 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.view.View.OnClickListener;
 
-import com.tianzunchina.android.api.utils.FileCache;
+import com.tianzunchina.android.api.util.FileCache;
 import com.tianzunchina.android.api.view.CameraActivity;
 
 import java.io.File;

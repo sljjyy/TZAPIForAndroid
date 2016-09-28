@@ -1,7 +1,7 @@
 package com.tianzunchina.android.api.login;
 
 
-import com.tianzunchina.android.api.utils.LoginConfig;
+import com.tianzunchina.android.api.util.LoginConfig;
 
 import java.io.Serializable;
 
