@@ -9,4 +9,9 @@
     <dimen name="photobox_image_height">80dp</dimen>
     <dimen name="photobox_image_width">80dp</dimen>
 
+    <dimen name="form_horizontal_interval">5dp</dimen>
+    <dimen name="form_padding">2dp</dimen>
+    <dimen name="form_title_size">18dp</dimen>
+    <dimen name="form_content_size">16dp</dimen>
+    <dimen name="form_textlist_margin">8dp</dimen>
 </resources>

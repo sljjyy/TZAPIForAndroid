@@ -20,7 +20,6 @@ import com.tianzunchina.android.api.utils.TimeConverter;
 import com.tianzunchina.android.api.view.InstalList;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;

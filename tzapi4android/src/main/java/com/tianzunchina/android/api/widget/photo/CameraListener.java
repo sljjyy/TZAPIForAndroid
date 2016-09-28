@@ -18,10 +18,9 @@ import java.io.File;
 import pl.aprilapps.easyphotopicker.EasyImage;
 
 public class CameraListener implements OnClickListener {
-	Activity activity;
-	TZPhotoBox pbox;
-	int num, weight = 0;
-	private static Uri imageUri;
+	private Activity activity;
+	private TZPhotoBox pbox;
+	private int num, weight = 0;
 	private FileCache fileCache = new FileCache();
 
 	public CameraListener(Context context, int i, TZPhotoBox pbox) {
@@ -44,7 +43,7 @@ public class CameraListener implements OnClickListener {
 		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 		intent.putExtra(MediaStore.Images.Media.ORIENTATION, 0);
 		File file = new File(fileCache.getCacheDir(), "temp.jpg");
-		imageUri = Uri.fromFile(file);
+		Uri imageUri = Uri.fromFile(file);
 		intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
 		activity.startActivityForResult(intent, num + weight);
 	}

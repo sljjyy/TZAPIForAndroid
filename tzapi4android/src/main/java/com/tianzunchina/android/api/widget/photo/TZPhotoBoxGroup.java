@@ -126,6 +126,10 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
         });
     }
 
+    /**
+     * 获取所有照片路径的集合
+     * @return
+     */
     public ArrayList<String> getPaths(){
         ArrayList<String> paths = new ArrayList<>();
         for (TZPhotoBox box : boxes){
@@ -142,10 +146,29 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
         }
     }
 
+    /**
+     * 获取指定索引下的图片路径
+     * @param index
+     * @return
+     */
+    public String getPath(int index){
+        if(index < boxes.size()){
+            return boxes.get(index).getFileImage().getAbsolutePath();
+        }
+        return null;
+    }
+
+    /**
+     * 判断是否为待删除状态
+     * @return
+     */
     public boolean isReadyDelete(){
         return isReadyDel;
     }
 
+    /**
+     * 取消删除状态
+     */
     public void cancelDelete(){
         for(TZPhotoBox box : boxes){
             box.cancelDelete();
@@ -266,49 +289,6 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
     }
 
 
-    public void setPhoto(int index, File file){
-        if(index >= boxes.size()){
-            return;
-        }
-        boxes.get(index).addPhoto(file);
-    }
-
-    public void setPhoto(int index, String url){
-        if(index >= boxes.size()){
-            return;
-        }
-        boxes.get(index).addPhoto(url);
-    }
-
-    public void setPhotos4file(List<File> files){
-        for (int i = 0; i < boxes.size(); i++) {
-            setPhoto(i, files.get(i));
-        }
-    }
-
-    public void setPhotos4url(List<String> urls){
-        for (int i = 0; i < boxes.size(); i++) {
-            setPhoto(i, urls.get(i));
-        }
-    }
-
-    public void addPhoto(File file){
-        for (int i = 0; i < boxes.size(); i++) {
-            if(!boxes.get(i).isBrowse()){
-                boxes.get(i).addPhoto(file);
-                break;
-            }
-        }
-    }
-
-    public void addPhoto(String url){
-        for (int i = 0; i < boxes.size(); i++) {
-            if(!boxes.get(i).isBrowse()){
-                boxes.get(i).addPhoto(url);
-                break;
-            }
-        }
-    }
     /**
      * 取消删除
      * @param event

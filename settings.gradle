@@ -1,1 +1,1 @@
-include ':tzapi4android'
+include ':tzapi4android', ':sample'

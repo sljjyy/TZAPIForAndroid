@@ -1,5 +1,6 @@
 package com.tianzunchina.android.api.log;
 
+import android.support.design.widget.Snackbar;
 import android.widget.Toast;
 
 import com.tianzunchina.android.api.base.TZApplication;
@@ -33,7 +34,7 @@ public class TZToastTool {
 
 
     private static void show(String msg, int time, int level){
-        if(showLv > level || msg == null || msg.isEmpty()){
+        if(showLv < level || msg == null || msg.isEmpty()){
             return;
         }
         Toast.makeText(TZApplication.getInstance(), msg, time).show();

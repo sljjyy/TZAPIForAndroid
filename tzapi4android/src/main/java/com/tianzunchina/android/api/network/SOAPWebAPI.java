@@ -4,7 +4,6 @@ import android.support.v4.util.ArrayMap;
 
 import com.tianzunchina.android.api.base.TZApplication;
 import com.tianzunchina.android.api.log.TZLog;
-import com.tianzunchina.android.api.log.TZToastTool;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
