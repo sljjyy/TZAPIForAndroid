@@ -39,24 +39,19 @@ public class HTTPWebAPI implements WebAPIable {
 
     }
 
-    public void callPost(final TZRequest request, final WebCallBackListener listenner) {
-        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, request.getUrl(), new Response.Listener<JSONObject>() {
+    public void callPost(final TZRequest request, final WebCallBackListener listener) {
+        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, request.getUrl(), new JSONObject(request.getParams()),new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-                listenner.success(response, request);
+                listener.success(response, request);
             }
 
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                listenner.err(error.getMessage(), request);
+                listener.err(error.getMessage(), request);
             }
-        }){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                return request.getParams();
-            }
-        };
+        });
         TZApplication.addRequest(jsonRequest);
     }
 }
