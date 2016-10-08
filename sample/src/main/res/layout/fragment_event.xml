@@ -6,19 +6,42 @@
             name="event"
             type="com.tianzunchina.sample.event.Event" />
     </data>
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.tianzunchina.sample.event.EventActivityFragment"
-    tools:showIn="@layout/activity_event">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:context="com.tianzunchina.sample.event.EventActivityFragment"
+            tools:showIn="@layout/activity_event" >
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="WebAPI"
+                android:onClick="submit"/>
 
-    <com.tianzunchina.android.api.widget.photo.TZPhotoBoxGroup
-        android:id="@+id/pbg"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        api:boxCount="3"
-        api:boxHeight="200dp"
-        api:boxWidth="200dp"/>
+            <com.tianzunchina.android.api.widget.photo.TZPhotoBoxGroup
+                android:id="@+id/pbg"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                api:boxCount="3"
+                api:boxHeight="200dp"
+                api:boxWidth="200dp" />
+            <com.tianzunchina.android.api.widget.form.MultiLineEditText
+                android:id="@+id/etEventContent"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:minLines="4"
+                android:gravity="top"/>
+            <com.tianzunchina.android.api.widget.form.MultiLineEditText
+                android:id="@+id/etEventAddress"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:minLines="2"
+                android:gravity="top"
+                android:inputType="textMultiLine" />
+        </LinearLayout>
+    </ScrollView>
 
-</RelativeLayout>
 </layout>

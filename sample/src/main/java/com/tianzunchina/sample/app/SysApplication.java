@@ -11,11 +11,6 @@ import com.tianzunchina.android.api.log.TZToastLevel;
 import com.tianzunchina.android.api.log.TZToastTool;
 
 public class SysApplication extends TZApplication {
-	private static SysApplication instance;
-
-	public static SysApplication getInstance() {
-		return instance;
-	}
 
 	@Override
 	public void onCreate() {
@@ -24,7 +19,6 @@ public class SysApplication extends TZApplication {
 	}
 
 	private void init() {
-		instance = this;
 		MultiDex.install(this); //防止方法数超额
 		initStrictMode();
 		TZLog.init(TZLogLevel.INFO); //设置日志最低打印等级

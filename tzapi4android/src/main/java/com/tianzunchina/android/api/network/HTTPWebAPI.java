@@ -16,17 +16,21 @@ public class HTTPWebAPI implements WebAPIable {
 
     @Override
     public void call(final TZRequest request, final WebCallBackListenner listenner) {
-        JsonObjectRequest jsonRequest = new JsonObjectRequest(request.getUrl(), new Response.Listener<JSONObject>() {
-            @Override
-            public void onResponse(JSONObject response) {
-                listenner.success(response, request);
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                listenner.err(error.getMessage(), request);
-            }
-        });
-        TZApplication.addRequest(jsonRequest);
+        try{
+            JsonObjectRequest jsonRequest = new JsonObjectRequest(request.getUrl(), new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    listenner.success(response, request);
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    listenner.err(error.getMessage(), request);
+                }
+            });
+            TZApplication.addRequest(jsonRequest);
+        } catch (Exception e) {
+            listenner.err(e.getMessage(), request);
+        }
     }
 }

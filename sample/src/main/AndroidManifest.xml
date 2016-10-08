@@ -10,7 +10,8 @@
         android:theme="@style/Theme.Sample">
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -18,9 +19,12 @@
         </activity>
         <activity
             android:name=".event.EventActivity"
-            android:label="@string/title_activity_event"/>
-        <activity android:name=".form.DynamicFormActivity" />
-        <activity android:name="com.tianzunchina.android.api.widget.photo.PreviewActivity" />
+            android:label="@string/title_activity_event"
+            android:screenOrientation="portrait" />
+        <activity android:name=".form.DynamicFormActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.tianzunchina.android.api.widget.photo.PreviewActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

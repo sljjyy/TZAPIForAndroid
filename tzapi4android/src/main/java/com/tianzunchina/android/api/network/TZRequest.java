@@ -50,7 +50,7 @@ public class TZRequest {
      * 拼接GET请求参数
      * @return
      */
-    String getParamsMap(){
+    public String getParamsMap(){
         String str = "?";
         for (int i = 0; i < params.size(); i++) {
             str += params.keyAt(i) + "=" + params.valueAt(i) + "&";
@@ -62,7 +62,7 @@ public class TZRequest {
      * 获取GET请求完整URL
      * @return
      */
-    String getUrl(){
-        return  service + method +getParamsMap();
+    public String getUrl(){
+        return  service + method + getParamsMap();
     }
 }

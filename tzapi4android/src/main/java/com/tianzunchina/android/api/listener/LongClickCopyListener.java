@@ -26,6 +26,10 @@ public class LongClickCopyListener implements View.OnLongClickListener {
         this.info = info;
     }
 
+    public LongClickCopyListener(){
+        this.info = "复制成功";
+    }
+
     /**
      * 重写长按事件
      * 将tv中的内容复制到剪贴板

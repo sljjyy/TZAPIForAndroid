@@ -10,8 +10,6 @@ import com.android.volley.toolbox.Volley;
 import com.squareup.okhttp.OkHttpClient;
 import com.tianzunchina.android.api.network.okhttp.TZOkHttpStack;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -22,19 +20,19 @@ import java.util.concurrent.Executors;
  */
 public class TZApplication extends MultiDexApplication {
     private ArrayMap<String, Activity> mActivities = new ArrayMap<>();
-    private static TZApplication instence;
+    private static TZApplication instance;
     private RequestQueue mRequestQueue;
     private ExecutorService executorService;
     private int poolCount = 3;
 
     public static TZApplication getInstance() {
-        return instence;
+        return instance;
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
-        instence = this;
+        instance = this;
         executorService = Executors.newFixedThreadPool(poolCount);
     }
 
