@@ -7,10 +7,10 @@ package com.tianzunchina.android.api.network;
  */
 public class Error {
     String msg;
-    WebCallBackListenner listenner;
+    WebCallBackListener listenner;
     TZRequest request;
 
-    public Error(String msg, WebCallBackListenner listenner, TZRequest request) {
+    public Error(String msg, WebCallBackListener listenner, TZRequest request) {
         this.msg = msg;
         this.listenner = listenner;
         this.request = request;

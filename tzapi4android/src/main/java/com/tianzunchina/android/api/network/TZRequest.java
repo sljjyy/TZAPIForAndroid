@@ -58,11 +58,24 @@ public class TZRequest {
         return str.substring(0, str.length() - 1);
     }
 
+    public Map<String, String> getParams() {
+        //POST 参数
+        Map<String, String> paramsPost = new HashMap<>();
+        for (int i = 0; i < params.size(); i++) {
+            paramsPost.put(params.keyAt(i),params.valueAt(i).toString());
+        }
+        return paramsPost;
+    }
+
     /**
      * 获取GET请求完整URL
      * @return
      */
-    public String getUrl(){
+    public String getUrlParams(){
         return  service + method + getParamsMap();
+    }
+
+    public String getUrl(){
+        return  service + method;
     }
 }

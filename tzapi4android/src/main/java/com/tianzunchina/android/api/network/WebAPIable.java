@@ -7,5 +7,5 @@ package com.tianzunchina.android.api.network;
  */
 public interface WebAPIable {
 
-    void call(TZRequest request, final WebCallBackListenner listenner);
+    void call(TZRequest request, final WebCallBackListener listenner);
 }

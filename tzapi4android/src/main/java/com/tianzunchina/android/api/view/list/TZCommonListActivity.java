@@ -15,7 +15,7 @@ import com.tianzunchina.android.api.log.TZLog;
 import com.tianzunchina.android.api.log.TZToastTool;
 import com.tianzunchina.android.api.network.TZCommonListSOAPWebAPI;
 import com.tianzunchina.android.api.network.TZRequest;
-import com.tianzunchina.android.api.network.WebCallBackListenner;
+import com.tianzunchina.android.api.network.WebCallBackListener;
 import com.tianzunchina.android.api.util.TimeConverter;
 import com.tianzunchina.android.api.view.InstalList;
 
@@ -32,7 +32,7 @@ import java.util.List;
  * @author SunLiang
  */
 public abstract class TZCommonListActivity<T> extends Activity implements XListView.IXListViewListener,
-        View.OnClickListener, AdapterView.OnItemClickListener, WebCallBackListenner{
+        View.OnClickListener, AdapterView.OnItemClickListener, WebCallBackListener {
     private InstalList instalList;
     public TextView tvLeft, tvTitle, tvRight;
     protected XListView mListView;

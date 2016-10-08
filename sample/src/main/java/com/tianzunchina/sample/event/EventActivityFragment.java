@@ -5,14 +5,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-import com.alibaba.fastjson.JSONObject;
 import com.tianzunchina.android.api.base.TZFragment;
-import com.tianzunchina.android.api.log.TZToastTool;
-import com.tianzunchina.android.api.network.HTTPWebAPI;
-import com.tianzunchina.android.api.network.TZRequest;
-import com.tianzunchina.android.api.network.WebCallBackListenner;
 import com.tianzunchina.sample.R;
 
 

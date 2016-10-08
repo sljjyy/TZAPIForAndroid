@@ -6,10 +6,10 @@ import com.tianzunchina.android.api.view.InstalList;
 
 public class TZCommonListSOAPWebAPI {
 	private final InstalList instalList;
-	private WebCallBackListenner listenner;
+	private WebCallBackListener listenner;
 	private SOAPWebAPI webAPI;
 
-	public TZCommonListSOAPWebAPI(InstalList instalList, WebCallBackListenner listenner){
+	public TZCommonListSOAPWebAPI(InstalList instalList, WebCallBackListener listenner){
 		this.instalList = instalList;
 		this.listenner = listenner;
 		webAPI = new SOAPWebAPI();

@@ -9,9 +9,9 @@ import org.json.JSONObject;
  */
 class Success{
     JSONObject json;
-    WebCallBackListenner listenner;
+    WebCallBackListener listenner;
     TZRequest request;
-    public Success(JSONObject json, WebCallBackListenner listenner, TZRequest request) {
+    public Success(JSONObject json, WebCallBackListener listenner, TZRequest request) {
         this.json = json;
         this.listenner = listenner;
         this.request = request;
