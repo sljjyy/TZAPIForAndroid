@@ -8,7 +8,6 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="android:textColorPrimaryInverse">@color/alter_album_background</item>
         <item name="android:windowBackground">?attr/editTextColor</item>
     </style>
 

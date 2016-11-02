@@ -6,7 +6,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.0'
+        classpath 'com.android.tools.build:gradle:2.2.2'
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
     }
 }
@@ -25,14 +25,14 @@ apply plugin: 'signing' //使用signing plugin做数字签名
 
 //定义GroupID和Version，ArtefactID会自动使用Project名
 group = 'com.github.sljjyy'
-version = '1.6.1'
+version = '1.6.2'
 
 repositories {
     mavenCentral();
 }
 
 artifacts {
-    archives file('tzapi4android-1.6.1.aar')
+    archives file('tzapi4android-1.6.2.aar')
 }
 
 signing {

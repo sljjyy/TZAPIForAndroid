@@ -45,10 +45,6 @@ public class AdTools extends FrameLayout implements Runnable {
 	private List<ImageView> dotViews = null;
 	// 点击的监听事件
 	private ClickListener clickListener = null;
-	// 滚动时的事件监听
-	private PageChangeListener pageChangeListener = null;
-	// 接触时的事件监听
-	private PageTounchListener pageTounchListener = null;
 	// “当前是哪页”的标志点布局
 	private LinearLayout dotsLinearLayout = null;
 	// 这个控件内的图片（drawable）集合
@@ -85,10 +81,8 @@ public class AdTools extends FrameLayout implements Runnable {
 		pageAdapter = new PageAdapter(imageViews);
 		viewPager.setAdapter(pageAdapter);
 		// 为viewPager添加页面改变、接触监听
-		pageChangeListener = new PageChangeListener();
-		pageTounchListener = new PageTounchListener();
-		viewPager.addOnPageChangeListener(pageChangeListener);
-		viewPager.setOnTouchListener(pageTounchListener);
+		viewPager.addOnPageChangeListener(new PageChangeListener());
+		viewPager.setOnTouchListener(new PageTounchListener());
 	}
 
 	/**
@@ -100,7 +94,6 @@ public class AdTools extends FrameLayout implements Runnable {
 			return;
 		}
 		dotViews = new ArrayList<ImageView>();
-
 		// 定义图片样式，高宽MATCH_PARENT
 		LayoutParams imageViewParams = new LayoutParams(
 				LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT);

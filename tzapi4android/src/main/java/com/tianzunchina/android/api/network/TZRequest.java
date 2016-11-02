@@ -2,6 +2,9 @@ package com.tianzunchina.android.api.network;
 
 import android.support.v4.util.ArrayMap;
 
+import org.json.JSONObject;
+
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -50,14 +53,17 @@ public class TZRequest {
      * 拼接GET请求参数
      * @return
      */
-    public String getParamsMap(){
+    String getParamsMap(){
         String str = "?";
         for (int i = 0; i < params.size(); i++) {
             str += params.keyAt(i) + "=" + params.valueAt(i) + "&";
         }
         return str.substring(0, str.length() - 1);
     }
-
+    /**
+     * 拼接POST请求参数
+     * @return
+     */
     public Map<String, String> getParams() {
         //POST 参数
         Map<String, String> paramsPost = new HashMap<>();
@@ -74,7 +80,10 @@ public class TZRequest {
     public String getUrlParams(){
         return  service + method + getParamsMap();
     }
-
+    /**
+     * 获取POST请求完整URL
+     * @return
+     */
     public String getUrl(){
         return  service + method;
     }

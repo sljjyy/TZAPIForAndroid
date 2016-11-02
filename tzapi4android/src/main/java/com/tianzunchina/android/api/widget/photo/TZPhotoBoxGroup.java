@@ -17,6 +17,8 @@ import com.tianzunchina.android.api.view.recycler.RecyclerItemClickListener;
 import com.tianzunchina.android.api.view.recycler.TZRecyclerViewAdapter;
 import com.tianzunchina.android.api.view.recycler.TZRecyclerViewHolder;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -99,13 +101,53 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
                         photoBox.ivDel.callOnClick();
                         break;
                     case TZPhotoBox.MODE_ADD:
+                        photoBox.ivPhoto.callOnClick();
+                        break;
                     case TZPhotoBox.MODE_BROWSE:
                     case TZPhotoBox.MODE_ONLY_READ:
-                        photoBox.ivPhoto.callOnClick();
+//                        photoBox.ivPhoto.callOnClick();
+                        showPhotos(position);
                         break;
                 }
             }
         }));
+    }
+    public void showPhotos(int index){
+        Intent intent = new Intent(getContext(), PreviewActivity.class);
+        if(boxes.get(0).mode == TZPhotoBox.MODE_ONLY_READ){
+            intent.putExtra(PreviewActivity.KEY_URLS, getBoxURLs().toArray(new String[0]));
+        } else {
+            intent.putExtra(PreviewActivity.KEY_PATHS, getBoxPaths().toArray(new String[0]));
+        }
+        intent.putExtra(PreviewActivity.KEY_INDEX, index);
+        getContext().startActivity(intent);
+    }
+
+    public List<String> getBoxPaths(){
+        List<String> paths = new ArrayList<>();
+        for (int i = 0; i < boxes.size(); i++){
+            TZPhotoBox box = boxes.get(i);
+            if(box.isBrowse()){
+                paths.add(box.getFileImage().getAbsolutePath());
+            }
+        }
+        return paths;
+    }
+
+    public List<String> getBoxURLs(){
+        List<String> paths = new ArrayList<>();
+        for (int i = 0; i < boxes.size(); i++){
+            TZPhotoBox box = boxes.get(i);
+            if(box.isBrowse()){
+                paths.add(box.getUrl());
+            }
+        }
+        return paths;
+    }
+
+    public String getBoxPathsStr(char separator){
+        String[] paths = (String[]) getBoxPaths().toArray();
+        return StringUtils.join(paths,separator);
     }
 
     public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent data){

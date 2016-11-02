@@ -9,6 +9,7 @@ import com.tianzunchina.android.api.base.TZApplication;
 
 import org.json.JSONObject;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -20,6 +21,9 @@ public class HTTPWebAPI implements WebAPIable {
 
     @Override
     public void call(final TZRequest request, final WebCallBackListener listener) {
+        callGet(request, listener);
+    }
+    public void callGet(final TZRequest request, final WebCallBackListener listener) {
         try{
             JsonObjectRequest jsonRequest = new JsonObjectRequest(request.getUrlParams(), new Response.Listener<JSONObject>() {
                 @Override
@@ -45,7 +49,6 @@ public class HTTPWebAPI implements WebAPIable {
             public void onResponse(JSONObject response) {
                 listener.success(response, request);
             }
-
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
@@ -54,4 +57,5 @@ public class HTTPWebAPI implements WebAPIable {
         });
         TZApplication.addRequest(jsonRequest);
     }
+
 }

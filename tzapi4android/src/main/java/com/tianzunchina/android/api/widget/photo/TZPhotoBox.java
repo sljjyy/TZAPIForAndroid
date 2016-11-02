@@ -197,4 +197,17 @@ public class TZPhotoBox {
 			}
 		}
 	};
+
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setFileImage(File fileImage) {
+		this.fileImage = fileImage;
+	}
+
+	public int getMode() {
+		return mode;
+	}
 }

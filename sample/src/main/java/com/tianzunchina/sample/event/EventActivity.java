@@ -24,7 +24,6 @@ public class EventActivity extends TZAppCompatActivity {
         setContentView(R.layout.activity_event);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        FragmentManager manager = getSupportFragmentManager();
         photoBoxGroup = (TZPhotoBoxGroup) findViewById(R.id.pbg);
     }
 
