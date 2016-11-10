@@ -90,12 +90,7 @@ public class PreviewActivity extends Activity {
         List<View> views = new ArrayList<>();
         for(int i = 0; i < paths.length; i++){
             final GestureImageView imageView = getImageView();
-            final LinearLayout linearLayout = new LinearLayout(this);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                    ViewGroup.LayoutParams.WRAP_CONTENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT);//定义文本显示组件
-            linearLayout.setOrientation(LinearLayout.VERTICAL);//所有组件垂直摆放
-            linearLayout.setGravity(Gravity.CENTER);
+            final LinearLayout linearLayout = getLinearLayout();
             File file = new File(paths[i]);
             Glide.with(this).load(file).asBitmap().error(R.mipmap.pic_loading).override(800, 600).into(new BitmapImageViewTarget(imageView){
                 @Override
@@ -105,7 +100,6 @@ public class PreviewActivity extends Activity {
                         @Override
                         public void onGenerated(Palette palette) {
                             Palette.Swatch swatch = palette.getSwatches().get(0);
-
                             if (swatch != null) {
                                 linearLayout.setBackgroundColor(swatch.getRgb());
                                 swatch.getPopulation();
@@ -114,7 +108,7 @@ public class PreviewActivity extends Activity {
                     });
                 }
             });
-            imageView.setLayoutParams(params);//配置文本显示组件的参数
+            imageView.setLayoutParams(getLayoutParams());//配置文本显示组件的参数
             linearLayout.addView(imageView);
             views.add(linearLayout);
         }
@@ -125,6 +119,7 @@ public class PreviewActivity extends Activity {
         List<View> views = new ArrayList<>();
         for(int i = 0; i < url.length; i++){
             final GestureImageView imageView = getImageView();
+            final LinearLayout linearLayout = getLinearLayout();
             Glide.with(this).load(url[i]).asBitmap().error(R.mipmap.pic_loading).override(800, 600).into(new BitmapImageViewTarget(imageView){
                 @Override
                 protected void setResource(final Bitmap resource) {
@@ -141,7 +136,9 @@ public class PreviewActivity extends Activity {
                     });
                 }
             });
-            views.add(imageView);
+            imageView.setLayoutParams(getLayoutParams());//配置文本显示组件的参数
+            linearLayout.addView(imageView);
+            views.add(linearLayout);
         }
         return views;
     }
@@ -150,6 +147,20 @@ public class PreviewActivity extends Activity {
         GestureImageView imageView = new GestureImageView(this);
         imageView.setAdjustViewBounds(true);
         return imageView;
+    }
+
+    private LinearLayout getLinearLayout(){
+        LinearLayout linearLayout = new LinearLayout(this);
+        linearLayout.setOrientation(LinearLayout.VERTICAL);//所有组件垂直摆放
+        linearLayout.setGravity(Gravity.CENTER);
+        return linearLayout;
+    }
+
+    private LinearLayout.LayoutParams getLayoutParams(){
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT);//定义文本显示组件
+        return params;
     }
 
     @Override

@@ -123,6 +123,30 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
         getContext().startActivity(intent);
     }
 
+    public void setPhotosByURL(List<String> urls){
+        for (int i = 0; i < urls.size() && i < boxes.size(); i++){
+            TZPhotoBox box = boxes.get(i);
+            String url = urls.get(i);
+            box.addPhoto(url);
+        }
+    }
+
+    public void setPhotosByURL(String root, List<String> urls){
+        for (int i = 0; i < urls.size() && i < boxes.size(); i++){
+            TZPhotoBox box = boxes.get(i);
+            String url = root + urls.get(i);
+            box.addPhoto(url);
+        }
+    }
+
+    public void setPhotosByPath(List<String> paths){
+        for (int i = 0; i < paths.size() && i < boxes.size(); i++){
+            TZPhotoBox box = boxes.get(i);
+            File file = new File(paths.get(i));
+            box.addPhoto(file);
+        }
+    }
+
     public List<String> getBoxPaths(){
         List<String> paths = new ArrayList<>();
         for (int i = 0; i < boxes.size(); i++){

@@ -6,9 +6,8 @@ android {
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 24
-        versionCode 1
-        versionName "1.0"
-        multiDexEnabled true
+        versionCode 16
+        versionName '1.6.6'
     }
     dataBinding {
         enabled = true

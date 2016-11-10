@@ -62,8 +62,17 @@ public class TZApplication extends MultiDexApplication {
     }
 
     /**
+     * 从队列中移除指定Activity
+     * @param key 指定Activity的key, 即className
+     */
+    public void removeActivity(String key) {
+        mActivities.remove(key);
+    }
+
+
+    /**
      * 关闭指定Activity
-     * @param key 指定Activity的key
+     * @param key 指定Activity的key, 即className
      */
     public void finishActivity(String key) {
         Activity activity = mActivities.get(key);

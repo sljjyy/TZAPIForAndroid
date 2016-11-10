@@ -2,6 +2,9 @@ package com.tianzunchina.android.api.base;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
+
+import com.tianzunchina.android.api.log.TZLog;
 
 /**
  * CraetTime 2016-3-14
@@ -14,14 +17,13 @@ public class TZActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         TZApplication.getInstance().addActivity(this);
+        super.onCreate(savedInstanceState);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        TZApplication.getInstance().finishActivity(this.getClass().getName());
     }
 
     protected void showLoading(){

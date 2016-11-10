@@ -21,7 +21,6 @@ public class TZAppCompatActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        TZApplication.getInstance().finishActivity(this.getClass().getName());
     }
 
     protected void showLoading(){
