@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
@@ -36,6 +37,8 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
     private TZRecyclerViewAdapter adapter;
     private boolean isReadyDel = false;
     private List<TZPhotoBox> boxes = new ArrayList<>();
+    private boolean isLinear = true;
+    private int column = 2;
 
     public TZPhotoBoxGroup(Context context) {
         super(context);
@@ -43,30 +46,28 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
 
     public TZPhotoBoxGroup(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        init();
         initAttr(context, attrs, 0);
+        initLayout();
         initAdapter();
     }
 
     public TZPhotoBoxGroup(Context context, @Nullable AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        init();
         initAttr(context, attrs, defStyle);
+        initLayout();
         initAdapter();
     }
 
-    public void init(){
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        this.setLayoutManager(linearLayoutManager);
-        initClickListener();
-    }
-
-    public void initLayout(String mode){
-        switch (mode){
-            case "boxLayoutMode":
-
+    public void initLayout(){
+        if(isLinear){
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+            linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+            setLayoutManager(linearLayoutManager);
+        } else {
+            GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), column);
+            setLayoutManager(gridLayoutManager);
         }
+        initClickListener();
     }
 
     private void initAttr(Context context, @Nullable AttributeSet attrs, int defStyle){
@@ -80,6 +81,10 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
                 widht = (int)a.getDimension(attr, 100);
             } else if(attr == R.styleable.TZPhotoBoxGroup_boxHeight){
                 height = (int)a.getDimension(attr, 100);
+            }else if(attr == R.styleable.TZPhotoBoxGroup_boxIsLinear){
+                isLinear = a.getBoolean(attr, true);
+            } else if(!isLinear && attr == R.styleable.TZPhotoBoxGroup_boxColumn){
+                column = a.getInt(attr, 2);
             }
         }
         a.recycle();

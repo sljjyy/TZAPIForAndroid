@@ -96,7 +96,7 @@ public class XListView extends ListView implements OnScrollListener {
 		// user's listener (as a proxy).
 		super.setOnScrollListener(this);
 
-		// init header view
+		// initLayout header view
 		mHeaderView = new XListViewHeader(context);
 		mHeaderViewContent = (RelativeLayout) mHeaderView
 				.findViewById(R.id.xlistview_header_content);
@@ -104,10 +104,10 @@ public class XListView extends ListView implements OnScrollListener {
 				.findViewById(R.id.xlistview_header_time);
 		addHeaderView(mHeaderView);
 
-		// init footer view
+		// initLayout footer view
 		mFooterView = new XListViewFooter(context);
 
-		// init header height
+		// initLayout header height
 		mHeaderView.getViewTreeObserver().addOnGlobalLayoutListener(
 				new OnGlobalLayoutListener() {
 					@TargetApi(Build.VERSION_CODES.JELLY_BEAN)

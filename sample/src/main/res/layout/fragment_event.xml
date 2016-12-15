@@ -25,9 +25,11 @@
                 android:id="@+id/pbg"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                api:boxCount="3"
+                api:boxCount="5"
                 api:boxHeight="200dp"
-                api:boxWidth="200dp" />
+                api:boxWidth="200dp"
+                api:boxIsLinear="false"
+                api:boxColumn="2"/>
             <com.tianzunchina.android.api.widget.form.MultiLineEditText
                 android:id="@+id/etEventContent"
                 android:layout_width="fill_parent"

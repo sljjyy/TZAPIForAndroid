@@ -3,7 +3,11 @@
     <attr name="boxCount" format="integer" />
     <attr name="boxWidth" format="dimension" />
     <attr name="boxHeight" format="dimension" />
-    <attr name="boxLayoutMode" format="string" />
+    <attr name="boxIsLinear" format="boolean" />
+    <attr name="boxLine" format="integer" />
+    <attr name="boxColumn" format="integer" />
+
+
 
     <attr name="title" format="string" />
     <attr name="hint" format="string" />
@@ -11,7 +15,9 @@
         <attr name="boxCount" />
         <attr name="boxWidth" />
         <attr name="boxHeight" />
-        <attr name="boxLayoutMode" />
+        <attr name="boxIsLinear" />
+        <attr name="boxLine" />
+        <attr name="boxColumn" />
     </declare-styleable>
     <declare-styleable name="AutofitTextView">
         <attr name="minTextSize" format="dimension" />
