@@ -5,8 +5,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Interpolator;
+import android.view.animation.LinearInterpolator;
 import android.widget.BaseAdapter;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.animation.AlphaInAnimation;
+import com.chad.library.adapter.base.animation.BaseAnimation;
 import com.tianzunchina.android.api.view.list.TZViewHolder;
 
 import java.util.List;
@@ -22,6 +27,7 @@ public abstract class TZRecyclerViewAdapter<T> extends  RecyclerView.Adapter<TZR
     protected Context mContext;
     protected List<T> mDatas;
     private int layoutId;
+
 
     /**
      * @param context
@@ -55,4 +61,6 @@ public abstract class TZRecyclerViewAdapter<T> extends  RecyclerView.Adapter<TZR
     }
 
     public abstract void convert(TZRecyclerViewHolder holder, T t, int position);
+
+
 }

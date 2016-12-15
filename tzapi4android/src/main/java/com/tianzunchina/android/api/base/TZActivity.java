@@ -23,6 +23,7 @@ public class TZActivity extends Activity {
 
     @Override
     protected void onDestroy() {
+        TZApplication.getInstance().removeActivity(this.getPackageName());
         super.onDestroy();
     }
 

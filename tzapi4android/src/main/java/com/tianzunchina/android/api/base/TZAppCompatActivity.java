@@ -20,6 +20,7 @@ public class TZAppCompatActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
+        TZApplication.getInstance().removeActivity(this.getPackageName());
         super.onDestroy();
     }
 

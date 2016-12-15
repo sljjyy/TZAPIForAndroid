@@ -24,4 +24,7 @@
     </string>
 
     <string name="photo_box_layout_mode_"></string>
+
+    <string name="expand_string">更多</string>
+    <string name="collapsed_string">收起</string>
 </resources>

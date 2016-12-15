@@ -12,12 +12,13 @@ import android.support.v4.app.FragmentActivity;
 public class TZFragmentActivity extends FragmentActivity{
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         TZApplication.getInstance().addActivity(this);
+        super.onCreate(savedInstanceState);
     }
 
     @Override
     protected void onDestroy() {
+        TZApplication.getInstance().removeActivity(this.getPackageName());
         super.onDestroy();
     }
 }
