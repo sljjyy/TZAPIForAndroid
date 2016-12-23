@@ -1,15 +1,11 @@
 package com.tianzunchina.sample;
 
-import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.tianzunchina.android.api.base.TZAppCompatActivity;
-import com.tianzunchina.sample.app.SysApplication;
 
 public class MainActivity extends TZAppCompatActivity {
     @Override

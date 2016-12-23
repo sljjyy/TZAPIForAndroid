@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.tianzunchina.android.api.base.TZFragment;
 import com.tianzunchina.sample.R;
+import com.tianzunchina.sample.app.UpdateActivity;
 import com.tianzunchina.sample.event.EventActivity;
 
 import java.util.ArrayList;
@@ -22,8 +23,8 @@ import java.util.ArrayList;
 public class MainActivityFragment extends TZFragment implements View.OnClickListener,
         BaseQuickAdapter.OnRecyclerViewItemClickListener,
         BaseQuickAdapter.OnRecyclerViewItemLongClickListener{
-    private static final Class<?>[] ACTIVITYS = {EventActivity.class};
-    private static final String[] TITLES = {"案件上报"};
+    private static final Class<?>[] ACTIVITYS = {EventActivity.class, UpdateActivity.class};
+    private static final String[] TITLES = {"案件上报","版本更新"};
     private ArrayList<HomeItem> mDataList = new ArrayList<>();
 
     @Override

@@ -27,7 +27,7 @@ public class PhoneTools {
 
     private PhoneTools(){}
 
-    public static PhoneTools getInstence(){
+    public static PhoneTools getInstance(){
         if(instence == null){
             instence = new PhoneTools();
         }
