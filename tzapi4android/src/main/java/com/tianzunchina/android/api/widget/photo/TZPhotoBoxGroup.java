@@ -29,11 +29,12 @@ import pl.aprilapps.easyphotopicker.EasyImage;
 
 /**
  * CraetTime 2016-4-6
+ *
  * @author SunLiang
  */
-public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListener{
+public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListener {
     private int count = 2;
-    private int widht,height = 100;
+    private int widht, height = 100;
     private TZRecyclerViewAdapter adapter;
     private boolean isReadyDel = false;
     private List<TZPhotoBox> boxes = new ArrayList<>();
@@ -58,8 +59,8 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
         initAdapter();
     }
 
-    public void initLayout(){
-        if(isLinear){
+    public void initLayout() {
+        if (isLinear) {
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
             linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
             setLayoutManager(linearLayoutManager);
@@ -70,27 +71,27 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
         initClickListener();
     }
 
-    private void initAttr(Context context, @Nullable AttributeSet attrs, int defStyle){
+    private void initAttr(Context context, @Nullable AttributeSet attrs, int defStyle) {
         TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.TZPhotoBoxGroup, defStyle, 0);
         int n = a.getIndexCount();
         for (int i = 0; i < n; i++) {
             int attr = a.getIndex(i);
             if (attr == R.styleable.TZPhotoBoxGroup_boxCount) {
                 count = a.getInt(attr, 2);
-            } else if(attr == R.styleable.TZPhotoBoxGroup_boxWidth){
-                widht = (int)a.getDimension(attr, 100);
-            } else if(attr == R.styleable.TZPhotoBoxGroup_boxHeight){
-                height = (int)a.getDimension(attr, 100);
-            }else if(attr == R.styleable.TZPhotoBoxGroup_boxIsLinear){
+            } else if (attr == R.styleable.TZPhotoBoxGroup_boxWidth) {
+                widht = (int) a.getDimension(attr, 100);
+            } else if (attr == R.styleable.TZPhotoBoxGroup_boxHeight) {
+                height = (int) a.getDimension(attr, 100);
+            } else if (attr == R.styleable.TZPhotoBoxGroup_boxIsLinear) {
                 isLinear = a.getBoolean(attr, true);
-            } else if(!isLinear && attr == R.styleable.TZPhotoBoxGroup_boxColumn){
+            } else if (!isLinear && attr == R.styleable.TZPhotoBoxGroup_boxColumn) {
                 column = a.getInt(attr, 2);
             }
         }
         a.recycle();
     }
 
-    private void initClickListener(){
+    private void initClickListener() {
         this.addOnItemTouchListener(new RecyclerItemClickListener(getContext(), this, new RecyclerItemClickListener.OnItemClickListener() {
 
             @Override
@@ -101,7 +102,7 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
             @Override
             public void onItemClick(View view, int position) {
                 TZPhotoBox photoBox = boxes.get(position);
-                switch (photoBox.mode){
+                switch (photoBox.mode) {
                     case TZPhotoBox.MODE_READY_DELETE:
                         photoBox.ivDel.callOnClick();
                         break;
@@ -117,9 +118,10 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
             }
         }));
     }
-    public void showPhotos(int index){
+
+    public void showPhotos(int index) {
         Intent intent = new Intent(getContext(), PreviewActivity.class);
-        if(boxes.get(0).mode == TZPhotoBox.MODE_ONLY_READ){
+        if (boxes.get(0).mode == TZPhotoBox.MODE_ONLY_READ) {
             intent.putExtra(PreviewActivity.KEY_URLS, getBoxURLs().toArray(new String[0]));
         } else {
             intent.putExtra(PreviewActivity.KEY_PATHS, getBoxPaths().toArray(new String[0]));
@@ -128,58 +130,58 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
         getContext().startActivity(intent);
     }
 
-    public void setPhotosByURL(List<String> urls){
-        for (int i = 0; i < urls.size() && i < boxes.size(); i++){
+    public void setPhotosByURL(List<String> urls) {
+        for (int i = 0; i < urls.size() && i < boxes.size(); i++) {
             TZPhotoBox box = boxes.get(i);
             String url = urls.get(i);
             box.addPhoto(url);
         }
     }
 
-    public void setPhotosByURL(String root, List<String> urls){
-        for (int i = 0; i < urls.size() && i < boxes.size(); i++){
+    public void setPhotosByURL(String root, List<String> urls) {
+        for (int i = 0; i < urls.size() && i < boxes.size(); i++) {
             TZPhotoBox box = boxes.get(i);
             String url = root + urls.get(i);
             box.addPhoto(url);
         }
     }
 
-    public void setPhotosByPath(List<String> paths){
-        for (int i = 0; i < paths.size() && i < boxes.size(); i++){
+    public void setPhotosByPath(List<String> paths) {
+        for (int i = 0; i < paths.size() && i < boxes.size(); i++) {
             TZPhotoBox box = boxes.get(i);
             File file = new File(paths.get(i));
             box.addPhoto(file);
         }
     }
 
-    public List<String> getBoxPaths(){
+    public List<String> getBoxPaths() {
         List<String> paths = new ArrayList<>();
-        for (int i = 0; i < boxes.size(); i++){
+        for (int i = 0; i < boxes.size(); i++) {
             TZPhotoBox box = boxes.get(i);
-            if(box.isBrowse()){
+            if (box.isBrowse()) {
                 paths.add(box.getFileImage().getAbsolutePath());
             }
         }
         return paths;
     }
 
-    public List<String> getBoxURLs(){
+    public List<String> getBoxURLs() {
         List<String> paths = new ArrayList<>();
-        for (int i = 0; i < boxes.size(); i++){
+        for (int i = 0; i < boxes.size(); i++) {
             TZPhotoBox box = boxes.get(i);
-            if(box.isBrowse()){
+            if (box.isBrowse()) {
                 paths.add(box.getUrl());
             }
         }
         return paths;
     }
 
-    public String getBoxPathsStr(char separator){
+    public String getBoxPathsStr(char separator) {
         String[] paths = (String[]) getBoxPaths().toArray();
-        return StringUtils.join(paths,separator);
+        return StringUtils.join(paths, separator);
     }
 
-    public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent data){
+    public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent data) {
         EasyImage.handleActivityResult(requestCode, resultCode, data, activity, new DefaultCallback() {
             @Override
             public void onImagePickerError(Exception e, EasyImage.ImageSource source, int type) {
@@ -188,7 +190,7 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
 
             @Override
             public void onImagePicked(File imageFile, EasyImage.ImageSource source, int type) {
-                if(type >= 10) type -= 10;
+                if (type >= 10) type -= 10;
                 boxes.get(type).addPhoto(imageFile);
                 if (type == 0 && !boxes.get(1).isBrowse()) {
                     boxes.get(1).allow();
@@ -199,31 +201,37 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
 
     /**
      * 获取所有照片路径的集合
+     *
      * @return
      */
-    public ArrayList<String> getPaths(){
+    public ArrayList<String> getPaths() {
         ArrayList<String> paths = new ArrayList<>();
-        for (TZPhotoBox box : boxes){
-            if (box.mode == TZPhotoBox.MODE_BROWSE || box.mode == TZPhotoBox.MODE_ONLY_READ){
+        for (TZPhotoBox box : boxes) {
+            if (box.mode == TZPhotoBox.MODE_BROWSE || box.mode == TZPhotoBox.MODE_ONLY_READ) {
                 paths.add(box.getFileImage().getAbsolutePath());
             }
         }
         return paths;
     }
 
-    public void onlyRead(){
-        for(TZPhotoBox box : boxes){
+    public TZPhotoBox get(int index) {
+        return boxes.get(index);
+    }
+
+    public void onlyRead() {
+        for (TZPhotoBox box : boxes) {
             box.onlyRead();
         }
     }
 
     /**
      * 获取指定索引下的图片路径
+     *
      * @param index
      * @return
      */
-    public String getPath(int index){
-        if(index < boxes.size()){
+    public String getPath(int index) {
+        if (index < boxes.size()) {
             return boxes.get(index).getFileImage().getAbsolutePath();
         }
         return null;
@@ -231,26 +239,27 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
 
     /**
      * 判断是否为待删除状态
+     *
      * @return
      */
-    public boolean isReadyDelete(){
+    public boolean isReadyDelete() {
         return isReadyDel;
     }
 
     /**
      * 取消删除状态
      */
-    public void cancelDelete(){
-        for(TZPhotoBox box : boxes){
+    public void cancelDelete() {
+        for (TZPhotoBox box : boxes) {
             box.cancelDelete();
         }
     }
 
-    private void initAdapter(){
+    private void initAdapter() {
         for (int i = 0; i < count; i++) {
             TZPhotoBoxView view = new TZPhotoBoxView(getContext());
-            TZPhotoBox photoBox = new TZPhotoBox(getContext(),view, i);
-            if(i == 0){
+            TZPhotoBox photoBox = new TZPhotoBox(getContext(), view, i);
+            if (i == 0) {
                 photoBox.allow();
             } else {
                 photoBox.invalid();
@@ -258,10 +267,10 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
             photoBox.setPhotoBoxChangeListener(this);
             boxes.add(photoBox);
         }
-        adapter =  new TZRecyclerViewAdapter<TZPhotoBox>(getContext(), boxes, R.layout.item_photo_box) {
+        adapter = new TZRecyclerViewAdapter<TZPhotoBox>(getContext(), boxes, R.layout.item_photo_box) {
             @Override
             public void convert(TZRecyclerViewHolder holder, TZPhotoBox pb, int position) {
-                switch (pb.mode){
+                switch (pb.mode) {
                     case TZPhotoBox.MODE_READY_DELETE:
                         holder.setImage(R.id.ivPhoto, pb.fileImage, pb.url, R.mipmap.pic_loading, widht, height);
                         holder.setVisible(R.id.ivDel, true);
@@ -286,10 +295,10 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
     @Override
     public void change(int index, int mode) {
         adapter.notifyItemChanged(index);
-        if(index >= boxes.size() || mode > TZPhotoBox.MODE_BROWSE){
+        if (index >= boxes.size() || mode > TZPhotoBox.MODE_BROWSE) {
             return;
         }
-        switch (mode){
+        switch (mode) {
             case TZPhotoBox.MODE_READY_DELETE:
                 isReadyDel = true;
                 break;
@@ -307,20 +316,22 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
 
     /**
      * 该位置添加完图片后 如果下个没有图片就将其设置为待添加
+     *
      * @param index
      */
-    private void added(int index){
-        if(!isBrowse4next(index)) return;
+    private void added(int index) {
+        if (!isBrowse4next(index)) return;
         TZPhotoBox photoBox = boxes.get(index + 1);
         photoBox.allow();
     }
 
     /**
      * 删除该位置的图片后 如果下一个没有图片就将其设置为不可编辑
+     *
      * @param index
      */
-    private void deleted(int index){
-        if(!isBrowse4next(index)) return;
+    private void deleted(int index) {
+        if (!isBrowse4next(index)) return;
         TZPhotoBox photoBox = boxes.get(index + 1);
         photoBox.invalid();
     }
@@ -328,11 +339,12 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
 
     /**
      * 判断下一个box中是否已有图片
+     *
      * @param index
      * @return
      */
-    private boolean isBrowse4next(int index){
-        if(isLast(index)) return false;
+    private boolean isBrowse4next(int index) {
+        if (isLast(index)) return false;
         TZPhotoBox photoBox = boxes.get(index + 1);
         if (photoBox.isBrowse()) return false;
         return true;
@@ -341,37 +353,39 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
 
     /**
      * 检查照片数量是否符合最少数量 minCount
+     *
      * @param minCount 最少数量
      * @return
      */
-    public boolean check(int minCount){
+    public boolean check(int minCount) {
         int count = 0;
-        for (int i = 0; boxes.get(i).mode == TZPhotoBox.MODE_BROWSE && i < boxes.size(); i++){
+        for (int i = 0; boxes.get(i).mode == TZPhotoBox.MODE_BROWSE && i < boxes.size(); i++) {
             count++;
-            if(count >= minCount){
+            if (count >= minCount) {
                 return true;
             }
         }
         return false;
     }
 
-    private boolean isLast(int index){
-        return boxes.size()-1 == index;
+    private boolean isLast(int index) {
+        return boxes.size() - 1 == index;
     }
 
 
     /**
      * 取消删除
+     *
      * @param event
      * @return
      */
     public boolean dispatchTouchEvent(MotionEvent event, boolean def) {
-        if(isReadyDelete()&&event.getAction() == MotionEvent.ACTION_UP){
+        if (isReadyDelete() && event.getAction() == MotionEvent.ACTION_UP) {
             int[] position = new int[2];
             getLocationInWindow(position);
             TZLog.w("" + position);
-            View view = findChildViewUnder(event.getX() - position[0], event.getY() -  position[1]);
-            if(view == null){
+            View view = findChildViewUnder(event.getX() - position[0], event.getY() - position[1]);
+            if (view == null) {
                 cancelDelete();
             }
             return true;
