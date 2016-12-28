@@ -22,6 +22,12 @@
 
     </android.support.design.widget.AppBarLayout>
 
+    <Button
+        android:id="@+id/btnAdd"
+        android:background="@drawable/btn_add_photo_bg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
     <include layout="@layout/content_main" />
 
 </android.support.design.widget.CoordinatorLayout>
