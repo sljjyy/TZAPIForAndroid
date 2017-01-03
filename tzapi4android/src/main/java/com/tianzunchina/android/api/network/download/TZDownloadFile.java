@@ -33,7 +33,7 @@ import static com.tianzunchina.android.api.R.style.dialog;
  * Created by zwt on 2016/12/20.
  */
 public class TZDownloadFile{
-    private AppVersion version;
+    private TZAppVersion version;
     private int max;
     private Context context;
     // 用于判断是否将更新按钮隐藏
@@ -49,14 +49,14 @@ public class TZDownloadFile{
     private static final int OVER = 2;
     private static final int ERR = -1;
 
-    public TZDownloadFile(Context context, AppVersion version) {
+    public TZDownloadFile(Context context, TZAppVersion version) {
         this.context = context;
         this.version = version;
         http = new HTTPWebAPI();
         thread();
     }
 
-    public TZDownloadFile(Context context, AppVersion version,CallBackListener listener) {
+    public TZDownloadFile(Context context, TZAppVersion version,CallBackListener listener) {
         this.context = context;
         this.version = version;
         http = new HTTPWebAPI();
@@ -65,26 +65,9 @@ public class TZDownloadFile{
     }
 
     public void init(ProgressBar pbUpdate) {
-        pbUpdate.setMax(version.getVersionSize());
-        max = version.getVersionSize();
+        pbUpdate.setMax(TZAppVersion.MAX);
+        max = TZAppVersion.MAX;
     }
-
-//    public void downByte(int num) {
-//        if (num >= 0 && num <= max) {
-//            pbUpdate.setProgress(num);
-//            tvUpdate.setText("正在更新……" + num + "%");
-//        } else {
-//            tvUpdate.setText("正在更新……");
-//            pbUpdate.setProgress(max);
-//            if (!isHidden) {
-//                //将更新按钮隐藏
-//                final Button positiveButton = ad
-//                        .getButton(AlertDialog.BUTTON_POSITIVE);
-//                positiveButton.setEnabled(false);
-//                isHidden = true;
-//            }
-//        }
-//    }返回  callback的职责
 
     private void thread() {
         TZApplication.getInstance().execute(new Runnable() {
@@ -144,19 +127,6 @@ public class TZDownloadFile{
             }
             is.close();
 
-            //tzapi
-//            TZRequest tzRequest = new TZRequest(version.getVersionURL(),"");
-//            http.call(tzRequest, new WebCallBackListener() {
-//                @Override
-//                public void success(JSONObject jsonObject, TZRequest request) {
-//
-//                }
-//
-//                @Override
-//                public void err(String err, TZRequest request) {
-//
-//                }
-//            });
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -187,14 +157,12 @@ public class TZDownloadFile{
                         listener.callback(msg.arg1);
                         break;
                     case OVER:
-//                        Toast.makeText(context, "文件下载完成", Toast.LENGTH_LONG).show();
                         TZToastTool.essential("文件下载完成");
                         DialogUtil.close();
                         Intent intent = PhoneTools.getInstance().getApkFileIntent((String) msg.obj);
                         context.startActivity(intent);
                         break;
                     case ERR:
-//                        Toast.makeText(context, "抱歉更新出错！请稍后重试！", Toast.LENGTH_LONG).show();
                         TZToastTool.essential("抱歉更新出错！请稍后重试！");
                         DialogUtil.close();
                         break;
