@@ -84,14 +84,14 @@ public class TZUpdateDialog extends DialogFragment implements View.OnClickListen
     public void onClick(View v) {
         int i = v.getId();
         if (i == R.id.tvNeutral) {
-            //               TODO 更新
+            //  更新
             if (downloadFile == null) {
                 downloadFile = new TZDownloadFile(TZApplication.getInstance(), version, listener);
             }
 //            tvNegative.setClickable(false);
 
         } else if (i == R.id.tvNegative) {
-            //               TODO 关闭or退出
+            //  关闭or退出
             if (version.isImportant()) {
                 Intent intent = new Intent(Intent.ACTION_MAIN);
                 intent.addCategory(Intent.CATEGORY_HOME);
