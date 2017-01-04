@@ -35,6 +35,10 @@
         <activity
             android:name=".app.UpdateActivity"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".notify.NotifyActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

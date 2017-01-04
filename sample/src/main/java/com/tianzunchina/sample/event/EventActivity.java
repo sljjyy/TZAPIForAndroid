@@ -2,7 +2,6 @@ package com.tianzunchina.sample.event;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
@@ -25,6 +24,7 @@ public class EventActivity extends TZAppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         photoBoxGroup = (TZPhotoBoxGroup) findViewById(R.id.pbg);
+
     }
 
     @Override
@@ -33,10 +33,10 @@ public class EventActivity extends TZAppCompatActivity {
         photoBoxGroup.onActivityResult(this, requestCode, resultCode, data);
     }
 
-    public void submit(View view){
-        TZRequest tzRequest = new TZRequest("http://10.80.2.108:8098/api/Login/","Login");
-        tzRequest.addParam("code",10000);
-        tzRequest.addParam("password","aa1122");
+    public void submit(View view) {
+        TZRequest tzRequest = new TZRequest("http://10.80.2.108:8098/api/Login/", "Login");
+        tzRequest.addParam("code", 10000);
+        tzRequest.addParam("password", "aa1122");
         new HTTPWebAPI().call(tzRequest, new WebCallBackListener() {
             @Override
             public void success(org.json.JSONObject jsonObject, TZRequest request) {

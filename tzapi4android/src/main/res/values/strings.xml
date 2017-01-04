@@ -27,4 +27,8 @@
 
     <string name="expand_string">更多</string>
     <string name="collapsed_string">收起</string>
+
+    <string name="tv_confirmation" translatable="false">需要访问拍照权限</string>
+    <string name="tv_deny" translatable="false">拒绝</string>
+    <string name="tv_allow" translatable="false">允许</string>
 </resources>

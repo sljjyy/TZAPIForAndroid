@@ -7,7 +7,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.2'
+        classpath 'com.android.tools.build:gradle:2.3.0-alpha2'
         classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
     }
 }
@@ -25,14 +25,14 @@ task clean(type: Delete) {
 
 //定义GroupID和Version，ArtefactID会自动使用Project名
 group = 'com.github.sljjyy'
-version = '1.6.7'
+version = '1.6.8'
 
 repositories {
     mavenCentral();
 }
 
 artifacts {
-    archives file('tzapi4android-1.6.7.aar')
+    archives file('tzapi4android-1.6.8.aar')
 }
 
 signing {
