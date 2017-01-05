@@ -185,7 +185,7 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
         EasyImage.handleActivityResult(requestCode, resultCode, data, activity, new DefaultCallback() {
             @Override
             public void onImagePickerError(Exception e, EasyImage.ImageSource source, int type) {
-                //Some error handling
+                e.printStackTrace();
             }
 
             @Override

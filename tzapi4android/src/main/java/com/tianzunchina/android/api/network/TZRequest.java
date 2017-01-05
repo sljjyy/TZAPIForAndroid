@@ -43,8 +43,6 @@ public class TZRequest {
         return params.get(key);
     }
 
-
-
     public void removeParam(String key){
         params.remove(key);
     }

@@ -3,6 +3,8 @@ package com.tianzunchina.android.api.base;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.tianzunchina.android.api.context.ContextManger;
+
 /**
  * CraetTime 2016-3-14
  * @author SunLiang
@@ -15,12 +17,12 @@ public class TZAppCompatActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        TZApplication.getInstance().addActivity(this);
+        ContextManger.addActivity(this);
     }
 
     @Override
     protected void onDestroy() {
-        TZApplication.getInstance().removeActivity(this.getPackageName());
+        ContextManger.removeActivity(this.getPackageName());
         super.onDestroy();
     }
 

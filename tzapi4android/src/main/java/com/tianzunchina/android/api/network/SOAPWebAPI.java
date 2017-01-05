@@ -38,7 +38,7 @@ public class SOAPWebAPI implements WebAPIable {
 
     @Override
     public void call(final TZRequest request, final WebCallBackListener listenner) {
-        TZApplication.getInstance().execute(new Runnable() {
+        ThreadTool.execute(new Runnable() {
             @Override
             public void run() {
                 SoapObject soapObject = new SoapObject(nameSpace, request.method);

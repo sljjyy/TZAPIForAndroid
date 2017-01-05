@@ -1,4 +1,4 @@
-package com.tianzunchina.android.api.util;
+package com.tianzunchina.android.api.network.browser;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -31,7 +31,7 @@ import java.io.IOException;
  * Created by Administrator on 2016/12/19.
  */
 
-public class ICCWebChromeViewClient extends WebChromeClient implements ConfirmationDialogFragment.Listener {
+public class WebChromeViewClient extends WebChromeClient implements ConfirmationDialogFragment.Listener {
     public final static String CAPTURE_IMAGE = " image/jpeg";
     public final static String CAPTURE_CAMERA = " camera";
     public static final int INPUT_FILE_REQUEST_CODE = 1;
@@ -42,7 +42,7 @@ public class ICCWebChromeViewClient extends WebChromeClient implements Confirmat
     private Activity activity;
     private PermissionRequest mPermissionRequest;
 
-    public ICCWebChromeViewClient(Activity activity) {
+    public WebChromeViewClient(Activity activity) {
         this.activity = activity;
     }
 

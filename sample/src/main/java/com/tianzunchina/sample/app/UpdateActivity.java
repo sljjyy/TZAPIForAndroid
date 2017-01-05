@@ -18,14 +18,10 @@ public class UpdateActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        TZAppVersion version = new TZAppVersion();
-//        version.setVersionCode(26);
-//        version.setVersionName("1.7.0");
-//        version.setVersionURL("http://218.108.93.246:9001/ZHStreet_Supervision.apk");
-//        new UpdateDialog1(this,version).showDialog();
 
         String jsonStr = "{\"versionCode\":26,\"versionName\":\"1.7.0\", \"versionURL\":\"http://218.108.93.246:9001/ZHStreet_Supervision.apk\"}";
         try {
+            //TODO 调用过于复杂
             JSONObject jsonObject = new JSONObject(jsonStr);
 //            此AppVersion继承了TZAppVersion
             AppVersion version = new AppVersion(jsonObject);

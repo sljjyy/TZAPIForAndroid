@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 
+import com.tianzunchina.android.api.context.ContextManger;
+
 /**
  * admin
  * 2016/11/4 0004.
@@ -12,13 +14,13 @@ import android.support.v4.app.FragmentActivity;
 public class TZFragmentActivity extends FragmentActivity{
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        TZApplication.getInstance().addActivity(this);
+        ContextManger.addActivity(this);
         super.onCreate(savedInstanceState);
     }
 
     @Override
     protected void onDestroy() {
-        TZApplication.getInstance().removeActivity(this.getPackageName());
+        ContextManger.removeActivity(this.getPackageName());
         super.onDestroy();
     }
 }

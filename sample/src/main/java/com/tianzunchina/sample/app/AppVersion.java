@@ -12,6 +12,7 @@ import org.json.JSONObject;
 public class AppVersion extends TZAppVersion {
 	/**
 	 * 此方法用于JSONObject解析，可根据接收到的值一一对应到TZAppVersion的相应的属性中
+	 *
 	 * @param json
      */
     public AppVersion(JSONObject json) {
