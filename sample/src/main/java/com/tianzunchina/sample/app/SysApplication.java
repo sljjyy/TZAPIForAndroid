@@ -1,5 +1,6 @@
 package com.tianzunchina.sample.app;
 
+import android.app.Application;
 import android.content.pm.ApplicationInfo;
 import android.os.StrictMode;
 import android.support.multidex.MultiDex;
@@ -10,7 +11,7 @@ import com.tianzunchina.android.api.log.TZLogLevel;
 import com.tianzunchina.android.api.log.TZToastLevel;
 import com.tianzunchina.android.api.log.TZToastTool;
 
-public class SysApplication extends TZApplication {
+public class SysApplication extends Application {
 
 	@Override
 	public void onCreate() {
@@ -19,6 +20,7 @@ public class SysApplication extends TZApplication {
 	}
 
 	private void init() {
+		TZApplication.init(this);
 		MultiDex.install(this); //防止方法数超额
 		initStrictMode();
 		TZLog.init(TZLogLevel.INFO); //设置日志最低打印等级

@@ -1,54 +1,53 @@
 package com.tianzunchina.android.api.base;
 
 import android.app.Activity;
-import android.support.multidex.MultiDexApplication;
-import android.support.v4.util.ArrayMap;
+import android.app.Application;
+import android.content.Context;
+import android.support.multidex.MultiDex;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.Volley;
-import com.squareup.okhttp.OkHttpClient;
-import com.tianzunchina.android.api.network.okhttp.TZOkHttpStack;
-
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import com.tianzunchina.android.api.context.ContextManger;
+import com.tianzunchina.android.api.network.ThreadTool;
 
 /**
  * CraetTime 2016-3-14
  *
  * @author SunLiang
  */
-public class TZApplication extends MultiDexApplication {
-    private ArrayMap<String, Activity> mActivities = new ArrayMap<>();
-    private static TZApplication instance;
-    private RequestQueue mRequestQueue;
-    private ExecutorService executorService;
-    private int poolCount = 3;
+public class TZApplication extends Application {
 
-    public static TZApplication getInstance() {
+    private static Application instance;
+
+    public static Application getInstance() {
         return instance;
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
-        instance = this;
-        executorService = Executors.newFixedThreadPool(poolCount);
+        init(this);
     }
 
-    public void execute(Runnable runnable) {
-        executorService.execute(runnable);
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        MultiDex.install(this);
+    }
+
+    public static void init(Application application){
+        ThreadTool.init(application);
+        instance = application;
     }
 
     /**
-     * 设置线程池大小
-     * 在onCreate前执行
-     *
-     * @param count
+     * use{@link com.tianzunchina.android.api.network.ThreadTool}
+     * @param runnable
      */
-    protected void setPoolCount(int count) {
-        poolCount = count;
+    @Deprecated
+    public static void execute(Runnable runnable) {
+        ThreadTool.execute(runnable);
     }
+
 
     /**
      * 添加当前开启的Activity
@@ -56,11 +55,7 @@ public class TZApplication extends MultiDexApplication {
      * @param activity 当前开启的Activity
      */
     public void addActivity(Activity activity) {
-        String key = activity.getClass().getName();
-        if (mActivities.containsKey(key)) {
-            finishActivity(key);
-        }
-        mActivities.put(key, activity);
+        ContextManger.addActivity(activity);
     }
 
     /**
@@ -69,85 +64,77 @@ public class TZApplication extends MultiDexApplication {
      * @param key 指定Activity的key, 即className
      */
     public void removeActivity(String key) {
-        mActivities.remove(key);
+        ContextManger.removeActivity(key);
     }
 
 
     /**
      * 关闭指定Activity
-     *
+     * use{@link com.tianzunchina.android.api.context.ContextManger }
      * @param key 指定Activity的key, 即className
      */
+    @Deprecated
     public void finishActivity(String key) {
-        Activity activity = mActivities.get(key);
-        if (activity != null) {
-            activity.finish();
-            mActivities.remove(key);
-        }
-    }
-
-    public void finishActivity(int index) {
-        Activity activity = mActivities.removeAt(index);
-        if (activity != null) {
-            activity.finish();
-        }
+        ContextManger.finishActivity(key);
     }
 
     /**
+     * use{@link com.tianzunchina.android.api.context.ContextManger }
+     * @param index
+     */
+    @Deprecated
+    public void finishActivity(int index) {
+        ContextManger.finishActivity(index);
+    }
+
+    /**
+     * use{@link com.tianzunchina.android.api.context.ContextManger }
      * 退出应用
      */
+    @Deprecated
     public void exit() {
-        try {
-            for (int i = mActivities.size() - 1; i >= 0; i--) {
-                finishActivity(i);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            System.exit(0);
-        }
+        ContextManger.exit();
     }
 
     /**
      * 获取全局Volley队列实例
      *
+     * use{@link com.tianzunchina.android.api.network.ThreadTool}
      * @return
      */
+    @Deprecated
     public RequestQueue getVolleyRequestQueue() {
-        if (mRequestQueue == null) {
-            mRequestQueue = Volley.newRequestQueue(this, new TZOkHttpStack(new OkHttpClient()));
-        }
-        return mRequestQueue;
+        return ThreadTool.getVolleyRequestQueue();
     }
 
     /**
      * 队列中添加请求
-     *
+     * use{@link com.tianzunchina.android.api.network.ThreadTool}
      * @param request
      */
+    @Deprecated
     public static void addRequest(Request<?> request) {
-        getInstance().getVolleyRequestQueue().add(request);
+        ThreadTool.addRequest(request);
     }
 
     /**
      * 在请求中加入tag标识 并加入队列
-     *
+     * use{@link com.tianzunchina.android.api.network.ThreadTool}
      * @param request
      * @param tag
      */
+    @Deprecated
     public static void addRequest(Request<?> request, String tag) {
-        request.setTag(tag);
-        addRequest(request);
+        ThreadTool.addRequest(request, tag);
     }
 
     /**
      * 取消该tag标识对应的请求
-     *
+     * use{@link com.tianzunchina.android.api.network.ThreadTool}
      * @param tag 请求标识
      */
+    @Deprecated
     public static void cancelAllRequests(String tag) {
-        if (getInstance().getVolleyRequestQueue() != null) {
-            getInstance().getVolleyRequestQueue().cancelAll(tag);
-        }
+        ThreadTool.cancelAllRequests(tag);
     }
 }

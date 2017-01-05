@@ -1,25 +1,19 @@
 package com.tianzunchina.android.api.network.download;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
-import android.widget.Button;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.tianzunchina.android.api.base.TZApplication;
 import com.tianzunchina.android.api.log.TZToastTool;
 import com.tianzunchina.android.api.network.HTTPWebAPI;
-import com.tianzunchina.android.api.network.TZRequest;
-import com.tianzunchina.android.api.network.WebCallBackListener;
+import com.tianzunchina.android.api.network.ThreadTool;
 import com.tianzunchina.android.api.util.DialogUtil;
 import com.tianzunchina.android.api.util.PhoneTools;
-
-import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -27,17 +21,15 @@ import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
 
-import static com.tianzunchina.android.api.R.style.dialog;
-
 /**
  * Created by zwt on 2016/12/20.
  */
 public class TZDownloadFile{
-    private TZAppVersion version;
+    private TZAppVersion version; //TODO 需要解耦
     private int max;
     private Context context;
     // 用于判断是否将更新按钮隐藏
-    private boolean isHidden = false;
+    private boolean isHidden = false;//TODO 需要解耦
 
     // 下载时，记录实时流量累计
     private double index;
@@ -45,7 +37,7 @@ public class TZDownloadFile{
     private CallBackListener listener;
     private HTTPWebAPI http;
 
-    private static final int RUN = 1;
+    private static final int RUN = 1; //TODO 可以统一管理
     private static final int OVER = 2;
     private static final int ERR = -1;
 
@@ -70,7 +62,7 @@ public class TZDownloadFile{
     }
 
     private void thread() {
-        TZApplication.getInstance().execute(new Runnable() {
+        ThreadTool.execute(new Runnable() {
             @Override
             public void run() {
                 Message message = new Message();

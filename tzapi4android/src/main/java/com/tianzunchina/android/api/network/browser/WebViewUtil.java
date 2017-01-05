@@ -1,5 +1,6 @@
-package com.tianzunchina.android.api.util;
+package com.tianzunchina.android.api.network.browser;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -36,13 +37,13 @@ public class WebViewUtil extends WebViewClient {
 
     /**
      * 加载webView
-     * @param context 上下文
+     * @param activity 上下文
      * @param loadingStr 网址没加载之前的对话框文字
      * @param webView 控件
      * @param url 网络地址
      */
-    public  WebViewUtil(Context context,String loadingStr,WebView webView,String url){
-        this.context = context;
+    public  WebViewUtil(Activity activity, String loadingStr, WebView webView, String url){
+        this.context = activity;
         this.loadingStr = loadingStr;
         this.webView = webView;
         progressDialog = ProgressDialog.show(context, null, loadingStr);
@@ -50,7 +51,7 @@ public class WebViewUtil extends WebViewClient {
         timer.schedule(new TimeOutTask(), 10000);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
-        webView.setWebChromeClient(new ICCWebChromeViewClient());
+        webView.setWebChromeClient(new WebChromeViewClient(activity));
         webView.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
         webView.loadUrl(url);
     }

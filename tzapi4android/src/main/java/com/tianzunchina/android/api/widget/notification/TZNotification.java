@@ -12,6 +12,7 @@ import static android.content.Context.NOTIFICATION_SERVICE;
 /**
  * 通知栏
  * Created by HL on 2016/12/21.
+ * TODO 方法及参数注释不足以让其他人也能正常使用
  */
 
 public class TZNotification {
@@ -20,7 +21,7 @@ public class TZNotification {
     private NotificationCompat.Builder mBuilder;
     private NotificationManager mNotificationManager;
     private long currentTimeMillis = System.currentTimeMillis();
-    public static final int NOTIFYID = 100;//普通通知栏
+    public static final int NOTIFYID = 100;//普通通知栏 TODO 注意常量规范
     public static final int CZNOTIFYID = 200;//常驻通知栏
     public static final int JDNOTIFYID = 300;//进度条通知栏
 
@@ -64,17 +65,22 @@ public class TZNotification {
         mNotificationManager.notify(CZNOTIFYID, notification);
     }
 
+    /**
+     * TODO 现在控制进度是在数值已经转化为百分比的前提下，但目标是需要在使用时用较少的操作来实现
+     *
+     * @param progress
+     */
     //显示进度条通知栏
     public void showProgressNotify(int progress) {
-        if (progress == 100) {
-            mBuilder.setContentTitle("下载完成");
+        if (progress == 100) { //TODO 会不会出现超过100的情况
+            mBuilder.setContentTitle("下载完成"); //TODO 在下载完毕后如果程序需要回调怎么实现
         }
         mBuilder.setContentText(String.format("已下载%d%s", progress, "%"))
                 .setProgress(100, progress, false);
         mNotificationManager.notify(JDNOTIFYID, mBuilder.build());
     }
 
-    //消除对应ID的通知
+    //消除对应ID的通知 TODO 如何更方便的管理
     public void cancle(int notificationID) {
         mNotificationManager.cancel(notificationID);
     }

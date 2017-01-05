@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.tianzunchina.android.api.context.ContextManger;
 import com.tianzunchina.android.api.log.TZLog;
 
 /**
@@ -17,13 +18,13 @@ public class TZActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        TZApplication.getInstance().addActivity(this);
+        ContextManger.addActivity(this);
         super.onCreate(savedInstanceState);
     }
 
     @Override
     protected void onDestroy() {
-        TZApplication.getInstance().removeActivity(this.getPackageName());
+        ContextManger.removeActivity(this.getPackageName());
         super.onDestroy();
     }
 

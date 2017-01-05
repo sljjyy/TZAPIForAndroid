@@ -1,6 +1,7 @@
 package com.tianzunchina.android.api.util;
 
 import android.app.Activity;
+import android.app.Application;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -20,7 +21,7 @@ import java.io.File;
  * @author SunLiang
  */
 public class PhoneTools {
-    TZApplication app = TZApplication.getInstance();
+    Application app = TZApplication.getInstance();
     TelephonyManager tm = (TelephonyManager) app.getSystemService(Context.TELEPHONY_SERVICE);
     PackageManager pm = app.getPackageManager();
     private static PhoneTools instence;

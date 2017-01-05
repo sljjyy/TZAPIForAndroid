@@ -36,7 +36,7 @@ public class HTTPWebAPI implements WebAPIable {
                     listener.err(error.getMessage(), request);
                 }
             });
-            TZApplication.addRequest(jsonRequest);
+            ThreadTool.addRequest(jsonRequest);
         } catch (Exception e){
             listener.err(e.getMessage(), request);
         }

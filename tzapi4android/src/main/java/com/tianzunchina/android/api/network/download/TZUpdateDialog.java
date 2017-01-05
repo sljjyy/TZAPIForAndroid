@@ -11,12 +11,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.tianzunchina.android.api.R;
-import com.tianzunchina.android.api.base.TZApplication;
 
 public class TZUpdateDialog extends DialogFragment implements View.OnClickListener {
 
     public static final String VERSION = "version";
-
     private TZDownloadFile downloadFile;
     private ProgressBar pbUpdate;
     private TextView tvUpdate, tvNegative,tvNeutral;
@@ -86,7 +84,7 @@ public class TZUpdateDialog extends DialogFragment implements View.OnClickListen
         if (i == R.id.tvNeutral) {
             //  更新
             if (downloadFile == null) {
-                downloadFile = new TZDownloadFile(TZApplication.getInstance(), version, listener);
+                downloadFile = new TZDownloadFile(getActivity(), version, listener);
             }
 //            tvNegative.setClickable(false);
 

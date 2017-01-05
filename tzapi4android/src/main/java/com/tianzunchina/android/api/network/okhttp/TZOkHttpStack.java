@@ -1,31 +1,22 @@
 package com.tianzunchina.android.api.network.okhttp;
 
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.toolbox.HttpStack;
-import com.squareup.okhttp.Call;
-import com.squareup.okhttp.Headers;
-import com.squareup.okhttp.MediaType;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Protocol;
-import com.squareup.okhttp.RequestBody;
-import com.squareup.okhttp.Response;
-import com.squareup.okhttp.ResponseBody;
-
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.ProtocolVersion;
-import org.apache.http.StatusLine;
-import org.apache.http.entity.BasicHttpEntity;
-import org.apache.http.message.BasicHeader;
-import org.apache.http.message.BasicHttpResponse;
-import org.apache.http.message.BasicStatusLine;
+import com.android.volley.toolbox.HurlStack;
 
 import java.io.IOException;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.security.KeyStore;
+import java.util.Arrays;
 
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSocketFactory;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.TrustManagerFactory;
+import javax.net.ssl.X509TrustManager;
+
+import okhttp3.OkHttpClient;
+import okhttp3.OkUrlFactory;
 
 /**
  * 对OKHttp进行HttpStack封装 以供Volley使用
@@ -34,129 +25,79 @@ import java.util.concurrent.TimeUnit;
  *  use okhttp-urlconnection
  * 引自：https://gist.github.com/bryanstern/4e8f1cb5a8e14c202750
  */
-public class TZOkHttpStack implements HttpStack {
+public class TZOkHttpStack extends HurlStack {
+    private final OkUrlFactory okUrlFactory;
 
-    private final OkHttpClient mClient;
+    public TZOkHttpStack() {
+        this(new OkUrlFactory(getUnsafeOkHttpClient()));
+    }
 
-    public TZOkHttpStack(OkHttpClient client) {
-        this.mClient = client;
+    public TZOkHttpStack(OkUrlFactory okUrlFactory) {
+        if (okUrlFactory == null) {
+            throw new NullPointerException("Client must not be null.");
+        }
+        this.okUrlFactory = okUrlFactory;
     }
 
     @Override
-    public HttpResponse performRequest(Request<?> request, Map<String, String> additionalHeaders)
-            throws IOException, AuthFailureError {
+    protected HttpURLConnection createConnection(URL url) throws IOException {
+        return okUrlFactory.open(url);
+    }
 
-        OkHttpClient client = mClient.clone();
-        int timeoutMs = request.getTimeoutMs();
-        client.setConnectTimeout(timeoutMs, TimeUnit.MILLISECONDS);
-        client.setReadTimeout(timeoutMs, TimeUnit.MILLISECONDS);
-        client.setWriteTimeout(timeoutMs, TimeUnit.MILLISECONDS);
+    /**
+     * 支持HTTPS。按下面的注释进行
+     *
+     * @return
+     */
+    private static OkHttpClient getUnsafeOkHttpClient() {
+        try {
+            /**
+             * 读取公钥证书内容
+             * 首先要把你的https公钥证书通过浏览器或者其他方法导出，放进android资源目录assets下。
+             * 然后AppConfig这个类是继承了Application的，android启动的时候会先执行它，getApp是一个单例模式的实现
+             */
 
-        com.squareup.okhttp.Request.Builder okHttpRequestBuilder = new com.squareup.okhttp.Request.Builder();
-        okHttpRequestBuilder.url(request.getUrl());
+            // 配置HTTPS时需要打开下面的注释
 
-        Map<String, String> headers = request.getHeaders();
-        for (final String name : headers.keySet()) {
-            okHttpRequestBuilder.addHeader(name, headers.get(name));
-        }
-        for (final String name : additionalHeaders.keySet()) {
-            okHttpRequestBuilder.addHeader(name, additionalHeaders.get(name));
-        }
 
-        setConnectionParametersForRequest(okHttpRequestBuilder, request);
+            // InputStream inputStream = AppConfig.getApp().getAssets().open("https.cer");
+            //
+            // CertificateFactory certificateFactory = CertificateFactory.getInstance("X.509");
+            //
+            // KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());
+            // keyStore.load(null);
+            //
+            // int index = 0;
+            // String certificateAlias = Integer.toString(index++);
+            // keyStore.setCertificateEntry(certificateAlias, certificateFactory.generateCertificate(inputStream));
 
-        com.squareup.okhttp.Request okHttpRequest = okHttpRequestBuilder.build();
-        Call okHttpCall = client.newCall(okHttpRequest);
-        Response okHttpResponse = okHttpCall.execute();
+            TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(
+                    TrustManagerFactory.getDefaultAlgorithm());
 
-        StatusLine responseStatus = new BasicStatusLine(parseProtocol(okHttpResponse.protocol()), okHttpResponse.code(), okHttpResponse.message());
-        BasicHttpResponse response = new BasicHttpResponse(responseStatus);
-        response.setEntity(entityFromOkHttpResponse(okHttpResponse));
+            // 配置HTTPS时需要把下面的注释打开
+            // trustManagerFactory.init(keyStore);
 
-        Headers responseHeaders = okHttpResponse.headers();
-        for (int i = 0, len = responseHeaders.size(); i < len; i++) {
-            final String name = responseHeaders.name(i), value = responseHeaders.value(i);
-            if (name != null) {
-                response.addHeader(new BasicHeader(name, value));
+            // 配置HTTPS时需要把下面这句注释掉
+            trustManagerFactory.init((KeyStore) null);
+
+            TrustManager[] trustManagers = trustManagerFactory.getTrustManagers();
+            if (trustManagers.length != 1 || !(trustManagers[0] instanceof X509TrustManager)) {
+                throw new IllegalStateException("Unexpected default trust managers:"
+                        + Arrays.toString(trustManagers));
             }
+            X509TrustManager trustManager = (X509TrustManager) trustManagers[0];
+
+            SSLContext sslContext = SSLContext.getInstance("TLS");
+            sslContext.init(null, new TrustManager[]{trustManager}, null);
+            SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
+
+            OkHttpClient client = new OkHttpClient
+                    .Builder()
+                    .sslSocketFactory(sslSocketFactory, trustManager)
+                    .build();
+            return client;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
-
-        return response;
-    }
-
-    private static HttpEntity entityFromOkHttpResponse(Response r) throws IOException {
-        BasicHttpEntity entity = new BasicHttpEntity();
-        ResponseBody body = r.body();
-
-        entity.setContent(body.byteStream());
-        entity.setContentLength(body.contentLength());
-        entity.setContentEncoding(r.header("Content-Encoding"));
-
-        if (body.contentType() != null) {
-            entity.setContentType(body.contentType().type());
-        }
-        return entity;
-    }
-
-    @SuppressWarnings("deprecation")
-    private static void setConnectionParametersForRequest(com.squareup.okhttp.Request.Builder builder, Request<?> request)
-            throws IOException, AuthFailureError {
-        switch (request.getMethod()) {
-            case Request.Method.DEPRECATED_GET_OR_POST:
-                // Ensure backwards compatibility.  Volley assumes a request with a null body is a GET.
-                byte[] postBody = request.getPostBody();
-                if (postBody != null) {
-                    builder.post(RequestBody.create(MediaType.parse(request.getPostBodyContentType()), postBody));
-                }
-                break;
-            case Request.Method.GET:
-                builder.get();
-                break;
-            case Request.Method.DELETE:
-                builder.delete();
-                break;
-            case Request.Method.POST:
-                builder.post(createRequestBody(request));
-                break;
-            case Request.Method.PUT:
-                builder.put(createRequestBody(request));
-                break;
-            case Request.Method.HEAD:
-                builder.head();
-                break;
-            case Request.Method.OPTIONS:
-                builder.method("OPTIONS", null);
-                break;
-            case Request.Method.TRACE:
-                builder.method("TRACE", null);
-                break;
-            case Request.Method.PATCH:
-                builder.patch(createRequestBody(request));
-                break;
-            default:
-                throw new IllegalStateException("Unknown method type.");
-        }
-    }
-
-    private static ProtocolVersion parseProtocol(final Protocol p) {
-        switch (p) {
-            case HTTP_1_0:
-                return new ProtocolVersion("HTTP", 1, 0);
-            case HTTP_1_1:
-                return new ProtocolVersion("HTTP", 1, 1);
-            case SPDY_3:
-                return new ProtocolVersion("SPDY", 3, 1);
-            case HTTP_2:
-                return new ProtocolVersion("HTTP", 2, 0);
-        }
-
-        throw new IllegalAccessError("Unkwown protocol");
-    }
-
-    private static RequestBody createRequestBody(Request r) throws AuthFailureError {
-        final byte[] body = r.getBody();
-        if (body == null) return null;
-
-        return RequestBody.create(MediaType.parse(r.getBodyContentType()), body);
     }
 }
