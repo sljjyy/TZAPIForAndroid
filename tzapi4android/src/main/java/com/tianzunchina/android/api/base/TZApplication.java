@@ -36,21 +36,23 @@ public class TZApplication extends MultiDexApplication {
         executorService = Executors.newFixedThreadPool(poolCount);
     }
 
-    public void execute(Runnable runnable){
+    public void execute(Runnable runnable) {
         executorService.execute(runnable);
     }
 
     /**
      * 设置线程池大小
      * 在onCreate前执行
+     *
      * @param count
      */
-    protected void setPoolCount(int count){
+    protected void setPoolCount(int count) {
         poolCount = count;
     }
 
     /**
      * 添加当前开启的Activity
+     *
      * @param activity 当前开启的Activity
      */
     public void addActivity(Activity activity) {
@@ -63,6 +65,7 @@ public class TZApplication extends MultiDexApplication {
 
     /**
      * 从队列中移除指定Activity
+     *
      * @param key 指定Activity的key, 即className
      */
     public void removeActivity(String key) {
@@ -72,6 +75,7 @@ public class TZApplication extends MultiDexApplication {
 
     /**
      * 关闭指定Activity
+     *
      * @param key 指定Activity的key, 即className
      */
     public void finishActivity(String key) {
@@ -94,7 +98,7 @@ public class TZApplication extends MultiDexApplication {
      */
     public void exit() {
         try {
-            for(int i = mActivities.size() - 1; i >= 0; i--){
+            for (int i = mActivities.size() - 1; i >= 0; i--) {
                 finishActivity(i);
             }
         } catch (Exception e) {
@@ -118,6 +122,7 @@ public class TZApplication extends MultiDexApplication {
 
     /**
      * 队列中添加请求
+     *
      * @param request
      */
     public static void addRequest(Request<?> request) {
@@ -137,6 +142,7 @@ public class TZApplication extends MultiDexApplication {
 
     /**
      * 取消该tag标识对应的请求
+     *
      * @param tag 请求标识
      */
     public static void cancelAllRequests(String tag) {
