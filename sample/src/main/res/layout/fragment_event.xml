@@ -36,6 +36,20 @@
                 api:boxIsLinear="false"
                 api:boxWidth="200dp" />
 
+            <com.tianzunchina.android.api.widget.photo.TZPhotoBoxOne
+                android:id="@+id/pbOne"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                api:boxHeight="200dp"
+                api:boxWidth="200dp"
+                api:boxIndex="0" />
+            <com.tianzunchina.android.api.widget.photo.TZPhotoBoxOne
+                android:id="@+id/pbOne2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                api:boxHeight="200dp"
+                api:boxWidth="200dp"
+                api:boxIndex="1" />
             <com.tianzunchina.android.api.widget.form.MultiLineEditText
                 android:id="@+id/etEventContent"
                 android:layout_width="fill_parent"

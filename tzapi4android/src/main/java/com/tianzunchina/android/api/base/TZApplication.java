@@ -51,16 +51,17 @@ public class TZApplication extends Application {
 
     /**
      * 添加当前开启的Activity
-     *
+     * use{@link com.tianzunchina.android.api.context.ContextManger }
      * @param activity 当前开启的Activity
      */
+    @Deprecated
     public void addActivity(Activity activity) {
         ContextManger.addActivity(activity);
     }
 
     /**
      * 从队列中移除指定Activity
-     *
+     * use{@link com.tianzunchina.android.api.context.ContextManger }
      * @param key 指定Activity的key, 即className
      */
     public void removeActivity(String key) {
