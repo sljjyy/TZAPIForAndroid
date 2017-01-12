@@ -1,19 +1,13 @@
 package com.tianzunchina.android.api.network.download;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.widget.ProgressBar;
 
 import com.tianzunchina.android.api.base.TZApplication;
-import com.tianzunchina.android.api.log.TZToastTool;
-import com.tianzunchina.android.api.network.HTTPWebAPI;
-import com.tianzunchina.android.api.network.ThreadTool;
 import com.tianzunchina.android.api.util.DialogUtil;
-import com.tianzunchina.android.api.util.PhoneTools;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -22,81 +16,66 @@ import java.net.URL;
 import java.net.URLConnection;
 
 /**
+ * 文件下载
  * Created by zwt on 2016/12/20.
  */
-public class TZDownloadFile{
-    private TZAppVersion version; //TODO 需要解耦
-    private int max;
-    private Context context;
-    // 用于判断是否将更新按钮隐藏
-    private boolean isHidden = false;//TODO 需要解耦
-
-    // 下载时，记录实时流量累计
-    private double index;
-
-    private CallBackListener listener;
-    private HTTPWebAPI http;
-
-    private static final int RUN = 1; //TODO 可以统一管理
+public class TZDownloadFile {
+    private static final int RUN = 1;
     private static final int OVER = 2;
     private static final int ERR = -1;
 
-    public TZDownloadFile(Context context, TZAppVersion version) {
-        this.context = context;
-        this.version = version;
-        http = new HTTPWebAPI();
-        thread();
-    }
+    private TZFile tzFile;
+    private Context context;
 
-    public TZDownloadFile(Context context, TZAppVersion version,CallBackListener listener) {
+    private double index;// 下载时，记录实时流量累计
+
+    private DownloadListener onDownloadListener;// 下载时的监听
+
+    TZDownloadFile(Context context, TZFile tzFile) {
         this.context = context;
-        this.version = version;
-        http = new HTTPWebAPI();
-        this.listener = listener;
+        this.tzFile = tzFile;
         thread();
     }
 
     public void init(ProgressBar pbUpdate) {
         pbUpdate.setMax(TZAppVersion.MAX);
-        max = TZAppVersion.MAX;
     }
 
     private void thread() {
-        ThreadTool.execute(new Runnable() {
-            @Override
-            public void run() {
-                Message message = new Message();
-                try {
-//            本地文件夹中的apk文件处理
-                    File file = fileHandle();
-//            去服务器获取，并处理数据
-                    toWebService(file);
-                    message.what = 2;
-                    message.obj = file.getAbsolutePath();
-                } catch (Exception e) {
-                    message.what = -1;
-                    e.printStackTrace();
-                }
-                handler.sendMessage(message);
-            }
-        });
+//        ThreadT.execute(new Runnable() {
+//            @Override
+//            public void run() {
+//                Message message = new Message();
+//                try {
+////            本地文件夹中的apk文件处理
+//                    File file = fileHandle();
+////            去服务器获取，并处理数据
+//                    toWebService(file);
+//                    message.what = 2;
+//                    message.obj = file.getAbsolutePath();
+//                } catch (Exception e) {
+//                    message.what = -1;
+//                    e.printStackTrace();
+//                }
+//                handler.sendMessage(message);
+//            }
+//        });
     }
 
     private File fileHandle() {
         File path = new File(Environment.getExternalStorageDirectory(),
                 context.getPackageName());
         path.mkdirs();
-        File file = new File(path, version.getVersionName() + ".apk");
+        File file = new File(path, tzFile.getFileName() + tzFile.getFilenameExtension());
         if (file.exists()) {
             file.delete();
         }
-        Log.e("11",version.getVersionName()+".apk 是否存在？--》 "+file.exists());
         return file;
     }
 
     private void toWebService(File file) {
         try {
-            URL Url = new URL(version.getVersionURL());
+            URL Url = new URL(tzFile.getDownloadURL());
             URLConnection conn = Url.openConnection();
             conn.connect();
 //            流处理
@@ -140,23 +119,20 @@ public class TZDownloadFile{
         }
     }
 
-    private Handler handler = new Handler(){
+    private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
+            DialogUtil.close();
             if (!Thread.currentThread().isInterrupted()) {
                 switch (msg.what) {
                     case RUN:
-                        listener.callback(msg.arg1);
+                        onDownloading(msg.arg1);
                         break;
                     case OVER:
-                        TZToastTool.essential("文件下载完成");
-                        DialogUtil.close();
-                        Intent intent = PhoneTools.getInstance().getApkFileIntent((String) msg.obj);
-                        context.startActivity(intent);
+                        onSuccess((String) msg.obj);
                         break;
                     case ERR:
-                        TZToastTool.essential("抱歉更新出错！请稍后重试！");
-                        DialogUtil.close();
+                        onFail();
                         break;
                     default:
                         break;
@@ -165,8 +141,47 @@ public class TZDownloadFile{
         }
     };
 
-    public void setCallBackListener(CallBackListener listener) {
-        this.listener = listener;
+    private void onDownloading(int percent) {
+        if (onDownloadListener != null) {
+            onDownloadListener.onDownloading(percent);
+        }
+    }
+
+    private void onSuccess(String path) {
+        if (onDownloadListener != null) {
+            onDownloadListener.onSuccess(path);
+        }
+    }
+
+    private void onFail() {
+        if (onDownloadListener != null) {
+            onDownloadListener.onFail();
+        }
+    }
+
+    public void setOnDownloadListener(DownloadListener onDownloadListener) {
+        this.onDownloadListener = onDownloadListener;
+    }
+
+    public interface DownloadListener {
+        /**
+         * 下载中，用于进度条
+         *
+         * @param percent 进度条中进度百分比
+         */
+        void onDownloading(int percent);
+
+        /**
+         * 下载成功
+         *
+         * @param filePath 下载好的文件路径
+         */
+        void onSuccess(String filePath);
+
+        /**
+         * 下载失败
+         */
+        void onFail();
     }
 
 }

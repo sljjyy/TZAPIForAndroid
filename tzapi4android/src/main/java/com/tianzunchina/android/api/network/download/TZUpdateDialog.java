@@ -3,6 +3,7 @@ package com.tianzunchina.android.api.network.download;
 import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,26 +12,33 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.tianzunchina.android.api.R;
+import com.tianzunchina.android.api.base.TZApplication;
+import com.tianzunchina.android.api.log.TZToastTool;
+import com.tianzunchina.android.api.util.PhoneTools;
 
-public class TZUpdateDialog extends DialogFragment implements View.OnClickListener {
+/**
+ * 版本升级Dialog
+ *
+ * @author ZhuWenting 201612
+ */
+public class TZUpdateDialog extends DialogFragment implements View.OnClickListener, TZDownloadFile.DownloadListener {
 
     public static final String VERSION = "version";
     private TZDownloadFile downloadFile;
     private ProgressBar pbUpdate;
-    private TextView tvUpdate, tvNegative,tvNeutral;
+    private TextView tvUpdate;
     private TZAppVersion version;
     private int max;
     private View view;
-    // 用于判断是否将更新按钮隐藏
-    private boolean isHidden = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setCancelable(false);//设置点击屏幕Dialog不消失
+        //设置点击屏幕Dialog不消失
+        setCancelable(false);
     }
 
-//    @Nullable
+    @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.dialog_update, container);
@@ -40,14 +48,12 @@ public class TZUpdateDialog extends DialogFragment implements View.OnClickListen
 
     private void init() {
         max = TZAppVersion.MAX;
-        //设置标题
-//        getDialog().setTitle("版本更新");
 //        设置无自带标题
         getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         initIntent();
-        tvNeutral = (TextView) view.findViewById(R.id.tvNeutral);
-        tvNegative = (TextView) view.findViewById(R.id.tvNegative);
+        TextView tvNeutral = (TextView) view.findViewById(R.id.tvNeutral);
+        TextView tvNegative = (TextView) view.findViewById(R.id.tvNegative);
         TextView tvDescription = (TextView) view.findViewById(R.id.tvDescription);
         View svDescription = view.findViewById(R.id.svDescription);
         pbUpdate = (ProgressBar) view.findViewById(R.id.pbUpdate);
@@ -69,6 +75,7 @@ public class TZUpdateDialog extends DialogFragment implements View.OnClickListen
 
     private void initIntent() {
         version = (TZAppVersion) getArguments().getSerializable(VERSION);
+        version.setFilenameExtension(".apk");
     }
 
     public void initPB(ProgressBar pbUpdate) {
@@ -84,7 +91,9 @@ public class TZUpdateDialog extends DialogFragment implements View.OnClickListen
         if (i == R.id.tvNeutral) {
             //  更新
             if (downloadFile == null) {
-                downloadFile = new TZDownloadFile(getActivity(), version, listener);
+//                downloadFile = new TZDownloadFile(TZApplication.getInstance(), version, listener);
+                downloadFile = new TZDownloadFile(TZApplication.getInstance(),version);
+                downloadFile.setOnDownloadListener(this);
             }
 //            tvNegative.setClickable(false);
 
@@ -105,16 +114,28 @@ public class TZUpdateDialog extends DialogFragment implements View.OnClickListen
         }
     }
 
-    private CallBackListener listener = new CallBackListener() {
-        @Override
-        public void callback(int percent) {
-            if (percent >= 0 && percent <= max) {
-                pbUpdate.setProgress(percent);
-                tvUpdate.setText("正在更新……" + percent + "%");
-            } else {
-                tvUpdate.setText("正在更新……");
-                pbUpdate.setProgress(max);
-            }
+    @Override
+    public void onDownloading(int percent) {
+        if (percent >= 0 && percent <= max) {
+            pbUpdate.setProgress(percent);
+            tvUpdate.setText("正在更新……" + percent + "%");
+        } else {
+            tvUpdate.setText("正在更新……");
+            pbUpdate.setProgress(max);
         }
-    };
+    }
+
+    @Override
+    public void onSuccess(String filePath) {
+        TZToastTool.essential("文件下载完成");
+        // 安装apk
+        Intent intent = PhoneTools.getInstance().getApkFileIntent(filePath);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onFail() {
+        // 提交失败后给予提示
+        TZToastTool.essential("抱歉更新出错！请稍后重试！");
+    }
 }

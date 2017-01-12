@@ -16,8 +16,8 @@ public class TZUpdateConfig extends Config {
 	 * 是否已取消该版本升级
 	 * @param versionCode 服务器最新版本号
 	 * @param versionName 服务器最新版本名称
-     * @return
-     */
+	 * @return
+	 */
 	public boolean isCanceled(int versionCode, String versionName){
 		int code = loadInt(LAST_VERSION_CODE, 0);
 		String name = loadString(LAST_VERSION_NAME);

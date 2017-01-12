@@ -1,37 +1,18 @@
 package com.tianzunchina.android.api.network.download;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.Serializable;
-
-public abstract class TZAppVersion implements Serializable{
-    public static final String VERSION_CODE = "versionCode";
-    public static final String VERSION_NAME = "versionName";
-    public static final String VERSION_URL = "versionURL";
-    public static final int MAX = 100;
+public abstract class TZAppVersion extends TZFile{
+    public static final int MAX = 100;//默认进度条百分比
 
     private int versionCode;
-    private String versionName;
-    private String versionURL;
     private String describe;//具体内容描述
     private boolean isImportant;//是否需要强制更新，true 强制，false 非强制
 
     public TZAppVersion() {
     }
 
-//	public AppVersion(JSONObject json) {
-//		try {
-//			this.versionCode = json.getInt(VERSION_CODE);
-//			this.versionName = json.getString(VERSION_NAME);
-//			this.versionURL = json.getString(VERSION_URL);
-////			this.versionSize = json.getInt(VERSION_SIZE);
-//		} catch (JSONException e) {
-//			e.printStackTrace();
-//		}
-//	}
-
-//    public abstract void parse(JSONObject json);
+    public abstract void parse(JSONObject json);
 
     public int getVersionCode() {
         return versionCode;
@@ -42,19 +23,19 @@ public abstract class TZAppVersion implements Serializable{
     }
 
     public String getVersionName() {
-        return versionName;
+        return getFileName();
     }
 
     public void setVersionName(String versionName) {
-        this.versionName = versionName;
+        setFileName(versionName);
     }
 
     public String getVersionURL() {
-        return versionURL;
+        return getDownloadURL();
     }
 
     public void setVersionURL(String versionURL) {
-        this.versionURL = versionURL;
+        setDownloadURL(versionURL);
     }
 
     public String getDescribe() {
@@ -71,5 +52,13 @@ public abstract class TZAppVersion implements Serializable{
 
     public void setImportant(boolean important) {
         isImportant = important;
+    }
+
+    public String getFilenameExtension() {
+        return getFilenameExtension();
+    }
+
+    public void setFilenameExtension(String filenameExtension) {
+        setFilenameExtension(filenameExtension);
     }
 }
