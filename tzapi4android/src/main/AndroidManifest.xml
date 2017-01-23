@@ -3,6 +3,8 @@
     package="com.tianzunchina.android.api">
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
@@ -22,6 +24,23 @@
             android:theme="@android:style/Theme.Holo.Dialog.NoActionBar" />
 
         <activity android:name=".widget.form.DynamicFormFragment"/>
+
+        <service android:name=".util.location.LocationService" android:process=":locationProcess1">
+            <intent-filter android:priority="999">
+                <action android:name="com.tianzunchina.zhstreet.supervision.service.LocationService" />
+            </intent-filter>
+        </service>
+        <service android:name=".util.location.LocationService2" android:process=":locationProcess2"/>
+
+        <!--广播注册-->
+        <receiver android:name="com.tianzunchina.android.api.util.receiver.LocationReceiver">
+            <intent-filter android:priority="999">
+                <action android:name="com.tianzunchina.zhstreet.supervision.receiver.LocationReceiver"/>
+            </intent-filter>
+        </receiver>
+        <receiver android:name="com.tianzunchina.android.api.util.receiver.LocationReceiver1" android:process=":locationProcess1"/>
+        <receiver android:name="com.tianzunchina.android.api.util.receiver.LocationReceiver2" android:process=":locationProcess2"/>
+
     </application>
 
 </manifest>

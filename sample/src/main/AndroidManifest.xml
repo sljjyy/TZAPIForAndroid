@@ -26,6 +26,9 @@
             android:label="@string/title_activity_event"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".TimeActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".form.DynamicFormActivity"
             android:screenOrientation="portrait" />
         <activity

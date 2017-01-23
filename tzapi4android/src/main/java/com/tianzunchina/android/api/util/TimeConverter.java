@@ -26,7 +26,17 @@ public class TimeConverter {
             "MM-dd", Locale.CHINA);
     public static final SimpleDateFormat SDF_FILE = new SimpleDateFormat(
             "yyyyMMdd_HHmmss", Locale.CHINA);
-
+    public static final String DEF_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
+    public static final String DEF_DATE_FORMAT_NEW = "yyyy-MM-dd HH:mm";
+    public static final String DEF_DATE_YMD_FORMAT = "yyyy-MM-dd";
+    public static final String DEF_DATE_TIME_FORMAT = "HH:mm:ss";
+    public static String getSrcOfDate(Date date, String reg) {
+        SimpleDateFormat formatter = new SimpleDateFormat(reg);
+        if (date == null) {
+            return null;
+        }
+        return formatter.format(date);
+    }
     /**
      * 输出日期文字
      * @param date
