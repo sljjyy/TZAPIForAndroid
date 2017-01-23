@@ -1,8 +1,6 @@
 package com.tianzunchina.android.api.network.download;
 
-import org.json.JSONObject;
-
-public abstract class TZAppVersion extends TZFile{
+public class TZAppVersion extends TZFile{
     public static final int MAX = 100;//默认进度条百分比
 
     private int versionCode;
@@ -12,7 +10,7 @@ public abstract class TZAppVersion extends TZFile{
     public TZAppVersion() {
     }
 
-    public abstract void parse(JSONObject json);
+//    public abstract void parse(JSONObject json);
 
     public int getVersionCode() {
         return versionCode;

@@ -31,14 +31,13 @@
         <activity
             android:name="com.tianzunchina.android.api.widget.photo.PreviewActivity"
             android:screenOrientation="portrait" />
-
         <activity
-            android:name=".app.UpdateActivity"
+            android:name=".app.download.UpdateActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".notify.NotifyActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".app.download.DownloadFileActivity"></activity>
     </application>
 
 </manifest>
