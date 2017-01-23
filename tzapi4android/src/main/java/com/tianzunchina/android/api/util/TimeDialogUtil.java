@@ -56,7 +56,7 @@ public class TimeDialogUtil {
     /**
      * 选择日期弹出框
      */
-    public void openSelectedDate(Activity activity, final TextView tvTime) {
+    public void openSelectedDate(Activity activity, final GregorianCalendar gregorianCalendar,final TextView tvTime) {
         Calendar cd = Calendar.getInstance();
         int year = cd.get(Calendar.YEAR);
         int month = cd.get(Calendar.MONTH);
@@ -64,7 +64,6 @@ public class TimeDialogUtil {
         new DatePickerDialog(activity, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                GregorianCalendar gregorianCalendar = new GregorianCalendar();
                 gregorianCalendar.set(Calendar.YEAR, year);
                 gregorianCalendar.set(Calendar.MONTH, month);
                 gregorianCalendar.set(Calendar.DAY_OF_MONTH, day);
