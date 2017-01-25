@@ -12,7 +12,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.tianzunchina.android.api.base.TZFragment;
 import com.tianzunchina.sample.R;
 import com.tianzunchina.sample.notify.NotifyActivity;
-import com.tianzunchina.sample.app.UpdateActivity;
+import com.tianzunchina.sample.app.download.UpdateActivity;
 import com.tianzunchina.sample.event.EventActivity;
 
 import java.util.ArrayList;

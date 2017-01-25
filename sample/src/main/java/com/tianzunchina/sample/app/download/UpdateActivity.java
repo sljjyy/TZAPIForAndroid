@@ -1,13 +1,11 @@
-package com.tianzunchina.sample.app;
+package com.tianzunchina.sample.app.download;
 
-import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.tianzunchina.android.api.network.download.TZAppVersion;
 import com.tianzunchina.android.api.network.download.TZUpdateDialog;
+import com.tianzunchina.sample.app.download.AppVersion;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -25,15 +23,9 @@ public class UpdateActivity extends AppCompatActivity {
             JSONObject jsonObject = new JSONObject(jsonStr);
 //            此AppVersion继承了TZAppVersion
             AppVersion version = new AppVersion(jsonObject);
-            FragmentTransaction ft = getFragmentManager().beginTransaction();
-            TZUpdateDialog updateDialogFragment = new TZUpdateDialog();
-            if (null != updateDialogFragment) {
-                ft.remove(updateDialogFragment);
-            }
-            Bundle bundle = new Bundle();
-            bundle.putSerializable(TZUpdateDialog.VERSION, version);
-            updateDialogFragment.setArguments(bundle);
-            updateDialogFragment.show(getFragmentManager(), "updateDialog");
+
+            //showDialog(tag)  tag = null，默认为"updateDialog"
+            new TZUpdateDialog(this,version).showDialog(null);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -1,10 +1,8 @@
 package com.tianzunchina.android.api.network.download;
 
-import org.json.JSONObject;
-
 import java.io.Serializable;
 
-public abstract class TZFile implements Serializable{
+public class TZFile implements Serializable{
 
     private String fileName;//文件名
     private String filenameExtension;//文件扩展名
@@ -13,11 +11,11 @@ public abstract class TZFile implements Serializable{
     public TZFile() {
     }
 
-    /**
-     * 根据接口获取的JSONObject解析成TZFile对象
-     * @param jsonObject 接口获取的值
-     */
-    public abstract void parse(JSONObject jsonObject);
+//    /**
+//     * 根据接口获取的JSONObject解析成TZFile对象
+//     * @param jsonObject 接口获取的值
+//     */
+//    public abstract void parse(JSONObject jsonObject);
 
     public String getFileName() {
         return fileName;

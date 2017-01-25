@@ -7,6 +7,7 @@ import android.os.Message;
 import android.widget.ProgressBar;
 
 import com.tianzunchina.android.api.base.TZApplication;
+import com.tianzunchina.android.api.network.ThreadTool;
 import com.tianzunchina.android.api.util.DialogUtil;
 
 import java.io.File;
@@ -31,7 +32,7 @@ public class TZDownloadFile {
 
     private DownloadListener onDownloadListener;// 下载时的监听
 
-    TZDownloadFile(Context context, TZFile tzFile) {
+    public TZDownloadFile(Context context, TZFile tzFile) {
         this.context = context;
         this.tzFile = tzFile;
         thread();
@@ -42,24 +43,24 @@ public class TZDownloadFile {
     }
 
     private void thread() {
-//        ThreadT.execute(new Runnable() {
-//            @Override
-//            public void run() {
-//                Message message = new Message();
-//                try {
-////            本地文件夹中的apk文件处理
-//                    File file = fileHandle();
-////            去服务器获取，并处理数据
-//                    toWebService(file);
-//                    message.what = 2;
-//                    message.obj = file.getAbsolutePath();
-//                } catch (Exception e) {
-//                    message.what = -1;
-//                    e.printStackTrace();
-//                }
-//                handler.sendMessage(message);
-//            }
-//        });
+        ThreadTool.execute(new Runnable() {
+            @Override
+            public void run() {
+                Message message = new Message();
+                try {
+//            本地文件夹中的apk文件处理
+                    File file = fileHandle();
+//            去服务器获取，并处理数据
+                    toWebService(file);
+                    message.what = 2;
+                    message.obj = file.getAbsolutePath();
+                } catch (Exception e) {
+                    message.what = -1;
+                    e.printStackTrace();
+                }
+                handler.sendMessage(message);
+            }
+        });
     }
 
     private File fileHandle() {
