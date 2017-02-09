@@ -11,6 +11,7 @@ import com.tianzunchina.android.api.network.WebAPIable;
 import com.tianzunchina.android.api.network.WebCallBackListener;
 import com.tianzunchina.android.api.util.PhoneTools;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -59,7 +60,17 @@ public class TZUpdateManager implements TZDownloadFile.DownloadListener {
         mWebAPIable.call(mRequest, new WebCallBackListener() {
             @Override
             public void success(JSONObject jsonObject, TZRequest request) {
-                TZAppVersion lastVersion = mListener.json2obj(jsonObject);
+            }
+
+            @Override
+            public void success(String response, TZRequest request) {
+                TZAppVersion lastVersion = null;
+                try {
+                    lastVersion = mListener.json2obj(new JSONObject(response));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    this.err(e.getMessage(), request);
+                }
                 TZAppVersion oldVersion = getOldVersion();
                 if (mListener.needUpdate(lastVersion, oldVersion)) {
 //                     打开更新提示Dialog
