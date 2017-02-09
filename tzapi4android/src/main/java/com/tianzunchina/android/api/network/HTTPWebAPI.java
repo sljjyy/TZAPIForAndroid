@@ -5,8 +5,10 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.tianzunchina.android.api.base.TZApplication;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -23,39 +25,32 @@ public class HTTPWebAPI implements WebAPIable {
     public void call(final TZRequest request, final WebCallBackListener listener) {
         callGet(request, listener);
     }
-    public void callGet(final TZRequest request, final WebCallBackListener listener) {
-        try{
-            JsonObjectRequest jsonRequest = new JsonObjectRequest(request.getUrlParams(), new Response.Listener<JSONObject>() {
-                @Override
-                public void onResponse(JSONObject response) {
-                    listener.success(response, request);
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    listener.err(error.getMessage(), request);
-                }
-            });
-            ThreadTool.addRequest(jsonRequest);
-        } catch (Exception e){
-            listener.err(e.getMessage(), request);
-        }
 
-    }
-
-    public void callPost(final TZRequest request, final WebCallBackListener listener) {
-        JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST, request.getUrl(), new JSONObject(request.getParams()),new Response.Listener<JSONObject>() {
+    public void callByMethod(int method, final TZRequest request, final WebCallBackListener listener) {
+        StringRequest stringRequest = new StringRequest(method, request.getUrl(), new Response.Listener<String>() {
             @Override
-            public void onResponse(JSONObject response) {
+            public void onResponse(String response) {
                 listener.success(response, request);
+                try {
+                    listener.success(new JSONObject(response), request);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
-        }, new Response.ErrorListener() {
+        },new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 listener.err(error.getMessage(), request);
             }
         });
-        TZApplication.addRequest(jsonRequest);
+        ThreadTool.addRequest(stringRequest);
+    }
+    public void callGet(final TZRequest request, final WebCallBackListener listener) {
+        callByMethod(Request.Method.GET, request, listener);
+     }
+
+    public void callPost(final TZRequest request, final WebCallBackListener listener) {
+        callByMethod(Request.Method.POST, request, listener);
     }
 
 }

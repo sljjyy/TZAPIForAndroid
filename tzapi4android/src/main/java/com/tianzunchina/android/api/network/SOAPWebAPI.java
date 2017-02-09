@@ -22,6 +22,7 @@ import org.ksoap2.transport.HttpTransportSE;
 public class SOAPWebAPI implements WebAPIable {
     private String nameSpace = "http://tempuri.org/";
     private EventBus bus = new EventBus();
+    protected static final int TIME_OUT = 30000;
 
     public SOAPWebAPI(){
         bus.register(this);
@@ -47,18 +48,18 @@ public class SOAPWebAPI implements WebAPIable {
                     soapObject.addProperty(params.keyAt(i), params.valueAt(i));
                 }
                 SoapSerializationEnvelope envelope = getEnvelope(soapObject);
-                String json = null;
+                String response = null;
                 try {
                     HttpTransportSE transport = new HttpTransportSE(request.service, TIME_OUT);
                     transport.call(nameSpace + request.method, envelope);
-                    json = envelope.getResponse().toString();
-                    TZLog.e(json);
-                    bus.post(new Success(new JSONObject(json), listenner, request));
+                    response = envelope.getResponse().toString();
+                    TZLog.i(response);
+                    bus.post(new Success(response, listenner, request));
                 } catch (Exception e) {
                     e.printStackTrace();
                     String text = e.getMessage();
-                    if(json != null){
-                        text = json;
+                    if(response != null){
+                        text = response;
                     }
                     bus.post(new Error(text,listenner, request));
                 }
@@ -69,6 +70,7 @@ public class SOAPWebAPI implements WebAPIable {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventMainThread(Success success){
         success.listenner.success(success.json, success.request);
+        success.listenner.success(success.response, success.request);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -76,7 +78,6 @@ public class SOAPWebAPI implements WebAPIable {
         err.listenner.err(err.msg, err.request);
     }
 
-    protected static final int TIME_OUT = 30000;
     protected SoapSerializationEnvelope getEnvelope(SoapObject soapObject) {
         System.setProperty("http.keepAlive", "false");
         SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(
