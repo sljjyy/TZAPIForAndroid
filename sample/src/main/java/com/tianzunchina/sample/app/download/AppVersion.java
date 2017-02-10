@@ -23,7 +23,6 @@ public class AppVersion extends TZAppVersion {
 		parse(json);
 	}
 
-	@Override
 	public void parse(JSONObject json) {
 		try {
 			setVersionCode(json.getInt(VERSION_CODE));

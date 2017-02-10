@@ -50,6 +50,11 @@ public class EventActivity extends TZAppCompatActivity {
             }
 
             @Override
+            public void success(String response, TZRequest request) {
+                TZToastTool.mark(response);
+            }
+
+            @Override
             public void err(String s, TZRequest tzRequest) {
                 TZToastTool.mark(s);
             }
