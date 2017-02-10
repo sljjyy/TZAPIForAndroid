@@ -3,6 +3,8 @@
     package="com.tianzunchina.sample">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- 查询手机ID权限 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
     <application
         android:name=".app.SysApplication"
