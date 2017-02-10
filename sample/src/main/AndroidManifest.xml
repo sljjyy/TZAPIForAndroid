@@ -42,6 +42,9 @@
         <activity
             android:name=".notify.NotifyActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".login.LoginActivity"
+            android:screenOrientation="portrait" />
         <activity android:name=".app.download.DownloadFileActivity"></activity>
     </application>
 

@@ -1,14 +1,19 @@
 package com.tianzunchina.android.api.network.download;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.widget.ProgressBar;
 
+import com.tianzunchina.android.api.R;
 import com.tianzunchina.android.api.base.TZApplication;
+import com.tianzunchina.android.api.log.TZToastTool;
 import com.tianzunchina.android.api.network.ThreadTool;
 import com.tianzunchina.android.api.util.DialogUtil;
+import com.tianzunchina.android.api.util.PhoneTools;
+import com.tianzunchina.android.api.widget.notification.TZNotification;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -24,6 +29,7 @@ public class TZDownloadFile {
     private static final int RUN = 1;
     private static final int OVER = 2;
     private static final int ERR = -1;
+    private static final int DOWNLOAD_ID = 0;//通知栏标识ID
 
     private TZFile tzFile;
     private Context context;
@@ -32,9 +38,29 @@ public class TZDownloadFile {
 
     private DownloadListener onDownloadListener;// 下载时的监听
 
+    private TZNotification tzNotification;
+
     public TZDownloadFile(Context context, TZFile tzFile) {
         this.context = context;
-        this.tzFile = tzFile;
+        this.tzFile = tzFile;//TODO tzFile空指针
+        thread();
+    }
+
+    /**
+     * 通知栏式文件下载
+     *
+     * @param context 上下文
+     * @param tzFile
+     * @param title   通知栏标题
+     * @param content 内容
+     * @param ticker  标记
+     * @param icon    图标
+     * @param intent  跳转页面
+     */
+    public TZDownloadFile(Context context, TZFile tzFile, String title, String content, String ticker, int icon, Intent intent) {
+        this.context = context;
+        this.tzFile = tzFile;//TODO tzFile使用前需要非空判断
+        tzNotification = new TZNotification(context, title, content, ticker, icon, intent);
         thread();
     }
 
@@ -52,7 +78,7 @@ public class TZDownloadFile {
                     File file = fileHandle();
 //            去服务器获取，并处理数据
                     toWebService(file);
-                    message.what = 2;
+                    message.what = 2;//TODO 常量使用
                     message.obj = file.getAbsolutePath();
                 } catch (Exception e) {
                     message.what = -1;
@@ -145,12 +171,16 @@ public class TZDownloadFile {
     private void onDownloading(int percent) {
         if (onDownloadListener != null) {
             onDownloadListener.onDownloading(percent);
+        } else {
+            showNotify(percent);
         }
     }
 
     private void onSuccess(String path) {
         if (onDownloadListener != null) {
             onDownloadListener.onSuccess(path);
+        } else {
+            cancleNotify(path);
         }
     }
 
@@ -158,6 +188,25 @@ public class TZDownloadFile {
         if (onDownloadListener != null) {
             onDownloadListener.onFail();
         }
+    }
+
+    private void cancleNotify(String filePath) {
+        tzNotification.cancle(DOWNLOAD_ID);
+        // 安装apk
+        Intent intent = PhoneTools.getInstance().getApkFileIntent(filePath);
+        context.startActivity(intent);
+    }
+
+    private void showNotify(int percent) {
+        tzNotification.showNotify(DOWNLOAD_ID, percent, TZAppVersion.MAX, String.format("已下载%d%s", percent, "%"), new TZNotification.DownLoadListener() {
+            @Override
+            public void success() {
+            }
+
+            @Override
+            public void fail() {
+            }
+        });
     }
 
     public void setOnDownloadListener(DownloadListener onDownloadListener) {

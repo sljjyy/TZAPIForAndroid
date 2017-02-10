@@ -10,9 +10,8 @@ import android.support.v4.app.NotificationCompat;
 import static android.content.Context.NOTIFICATION_SERVICE;
 
 /**
- * 通知栏
+ * 通知栏工具类
  * Created by HL on 2016/12/21.
- * TODO 方法及参数注释不足以让其他人也能正常使用
  */
 
 public class TZNotification {
@@ -21,9 +20,6 @@ public class TZNotification {
     private NotificationCompat.Builder mBuilder;
     private NotificationManager mNotificationManager;
     private long currentTimeMillis = System.currentTimeMillis();
-    public static final int NOTIFYID = 100;//普通通知栏 TODO 注意常量规范
-    public static final int CZNOTIFYID = 200;//常驻通知栏
-    public static final int JDNOTIFYID = 300;//进度条通知栏
 
     public TZNotification(Context context) {
         this.context = context;
@@ -53,40 +49,62 @@ public class TZNotification {
                 .setContentIntent(pendingIntent);//点击此通知后自动清除此通知
     }
 
-    //显示通知栏
-    public void showNotify() {
-        mNotificationManager.notify(NOTIFYID, mBuilder.build());
-    }
-
-    //显示常驻通知栏
-    public void showCzNotify() {
-        Notification notification = mBuilder.build();
-        notification.flags = Notification.FLAG_ONGOING_EVENT;//不能滑动删除
-        mNotificationManager.notify(CZNOTIFYID, notification);
+    /**
+     * 显示普通通知栏
+     *
+     * @param id 通知栏标识ID（注:确保唯一性）
+     */
+    public void showNotify(int id) {
+        mNotificationManager.notify(id, mBuilder.build());
     }
 
     /**
-     * TODO 现在控制进度是在数值已经转化为百分比的前提下，但目标是需要在使用时用较少的操作来实现
+     * 显示通知栏
      *
-     * @param progress
+     * @param id    通知栏标识ID（注:确保唯一性）
+     * @param flags 设置flag位
+     *              （FLAG_AUTO_CANCEL      该通知能被状态栏的清除按钮给清除掉
+     *              FLAG_NO_CLEAR           该通知能被状态栏的清除按钮不给清除掉
+     *              FLAG_ONGOING_EVENT      通知放置在正在运行
+     *              FLAG_INSISTENT          通知的音乐效果一直播放）
      */
-    //显示进度条通知栏
-    public void showProgressNotify(int progress) {
-        if (progress == 100) { //TODO 会不会出现超过100的情况
-            mBuilder.setContentTitle("下载完成"); //TODO 在下载完毕后如果程序需要回调怎么实现
-        }
-        mBuilder.setContentText(String.format("已下载%d%s", progress, "%"))
-                .setProgress(100, progress, false);
-        mNotificationManager.notify(JDNOTIFYID, mBuilder.build());
+    public void showNotify(int id, int flags) {
+        Notification notification = mBuilder.build();
+        notification.flags = flags;
+        mNotificationManager.notify(id, notification);
     }
 
-    //消除对应ID的通知 TODO 如何更方便的管理
+    /**
+     * 显示进度条通知栏
+     *
+     * @param id       通知栏标识ID（注:确保唯一性）
+     * @param progress 进度
+     * @param total    总进度
+     * @param content  显示内容
+     */
+    public void showNotify(int id, int progress, int total, String content, DownLoadListener listener) {
+        if (progress == total) {
+            mBuilder.setContentTitle("下载完成");
+            listener.success();
+            content = "";
+        }
+        mBuilder.setContentText(content)
+                .setProgress(total, progress, false);
+        mNotificationManager.notify(id, mBuilder.build());
+    }
+
+    //消除对应ID的通知栏
     public void cancle(int notificationID) {
         mNotificationManager.cancel(notificationID);
     }
 
-    //消除创建的所有通知
+    //消除创建的所有通知栏
     public void cancleAll() {
         mNotificationManager.cancelAll();
+    }
+
+    public interface DownLoadListener {
+        void success();
+        void fail();
     }
 }

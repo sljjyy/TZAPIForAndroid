@@ -39,4 +39,5 @@
         android:gravity="center_horizontal"
         android:onClick="OnClick"
         android:text="清除所有通知栏" />
+
 </LinearLayout>
