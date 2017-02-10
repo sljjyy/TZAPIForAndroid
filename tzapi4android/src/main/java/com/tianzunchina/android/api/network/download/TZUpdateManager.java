@@ -11,6 +11,7 @@ import com.tianzunchina.android.api.network.WebAPIable;
 import com.tianzunchina.android.api.network.WebCallBackListener;
 import com.tianzunchina.android.api.util.PhoneTools;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -33,18 +34,18 @@ public class TZUpdateManager implements TZDownloadFile.DownloadListener {
         this.activity = activity;
     }
 
-    public TZUpdateManager(Activity activity,boolean needNotification, WebAPIable webApi, TZRequest request, TZUpdateListener listener) {
-        this.activity=activity;
+    public TZUpdateManager(Activity activity, boolean needNotification, WebAPIable webApi, TZRequest request, TZUpdateListener listener) {
+        this.activity = activity;
         this.mWebAPIable = webApi;
         this.mRequest = request;
         this.mListener = listener;
-        this.needNotification=needNotification;
+        this.needNotification = needNotification;
     }
 
     /**
      * builder设置完毕后，开始进行版本更新功能的操作
      */
-    public void start(){
+    public void start() {
         lastVersionComparison();
     }
 
@@ -52,14 +53,23 @@ public class TZUpdateManager implements TZDownloadFile.DownloadListener {
      * 获取最新的版本信息与当前版本比较
      * <p>
      * 从服务器访问到最新的版本信息
-     *
      */
-    public void lastVersionComparison () {
+    public void lastVersionComparison() {
 
         mWebAPIable.call(mRequest, new WebCallBackListener() {
             @Override
             public void success(JSONObject jsonObject, TZRequest request) {
-                TZAppVersion lastVersion = mListener.json2obj(jsonObject);
+            }
+
+            @Override
+            public void success(String response, TZRequest request) {
+                TZAppVersion lastVersion = null;
+                try {
+                    lastVersion = mListener.json2obj(new JSONObject(response));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    this.err(e.getMessage(), request);
+                }
                 TZAppVersion oldVersion = getOldVersion();
                 if (mListener.needUpdate(lastVersion, oldVersion)) {
 //                     打开更新提示Dialog
@@ -69,7 +79,7 @@ public class TZUpdateManager implements TZDownloadFile.DownloadListener {
 
             @Override
             public void err(String err, TZRequest request) {
-                mListener.err(err,request);
+                mListener.err(err, request);
             }
         });
     }
@@ -103,17 +113,19 @@ public class TZUpdateManager implements TZDownloadFile.DownloadListener {
 
     @Override
     public void onDownloading(int percent) {
-
+        mListener.downloading(percent);
     }
 
     @Override
     public void onSuccess(String filePath) {
-
+        // 下载成功时
+        mListener.downloadSucess();
     }
 
     @Override
     public void onFail() {
-
+        // 下载失败时
+        mListener.downloadErr();
     }
 
     /**
@@ -124,14 +136,14 @@ public class TZUpdateManager implements TZDownloadFile.DownloadListener {
         TZRequest request;
         TZUpdateListener listener;
         Activity activity;
-        boolean needNotification=false;
+        boolean needNotification = false;
 
         public Builder(Activity activity) {
             this.activity = activity;
         }
 
-        public Builder setNeedNotification(boolean needNotification){
-            this.needNotification=needNotification;
+        public Builder setNeedNotification(boolean needNotification) {
+            this.needNotification = needNotification;
             return this;
         }
 
@@ -168,8 +180,8 @@ public class TZUpdateManager implements TZDownloadFile.DownloadListener {
             return this;
         }
 
-        public TZUpdateManager build(boolean needNotification,WebAPIable webApi,TZRequest request,TZUpdateListener listener) {
-            return new TZUpdateManager(activity,needNotification,webApi,request,listener);
+        public TZUpdateManager build() {
+            return new TZUpdateManager(activity, needNotification, webApi, request, listener);
         }
     }
 

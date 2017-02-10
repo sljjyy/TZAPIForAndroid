@@ -5,7 +5,8 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.webkit.WebView;
-import com.tianzunchina.android.api.util.WebViewUtil;
+
+import com.tianzunchina.android.api.network.browser.WebViewUtil;
 import com.tianzunchina.sample.R;
 
 /**
@@ -14,7 +15,6 @@ import com.tianzunchina.sample.R;
 
 public class EveryDayActivity extends Activity{
     private WebView webView;
-    WebViewUtil webViewUtil = new WebViewUtil();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -11,23 +11,35 @@ import org.json.JSONObject;
 
 public interface TZUpdateListener {
     /**
-     * ？？
+     * 获取最新版本信息失败时
      * @param err
      * @param request
      */
     public void err(String err, TZRequest request);
 
     /**
-     * ？？
+     * 获取最新版本信息成功时
+     *
+     * 此方法暂时想不到怎么个用法
      * @param str
      */
     public void success(String str);
 
     /**
      * 下载中
-     * @param i 进度百分比
+     * @param percent 进度百分比
      */
-    public void downing(int i);
+    public void downloading(int percent);
+
+    /**
+     * 下载成功
+     */
+    public void downloadSucess();
+
+    /**
+     * 下载失败
+     */
+    public void downloadErr();
 
     /**
      * 将接口获取的值转化为TZAppVersion

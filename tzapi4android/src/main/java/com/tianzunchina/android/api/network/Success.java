@@ -1,5 +1,6 @@
 package com.tianzunchina.android.api.network;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -9,11 +10,22 @@ import org.json.JSONObject;
  */
 class Success{
     JSONObject json;
+    String response;
     WebCallBackListener listenner;
     TZRequest request;
-    public Success(JSONObject json, WebCallBackListener listenner, TZRequest request) {
-        this.json = json;
+    public Success(String response, WebCallBackListener listenner, TZRequest request) {
+        this.response = response;
+        try {
+            this.json = new JSONObject(response);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         this.listenner = listenner;
         this.request = request;
+    }
+
+    public JSONObject getJson(){
+        if (json == null) return new JSONObject();
+        return json;
     }
 }
