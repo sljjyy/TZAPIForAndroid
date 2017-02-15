@@ -64,6 +64,13 @@
                 android:gravity="top"
                 android:inputType="textMultiLine"
                 android:minLines="2" />
+            <com.tianzunchina.android.api.widget.form.MultiLineEditText
+                android:id="@+id/etEventDes"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:inputType="textMultiLine"
+                android:minLines="2" />
         </LinearLayout>
     </ScrollView>
 

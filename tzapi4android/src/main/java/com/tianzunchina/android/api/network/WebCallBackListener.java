@@ -14,6 +14,6 @@ public interface WebCallBackListener {
      */
     @Deprecated
     void success(JSONObject jsonObject, TZRequest request);
-    void success(String response, TZRequest request);
+    void success(Object response, TZRequest request);
     void err(String err, TZRequest request);
 }

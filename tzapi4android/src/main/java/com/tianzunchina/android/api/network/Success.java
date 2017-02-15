@@ -10,13 +10,13 @@ import org.json.JSONObject;
  */
 class Success{
     JSONObject json;
-    String response;
+    Object response;
     WebCallBackListener listenner;
     TZRequest request;
-    public Success(String response, WebCallBackListener listenner, TZRequest request) {
+    public Success(Object response, WebCallBackListener listenner, TZRequest request) {
         this.response = response;
         try {
-            this.json = new JSONObject(response);
+            this.json = new JSONObject(response.toString());
         } catch (JSONException e) {
             e.printStackTrace();
         }

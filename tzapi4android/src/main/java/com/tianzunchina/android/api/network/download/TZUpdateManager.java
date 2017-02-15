@@ -63,10 +63,10 @@ public class TZUpdateManager implements TZDownloadFile.DownloadListener {
             }
 
             @Override
-            public void success(String response, TZRequest request) {
+            public void success(Object response, TZRequest request) {
                 TZAppVersion lastVersion = null;
                 try {
-                    lastVersion = mListener.json2obj(new JSONObject(response));
+                    lastVersion = mListener.json2obj(new JSONObject(response.toString()));
                 } catch (JSONException e) {
                     e.printStackTrace();
                     this.err(e.getMessage(), request);
