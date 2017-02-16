@@ -139,11 +139,12 @@ public class TimePickerDialog {
     public void showDatePickerDialog() {
         mTag=1;
         View view = initDatePicker();
-        mAlertDialog = new AlertDialog.Builder(mContext);
+        mAlertDialog = new AlertDialog.Builder(mContext);//TODO 提取方法
         mAlertDialog.setTitle("选择日期");
         initDialog(view);
         mAlertDialog.show();
     }
+    //TODO 注释问题
     /**
      * 显示日期选择器
      */
@@ -156,6 +157,7 @@ public class TimePickerDialog {
         mAlertDialog.show();
     }
 
+    //TODO 方法私有化，外部就不能进行调整
     /*
     * 调整numberpicker大小
     */

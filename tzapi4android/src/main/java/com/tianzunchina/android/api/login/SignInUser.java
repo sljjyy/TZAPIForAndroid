@@ -8,9 +8,10 @@ import java.io.Serializable;
 /**
  * 登录信息实体类
  * CraetTime 2016-3-3
+ *
  * @author SunLiang
  */
-public class SignInUser implements Serializable{
+public class SignInUser implements Serializable {
     public static SignInUser GUEST = new SignInUser("访客");
     String account;
     String password;
@@ -22,14 +23,14 @@ public class SignInUser implements Serializable{
         this.password = userPassword;
     }
 
-    public SignInUser(String userName, String userPassword, Boolean isKeep ) {
+    public SignInUser(String userName, String userPassword, Boolean isKeep) {
         this.account = userName;
         this.password = userPassword;
         this.isKeep = isKeep;
     }
 
-    public SignInUser(String userName , String userPassword ,Boolean isKeep ,
-               Boolean isAuto ) {
+    public SignInUser(String userName, String userPassword, Boolean isKeep,
+                      Boolean isAuto) {
         this.account = userName;
         this.password = userPassword;
         this.isKeep = isKeep;
@@ -40,12 +41,12 @@ public class SignInUser implements Serializable{
         this.account = userName;
     }
 
-    public void  save(){
+    public void save() {
         LoginConfig config = new LoginConfig();
         config.saveUser(this);
     }
 
-    public boolean noGuest(){
+    public boolean noGuest() {
         return !this.equals(GUEST);
     }
 
@@ -65,9 +66,9 @@ public class SignInUser implements Serializable{
         return isAuto;
     }
 
-    public String toString(){
-        return "SignInUser [account="+ account +", " +
-                "password="+ password +", " +
-                "isAuto="+ isAuto +"]";
+    public String toString() {
+        return "SignInUser [account=" + account + ", " +
+                "password=" + password + ", " +
+                "isAuto=" + isAuto + "]";
     }
 }

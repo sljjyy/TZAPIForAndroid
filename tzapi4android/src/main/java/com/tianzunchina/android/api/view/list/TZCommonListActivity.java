@@ -177,7 +177,6 @@ public abstract class TZCommonListActivity<T> extends Activity implements XListV
         adapter.notifyDataSetChanged();
     }
 
-
     private void initView() {
         tvLeft = (TextView) findViewById(R.id.tvBack);
         tvTitle = (TextView) findViewById(R.id.tvTitle);

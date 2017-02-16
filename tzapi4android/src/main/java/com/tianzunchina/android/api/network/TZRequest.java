@@ -2,8 +2,6 @@ package com.tianzunchina.android.api.network;
 
 import android.support.v4.util.ArrayMap;
 
-import org.json.JSONObject;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,9 +21,9 @@ public class TZRequest {
     }
 
     public TZRequest(String service, String method, ArrayMap<String, Object> params) {
-        if(!service.endsWith("/")){
-            service += service + "/";
-        }
+//        if(!service.endsWith("/")){
+//            service += service + "/";
+//        }
         this.service = service;
         this.method = method;
         this.params = params;

@@ -19,15 +19,19 @@ public class TimeDialogUtil {
 
     private static TimeDialogUtil timeDialogUtil;
 
-    public static TimeDialogUtil getInstance(){
-        if(timeDialogUtil == null){
+    //TODO 如果要写单例的话，就定义一个私有的构造方法（防止通过 new TimeDialogUtil()去实例化）
+    public static TimeDialogUtil getInstance() {
+        if (timeDialogUtil == null) {
             timeDialogUtil = new TimeDialogUtil();
         }
         return timeDialogUtil;
     }
+
     /**
      * 选择日期和时间弹出框
      */
+    //TODO GregorianCalendar可以不作为方法参数，tvTime空指针判断，提取公用方法
+    //TODO 没有考虑到选择取消的情况
     public void openSelectedDateAndTime(Activity activity, final GregorianCalendar gregorianCalendar, final TextView tvTime) {
         Calendar cd = Calendar.getInstance();
         int hour = cd.get(Calendar.HOUR_OF_DAY);
@@ -40,7 +44,7 @@ public class TimeDialogUtil {
             public void onTimeSet(TimePicker timePicker, int hour, int minute) {
                 gregorianCalendar.set(Calendar.HOUR_OF_DAY, hour);
                 gregorianCalendar.set(Calendar.MINUTE, minute);
-                tvTime.setText(TimeConverter.getSrcOfDate(gregorianCalendar.getTime(), TimeConverter.DEF_DATE_FORMAT));
+                tvTime.setText(TimeConverter.getSrcOfDate(gregorianCalendar.getTime(), TimeConverter.DEF_DATE_FORMAT));//TODO 格式无法修改
             }
         }, hour, min, true).show();
         new DatePickerDialog(activity, new DatePickerDialog.OnDateSetListener() {
@@ -56,7 +60,7 @@ public class TimeDialogUtil {
     /**
      * 选择日期弹出框
      */
-    public void openSelectedDate(Activity activity, final GregorianCalendar gregorianCalendar,final TextView tvTime) {
+    public void openSelectedDate(Activity activity, final GregorianCalendar gregorianCalendar, final TextView tvTime) {
         Calendar cd = Calendar.getInstance();
         int year = cd.get(Calendar.YEAR);
         int month = cd.get(Calendar.MONTH);
