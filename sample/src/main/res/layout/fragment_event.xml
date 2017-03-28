@@ -24,7 +24,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="submit"
-                android:text="WebAPI" />
+                android:text="WebAPI调用测试" />
+
+            <TextView
+                android:id="@+id/tvSelect"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="选择框" />
+
 
             <com.tianzunchina.android.api.widget.photo.TZPhotoBoxGroup
                 android:id="@+id/pbg"

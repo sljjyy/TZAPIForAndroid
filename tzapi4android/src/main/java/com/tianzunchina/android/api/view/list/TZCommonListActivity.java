@@ -1,6 +1,5 @@
 package com.tianzunchina.android.api.view.list;
 
-import android.app.Activity;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -11,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.TextView;
 
 import com.tianzunchina.android.api.R;
+import com.tianzunchina.android.api.base.TZAppCompatActivity;
 import com.tianzunchina.android.api.log.TZLog;
 import com.tianzunchina.android.api.log.TZToastTool;
 import com.tianzunchina.android.api.network.TZCommonListSOAPWebAPI;
@@ -20,6 +20,7 @@ import com.tianzunchina.android.api.util.TimeConverter;
 import com.tianzunchina.android.api.view.InstalList;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ import java.util.List;
  * CraetTime 2016-3-14
  * @author SunLiang
  */
-public abstract class TZCommonListActivity<T> extends Activity implements XListView.IXListViewListener,
+public abstract class TZCommonListActivity<T> extends TZAppCompatActivity implements XListView.IXListViewListener,
         View.OnClickListener, AdapterView.OnItemClickListener, WebCallBackListener {
     private InstalList instalList;
     public TextView tvLeft, tvTitle, tvRight;
@@ -80,10 +81,6 @@ public abstract class TZCommonListActivity<T> extends Activity implements XListV
 
     protected void init(String webServiceUrl, String namespace, String name, String skipNumber,
                         String takeNumber, String jsonList, int timeOut ){
-        instalList = new InstalList(webServiceUrl, namespace, name, skipNumber, takeNumber, jsonList,
-                timeOut);
-        webAPI = new TZCommonListSOAPWebAPI(instalList, this);
-        listData = new ArrayList<T>();
         init(webServiceUrl,namespace,name,skipNumber,takeNumber,jsonList,timeOut,true);
     }
 
@@ -253,6 +250,15 @@ public abstract class TZCommonListActivity<T> extends Activity implements XListV
         } finally {
             TZToastTool.essential(info);
             stopLoad();
+        }
+    }
+
+    @Override
+    public void success(Object response, TZRequest request) {
+        try {
+            success(new JSONObject(response.toString()), request);
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
     }
 

@@ -14,12 +14,17 @@ import com.tianzunchina.android.api.log.TZToastTool;
 import com.tianzunchina.android.api.network.HTTPWebAPI;
 import com.tianzunchina.android.api.network.TZRequest;
 import com.tianzunchina.android.api.network.WebCallBackListener;
+import com.tianzunchina.android.api.widget.form.select.ArrayAdapterItem;
+import com.tianzunchina.android.api.widget.form.select.ItemSelectedBottomSheetDialog;
+import com.tianzunchina.android.api.widget.form.select.ItemSelectedCallBack;
 import com.tianzunchina.android.api.widget.photo.TZPhotoBoxGroup;
 import com.tianzunchina.android.api.widget.photo.TZPhotoBoxOne;
 import com.tianzunchina.sample.R;
 
 import org.ksoap2.serialization.SoapObject;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -29,17 +34,20 @@ public class EventActivity extends TZAppCompatActivity {
     private TZPhotoBoxGroup photoBoxGroup;
     private TZPhotoBoxOne pbOne, pbOne2;
     private TextView etEventContent;
+    private List<ArrayAdapterItem> items;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
+        initData();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         photoBoxGroup = (TZPhotoBoxGroup) findViewById(R.id.pbg);
         pbOne = (TZPhotoBoxOne) findViewById(R.id.pbOne);
         pbOne2 = (TZPhotoBoxOne) findViewById(R.id.pbOne2);
         etEventContent = (TextView) findViewById(R.id.etEventContent);
+        final TextView tvSelect = (TextView) findViewById(R.id.tvSelect);
         final TextView etEventAddress = (TextView) findViewById(R.id.etEventAddress);
         final TextView etEventDes = (TextView) findViewById(R.id.etEventDes);
         etEventContent.addTextChangedListener(new TextWatcher() {
@@ -59,6 +67,21 @@ public class EventActivity extends TZAppCompatActivity {
                 etEventDes.setText(unFilter(etEventAddress.getText().toString()));
             }
         });
+
+        final ItemSelectedBottomSheetDialog dialog = new ItemSelectedBottomSheetDialog(this, items);
+        dialog.setCallBack(new ItemSelectedCallBack() {
+            @Override
+            public void select(ArrayAdapterItem item) {
+                tvSelect.setText(item.getVal());
+            }
+        });
+        tvSelect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.show();
+            }
+        });
+
     }
 
     @Override
@@ -142,5 +165,19 @@ public class EventActivity extends TZAppCompatActivity {
 
         }
         return sb.toString();
+    }
+
+    private void initData(){
+        items = new ArrayList<>();
+        items.add(new ArrayAdapterItem(1,0,"选项1", "描述1"));
+        items.add(new ArrayAdapterItem(2,0,"选项2", "描述2"));
+        items.add(new ArrayAdapterItem(3,0,"选项3", "描述3"));
+        items.add(new ArrayAdapterItem(4,0,"选项4", "描述4"));
+        items.add(new ArrayAdapterItem(5,0,"选项5", "描述5"));
+        items.add(new ArrayAdapterItem(6,0,"选项6", "描述6"));
+        items.add(new ArrayAdapterItem(7,0,"选项7", "描述7"));
+        items.add(new ArrayAdapterItem(8,0,"选项8", "描述8"));
+        items.add(new ArrayAdapterItem(9,0,"选项9", "描述9"));
+
     }
 }

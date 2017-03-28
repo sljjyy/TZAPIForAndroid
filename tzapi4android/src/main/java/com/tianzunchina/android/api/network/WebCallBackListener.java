@@ -14,6 +14,12 @@ public interface WebCallBackListener {
      */
     @Deprecated
     void success(JSONObject jsonObject, TZRequest request);
+
+    /**
+     * 为了保持通用性(如SoapObjct的接收)修改了之前的String类型 改为Object
+     * @param response 要获得原有String类型请toString()
+     * @param request
+     */
     void success(Object response, TZRequest request);
     void err(String err, TZRequest request);
 }

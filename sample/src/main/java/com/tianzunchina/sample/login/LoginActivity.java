@@ -79,8 +79,8 @@ public class LoginActivity extends TZLoginActivity {
     }
 
     @Override
-    public void success(String response, TZRequest request) {
-        message.setText(response);
+    public void success(Object response, TZRequest request) {
+        message.setText(response.toString());
     }
 
     @Override
