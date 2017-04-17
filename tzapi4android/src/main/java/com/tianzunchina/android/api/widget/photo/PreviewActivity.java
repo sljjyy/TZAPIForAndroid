@@ -14,11 +14,16 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
+import com.bumptech.glide.request.target.ImageViewTarget;
+import com.squareup.picasso.Picasso;
 import com.tianzunchina.android.api.R;
 import com.tianzunchina.android.api.widget.gesture.GestureImageView;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.R.attr.path;
 
 /**
  * Created by admin on 2015/5/25.
@@ -145,7 +150,6 @@ public class PreviewActivity extends AppCompatActivity {
             });
             imageView.setLayoutParams(getLayoutParams());//配置文本显示组件的参数
             linearLayout.addView(imageView);
-
             views.add(linearLayout);
         }
         return views;
@@ -168,7 +172,6 @@ public class PreviewActivity extends AppCompatActivity {
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT);//定义文本显示组件
-
         return params;
     }
 

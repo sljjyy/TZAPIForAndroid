@@ -76,7 +76,6 @@ public class MainActivity extends TZAppCompatActivity implements BottomNavigatio
             finish();
         }
     }
-
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {

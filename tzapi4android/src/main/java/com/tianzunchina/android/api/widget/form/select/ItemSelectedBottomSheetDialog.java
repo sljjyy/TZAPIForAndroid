@@ -14,7 +14,8 @@ import com.tianzunchina.android.api.R;
 import java.util.List;
 
 /**
- * admin
+ * 底部选择对话框基础版本 还需要添加更多自定义
+ * sl
  * 2016/6/29 0029.
  */
 
