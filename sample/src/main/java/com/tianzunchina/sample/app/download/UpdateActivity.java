@@ -36,9 +36,7 @@ public class UpdateActivity extends AppCompatActivity {
         try {
             // 以中和为例
             // 接口参数设置
-            TZRequest tzRequest = new TZRequest("http://tfs2012:9001/PhoneWebService.asmx", "SignIn");
-            tzRequest.addParam("account", "wy1");
-            tzRequest.addParam("password", "123456");
+            TZRequest tzRequest = new TZRequest("http://218.108.93.154:8090/UpgradeVersionService.asmx", "GetNewVersion");
             tzRequest.addParam("imeiCode", PhoneTools.getInstance().getDeviceId());
             tzRequest.addParam("phoneTime", TimeConverter.date2Str(new Date(),TimeConverter.DEF_DATE_FORMAT));
             tzRequest.addParam("versionCode", 1);
@@ -51,6 +49,7 @@ public class UpdateActivity extends AppCompatActivity {
 
             // 版本更新设置参数
             TZUpdateManager manager = new TZUpdateManager.Builder(this)
+                    .setDownUrl("http://218.108.93.154:8090/")
                     .setRequest(tzRequest)
                     .setWebAPI(api)
                     .setListener(listener).build();
@@ -86,7 +85,7 @@ public class UpdateActivity extends AppCompatActivity {
             }
 
             @Override
-            public void downloadSucess() {
+            public void downloadSuccess() {
                 // 下载成功
             }
 

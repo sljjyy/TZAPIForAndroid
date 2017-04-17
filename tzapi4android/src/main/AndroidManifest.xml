@@ -14,6 +14,19 @@
         android:allowBackup="true"
         android:label="@string/app_name"
         android:supportsRtl="true">
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.tianzunchina.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true"
+            >
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider"
+                />
+        </provider>
+
         <fragment
             android:name=".view.CameraActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -22,24 +35,9 @@
             android:name=".widget.photo.PreviewActivity"
             android:label="图片预览"
             android:theme="@android:style/Theme.Holo.Dialog.NoActionBar" />
-
-        <activity android:name=".widget.form.DynamicFormFragment"/>
-
-        <service android:name=".util.location.LocationService" android:process=":locationProcess1">
-            <intent-filter android:priority="999">
-                <action android:name="com.tianzunchina.zhstreet.supervision.service.LocationService" />
-            </intent-filter>
-        </service>
-        <service android:name=".util.location.LocationService2" android:process=":locationProcess2"/>
-
-        <!--广播注册-->
-        <receiver android:name="com.tianzunchina.android.api.util.receiver.LocationReceiver">
-            <intent-filter android:priority="999">
-                <action android:name="com.tianzunchina.zhstreet.supervision.receiver.LocationReceiver"/>
-            </intent-filter>
-        </receiver>
-        <receiver android:name="com.tianzunchina.android.api.util.receiver.LocationReceiver1" android:process=":locationProcess1"/>
-        <receiver android:name="com.tianzunchina.android.api.util.receiver.LocationReceiver2" android:process=":locationProcess2"/>
+        <activity
+            android:name=".widget.permission.PermissionsActivity"
+             />
 
     </application>
 

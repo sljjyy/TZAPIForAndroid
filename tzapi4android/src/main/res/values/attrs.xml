@@ -7,6 +7,7 @@
     <attr name="boxLine" format="integer" />
     <attr name="boxColumn" format="integer" />
     <attr name="boxIndex" format="integer" />
+    <attr name="isCompress" format="boolean" />
 
     <attr name="title" format="string" />
     <attr name="hint" format="string" />
@@ -17,11 +18,13 @@
         <attr name="boxIsLinear" />
         <attr name="boxLine" />
         <attr name="boxColumn" />
+        <attr name="isCompress" />
     </declare-styleable>
     <declare-styleable name="TZPhotoBoxOne">
         <attr name="boxWidth" />
         <attr name="boxHeight" />
         <attr name="boxIndex" />
+        <attr name="isCompress" />
     </declare-styleable>
     <declare-styleable name="AutofitTextView">
         <attr name="minTextSize" format="dimension" />

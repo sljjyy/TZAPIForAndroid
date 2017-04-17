@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:orientation="vertical">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/id_iv_case_list_item_pic"
+                android:layout_width="60dp"
+                android:layout_height="50dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/img_holder" />
+
+            <TextView
+                android:id="@+id/id_tv_case_list_item_title"
+                style="@style/TitleListTextFont"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="3dp"
+                android:layout_toLeftOf="@id/id_tv_case_list_item_title"
+                android:layout_toRightOf="@id/id_iv_case_list_item_pic"
+                android:maxLength="15"
+                android:text=""
+
+
+                />
+
+            <ImageView
+                android:id="@+id/id_iv_case_list_item_new"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="8dp"
+                android:layout_toRightOf="@id/id_tv_case_list_item_title"
+                android:src="@drawable/ico_new_info" />
+
+            <ImageView
+                android:id="@+id/id_iv_case_list_item_xy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:src="@drawable/iconfont_xiangyou" />
+
+            <TextView
+                android:layout_centerInParent="true"
+                android:id="@+id/id_tv_case_list_item_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/id_iv_case_list_item_pic"
+                android:layout_below="@id/id_tv_case_list_item_title"
+                android:layout_marginBottom="3dp"
+                android:layout_marginLeft="5dp"
+                android:layout_toLeftOf="@id/id_iv_case_list_item_xy"
+                android:gravity="center"
+                android:text="2015-05-01"
+                android:textColor="@color/green"
+                android:textSize="10dp" />
+
+            <TextView
+                android:id="@+id/id_tv_case_list_item_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/id_iv_case_list_item_pic"
+                android:layout_marginBottom="3dp"
+                android:layout_marginLeft="5dp"
+                android:layout_toLeftOf="@id/id_tv_case_list_item_date"
+                android:layout_toRightOf="@id/id_iv_case_list_item_pic"
+
+                android:ellipsize="marquee"
+                android:gravity="bottom"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:singleLine="true"
+                android:textColor="@color/green"
+
+                android:textSize="11dp" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

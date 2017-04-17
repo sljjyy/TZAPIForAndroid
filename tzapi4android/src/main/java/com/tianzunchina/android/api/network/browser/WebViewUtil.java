@@ -51,8 +51,8 @@ public class WebViewUtil extends WebViewClient {
         timer.schedule(new TimeOutTask(), 10000);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
+        webView.setDownloadListener(new MyWebViewDownLoadListener());
         webView.setWebChromeClient(new WebChromeViewClient(activity));
-        webView.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
         webView.loadUrl(url);
     }
 

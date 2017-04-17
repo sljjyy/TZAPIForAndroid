@@ -1,5 +1,8 @@
 package com.tianzunchina.android.api.network.download;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class TZAppVersion extends TZFile{
     public static final int MAX = 100;//默认进度条百分比
 
@@ -8,6 +11,21 @@ public class TZAppVersion extends TZFile{
     private boolean isImportant;//是否需要强制更新，true 强制，false 非强制
 
     public TZAppVersion() {
+    }
+
+    public TZAppVersion(JSONObject json){
+        try {
+            json = json.getJSONObject("Version");
+            versionCode = json.getInt("VersionCode");
+            setVersionName(json.getString("VersionName"));
+            setVersionURL(json.getString("Url"));
+            if(json.has("Describe")){
+                describe = json.getString("Describe").replace("\\n", "");
+            }
+            isImportant = json.getBoolean("IsImportant");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
 //    public abstract void parse(JSONObject json);
@@ -52,11 +70,4 @@ public class TZAppVersion extends TZFile{
         isImportant = important;
     }
 
-    public String getFilenameExtension() {
-        return getFilenameExtension();
-    }
-
-    public void setFilenameExtension(String filenameExtension) {
-        setFilenameExtension(filenameExtension);
-    }
 }

@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.tianzunchina.android.api.base.TZFragment;
 import com.tianzunchina.sample.R;
-import com.tianzunchina.sample.TimeActivity;
+import com.tianzunchina.sample.view.TimeActivity;
 import com.tianzunchina.sample.form.DynamicFormActivity;
 import com.tianzunchina.sample.login.LoginActivity;
 import com.tianzunchina.sample.notify.NotifyActivity;

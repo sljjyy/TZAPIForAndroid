@@ -2,6 +2,7 @@ package com.tianzunchina.android.api.widget.photo;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -17,6 +18,11 @@ import java.io.File;
 
 import pl.aprilapps.easyphotopicker.EasyImage;
 
+/**
+ * 拍照监听
+ * CraetTime 2016-3-14
+ * @author SunLiang
+ */
 public class CameraListener implements OnClickListener {
 	private Activity activity;
 	private TZPhotoBox pbox;
@@ -43,8 +49,17 @@ public class CameraListener implements OnClickListener {
 		Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 		intent.putExtra(MediaStore.Images.Media.ORIENTATION, 0);
 		File file = new File(fileCache.getCacheDir(), "temp.jpg");
-		Uri imageUri = Uri.fromFile(file);
-		intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+
+		    /*获取当前系统的android版本号*/
+		int currentapiVersion = android.os.Build.VERSION.SDK_INT;
+		if (currentapiVersion<24){
+			intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
+		}else {
+			ContentValues contentValues = new ContentValues(1);
+			contentValues.put(MediaStore.Images.Media.DATA, file.getAbsolutePath());
+			Uri uri = activity.getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,contentValues);
+			intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+		}
 		activity.startActivityForResult(intent, num + weight);
 	}
 

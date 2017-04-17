@@ -81,7 +81,7 @@ public class TZUpdateDialogFragment extends DialogFragment implements View.OnCli
     public void initPB(ProgressBar pbUpdate) {
         pbUpdate.setMax(TZAppVersion.MAX);
         if (version.isImportant()) {
-            tvUpdate.setText("此次为重要更新, 更新后方可正常登陆\n请您更新民情e点通客户端！");
+            tvUpdate.setText("此次为重要更新, 更新后方可正常登陆\n请您更新"+ AppUtils.getAppName(TZApplication.getInstance()) + "客户端！");
         }
     }
 
@@ -129,7 +129,7 @@ public class TZUpdateDialogFragment extends DialogFragment implements View.OnCli
     public void onSuccess(String filePath) {
         TZToastTool.essential("文件下载完成");
         // 安装apk
-        Intent intent = PhoneTools.getInstance().getApkFileIntent(filePath);
+        Intent intent = PhoneTools.getInstance().getApkFileIntent(filePath,getActivity());
         startActivity(intent);
     }
 

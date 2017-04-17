@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:banner="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+           layout="@layout/title_base"/>
+
+
+    <com.tianzunchina.sample.widget.ADImageBanner
+        android:id="@+id/adibanner"
+        android:layout_width="fill_parent"
+        android:layout_height="120dp"
+        banner:bb_barColor="#88000000"
+        banner:bb_indicatorGravity="RIGHT"
+        banner:bb_indicatorHeight="4dp"
+        banner:bb_indicatorWidth="10dp"
+        banner:bb_scale="2" />
+
+    <LinearLayout
+        android:id="@+id/llAppColumns"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/adibanner">
+
+        <com.tianzunchina.android.api.widget.HomePageGridView
+            android:id="@+id/app_gridView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnWidth="80dp"
+            android:numColumns="4"
+            android:stretchMode="columnWidth" />
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvRecommend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/bg_news_mian_title"
+        android:text="个性化定制"
+        android:textSize="18dp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:id="@+id/llRecommendList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvRecommend">
+
+        <com.tianzunchina.android.api.widget.ListViewEventMethod
+            android:id="@+id/lvRecommendList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:divider="@color/list_def_divider"
+            android:dividerHeight="1dp"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

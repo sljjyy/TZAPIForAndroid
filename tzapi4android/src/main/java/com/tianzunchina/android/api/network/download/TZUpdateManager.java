@@ -3,9 +3,6 @@ package com.tianzunchina.android.api.network.download;
 import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
-
-import com.tianzunchina.android.api.base.TZApplication;
-import com.tianzunchina.android.api.log.TZToastTool;
 import com.tianzunchina.android.api.network.TZRequest;
 import com.tianzunchina.android.api.network.WebAPIable;
 import com.tianzunchina.android.api.network.WebCallBackListener;
@@ -23,23 +20,24 @@ import org.json.JSONObject;
 
 public class TZUpdateManager implements TZDownloadFile.DownloadListener {
     private static final String TAG = "updateDialog";
-    WebAPIable mWebAPIable;
-    TZRequest mRequest;
-    TZUpdateListener mListener;
+    private WebAPIable mWebAPIable;
+    private TZRequest mRequest;
+    private TZUpdateListener mListener;
     private Activity activity;
-
     boolean needNotification = false;//是否需要通知栏，默认不打开
+    private String downUrl;
 
     public TZUpdateManager(Activity activity) {
         this.activity = activity;
     }
 
-    public TZUpdateManager(Activity activity, boolean needNotification, WebAPIable webApi, TZRequest request, TZUpdateListener listener) {
+    public TZUpdateManager(Activity activity, boolean needNotification, WebAPIable webApi, TZRequest request, TZUpdateListener listener,String downUrl) {
         this.activity = activity;
         this.mWebAPIable = webApi;
         this.mRequest = request;
         this.mListener = listener;
         this.needNotification = needNotification;
+        this.downUrl = downUrl;
     }
 
     /**
@@ -65,7 +63,10 @@ public class TZUpdateManager implements TZDownloadFile.DownloadListener {
             public void success(Object response, TZRequest request) {
                 TZAppVersion lastVersion = null;
                 try {
-                    lastVersion = mListener.json2obj(new JSONObject(response.toString()));
+                    JSONObject jsonObject = new JSONObject(response.toString());
+                    JSONObject jsonObject1 = jsonObject.getJSONObject("Body");
+                    lastVersion = new TZAppVersion(jsonObject1);
+                    lastVersion.setDownloadURL(downUrl + lastVersion.getVersionURL());
                 } catch (JSONException e) {
                     e.printStackTrace();
                     this.err(e.getMessage(), request);
@@ -119,7 +120,7 @@ public class TZUpdateManager implements TZDownloadFile.DownloadListener {
     @Override
     public void onSuccess(String filePath) {
         // 下载成功时
-        mListener.downloadSucess();
+        mListener.downloadSuccess();
     }
 
     @Override
@@ -137,9 +138,15 @@ public class TZUpdateManager implements TZDownloadFile.DownloadListener {
         TZUpdateListener listener;
         Activity activity;
         boolean needNotification = false;
+        String downUrl;
 
         public Builder(Activity activity) {
             this.activity = activity;
+        }
+
+        public Builder setDownUrl(String downUrl) {
+            this.downUrl = downUrl;
+            return this;
         }
 
         public Builder setNeedNotification(boolean needNotification) {
@@ -181,7 +188,7 @@ public class TZUpdateManager implements TZDownloadFile.DownloadListener {
         }
 
         public TZUpdateManager build() {
-            return new TZUpdateManager(activity, needNotification, webApi, request, listener);
+            return new TZUpdateManager(activity, needNotification, webApi, request, listener,downUrl);
         }
     }
 

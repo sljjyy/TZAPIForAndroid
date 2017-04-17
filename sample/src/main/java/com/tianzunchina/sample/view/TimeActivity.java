@@ -1,18 +1,19 @@
-package com.tianzunchina.sample;
+package com.tianzunchina.sample.view;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.tianzunchina.android.api.util.TimeDialogUtil;
 import com.tianzunchina.android.api.widget.dialog.TimePickerDialog;
+import com.tianzunchina.sample.R;
 
 import java.util.GregorianCalendar;
 
 /**
- * Created by Administrator on 2017/1/23.
+ * 时间选择对话框示例
+ * Created by yqq on 2017/1/23.
  */
 
 public class TimeActivity extends Activity implements View.OnClickListener, com.tianzunchina.android.api.widget.dialog.TimePickerDialog.TimePickerDialogInterface {
@@ -47,7 +48,7 @@ public class TimeActivity extends Activity implements View.OnClickListener, com.
                 timePickerDialog.showDateAndTimePickerDialog();
                 break;
             case R.id.llUtil:
-                timeDialogUtil.openSelectedDateAndTime(this, gregorianCalendar, tvUtil);
+                TimeDialogUtil.getInstance().showTime(this, tvUtil);
                 break;
 
         }
@@ -60,8 +61,9 @@ public class TimeActivity extends Activity implements View.OnClickListener, com.
         int day = timePickerDialog.getDay();
         int hour = timePickerDialog.getHour();
         int minute = timePickerDialog.getMinute();
-        String time = String.valueOf(year + month + day + hour + minute);
-        tvDialog.setText(time);
+        String date = String.valueOf(year + "-"+month + "-"+day + " "+hour +":"+ minute);
+        String time = String.valueOf(hour +":"+ minute);
+        tvDialog.setText(date);
 
     }
 

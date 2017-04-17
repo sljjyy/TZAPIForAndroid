@@ -8,7 +8,6 @@ import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
-
 import com.tianzunchina.android.api.base.TZAppCompatActivity;
 import com.tianzunchina.android.api.log.TZToastTool;
 import com.tianzunchina.android.api.network.HTTPWebAPI;
@@ -20,9 +19,6 @@ import com.tianzunchina.android.api.widget.form.select.ItemSelectedCallBack;
 import com.tianzunchina.android.api.widget.photo.TZPhotoBoxGroup;
 import com.tianzunchina.android.api.widget.photo.TZPhotoBoxOne;
 import com.tianzunchina.sample.R;
-
-import org.ksoap2.serialization.SoapObject;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -33,7 +29,6 @@ import java.util.regex.Pattern;
 public class EventActivity extends TZAppCompatActivity {
     private TZPhotoBoxGroup photoBoxGroup;
     private TZPhotoBoxOne pbOne, pbOne2;
-    private TextView etEventContent;
     private List<ArrayAdapterItem> items;
 
     @Override
@@ -46,7 +41,7 @@ public class EventActivity extends TZAppCompatActivity {
         photoBoxGroup = (TZPhotoBoxGroup) findViewById(R.id.pbg);
         pbOne = (TZPhotoBoxOne) findViewById(R.id.pbOne);
         pbOne2 = (TZPhotoBoxOne) findViewById(R.id.pbOne2);
-        etEventContent = (TextView) findViewById(R.id.etEventContent);
+        TextView etEventContent = (TextView) findViewById(R.id.etEventContent);
         final TextView tvSelect = (TextView) findViewById(R.id.tvSelect);
         final TextView etEventAddress = (TextView) findViewById(R.id.etEventAddress);
         final TextView etEventDes = (TextView) findViewById(R.id.etEventDes);
@@ -87,9 +82,9 @@ public class EventActivity extends TZAppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        photoBoxGroup.onActivityResult(this, requestCode, resultCode, data);
         pbOne.onActivityResult(this, requestCode, resultCode, data);
         pbOne2.onActivityResult(this, requestCode, resultCode, data);
-        photoBoxGroup.onActivityResult(this, requestCode, resultCode, data);
     }
 
     public void submit(View view) {

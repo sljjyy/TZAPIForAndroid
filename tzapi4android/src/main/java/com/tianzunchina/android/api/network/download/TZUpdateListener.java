@@ -34,7 +34,7 @@ public interface TZUpdateListener {
     /**
      * 下载成功
      */
-    public void downloadSucess();
+    public void downloadSuccess();
 
     /**
      * 下载失败

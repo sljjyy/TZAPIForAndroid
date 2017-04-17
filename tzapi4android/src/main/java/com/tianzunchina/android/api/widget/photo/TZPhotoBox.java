@@ -1,13 +1,12 @@
 package com.tianzunchina.android.api.widget.photo;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.view.View;
 import android.widget.ImageView;
-
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Callback;
-import com.squareup.picasso.Picasso;
 import com.tianzunchina.android.api.R;
+import com.tianzunchina.android.api.log.TZLog;
 import com.tianzunchina.android.api.util.PhotoTools;
 
 import java.io.File;
@@ -91,6 +90,7 @@ public class TZPhotoBox {
 	 * 允许点击，显示“+”图片
 	 */
 	public void allow(){
+		TZLog.e("this is allow");
 		setMode(MODE_ADD);
 		fileImage = null;
 		ivDel.setVisibility(View.INVISIBLE);
@@ -135,6 +135,7 @@ public class TZPhotoBox {
 	 * 清空缩略图及本地缓存图片
 	 */
 	public void deletePhoto(){
+		TZLog.e("this is deletePhoto");
 		allow();
 	}
 
@@ -142,9 +143,13 @@ public class TZPhotoBox {
 		if(file == null){
 			return;
 		}
+		TZLog.e("file",file.toString());
 		fileImage =  file;
 		ivPhoto.setEnabled(true);
-		Picasso.with(context).load(file).placeholder(R.mipmap.pic_loading).error(R.mipmap.pic_loading).config(Bitmap.Config.ALPHA_8).resize(200, 200).centerCrop().into(ivPhoto, picassoCallback);
+		if(!fileImage.exists()){
+			return;
+		}
+		Glide.with(context).load(file).placeholder(R.mipmap.pic_loading).error(R.mipmap.pic_loading).override(200, 200).centerCrop().into(ivPhoto);
 		setMode(MODE_BROWSE);
 	}
 
@@ -154,7 +159,7 @@ public class TZPhotoBox {
 		}
 		this.url =  url;
 		ivPhoto.setEnabled(true);
-		Picasso.with(context).load(url).placeholder(R.mipmap.pic_loading).error(R.mipmap.pic_loading).config(Bitmap.Config.ALPHA_8).resize(200, 200).centerCrop().into(ivPhoto, picassoCallback);
+		Glide.with(context).load(url).placeholder(R.mipmap.pic_loading).error(R.mipmap.pic_loading).override(200, 200).centerCrop().into(ivPhoto);
 		setMode(MODE_BROWSE);
 	}
 
@@ -189,6 +194,7 @@ public class TZPhotoBox {
 		public void onError() {
 			switch (mode){
 				case MODE_BROWSE:
+					TZLog.e("this is onError" );
 					allow();
 					break;
 				case MODE_ONLY_READ:

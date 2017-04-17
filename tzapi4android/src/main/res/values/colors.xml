@@ -6,8 +6,10 @@
     <color name="app_background_bule">#2964c1</color>
     <color name="app_background_gray">#505050</color>
     <color name="activity_head_text">#505050</color>
-
+    <color name="blue">#00e5ff</color>
+    <color name="white">#FFFFFF</color>
     <color name="transparent">#00000000</color>
+    <color name="yellow">#FFFF00</color>
 
     <color name="photo_box_stroke">#505050</color>
 

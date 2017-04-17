@@ -24,5 +24,12 @@
         <item name="android:textColorSecondary">@color/background_material_dark</item>
         <item name="android:textColorSecondaryInverse">@color/background_material_dark</item>
     </style>
+    <style name="TitleListTextFont">
+        <item name="android:textSize">13dp</item>
+        <item name="android:textColor">@color/text_333</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
 
 </resources>

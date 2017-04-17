@@ -2,7 +2,6 @@ package com.tianzunchina.android.api.widget.dialog;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,10 +10,12 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.TimePicker;
+import android.app.AlertDialog;
 
 import com.tianzunchina.android.api.R;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -32,10 +33,11 @@ public class TimePickerDialog {
     private DatePicker mDatePicker;
     private int mTag = 0;
     private int mYear, mDay, mMonth;
-
+    private Calendar c;
     public TimePickerDialog(Context context) {
         super();
         mContext = context;
+        c = Calendar.getInstance();
         timePickerDialogInterface = (TimePickerDialogInterface) context;
     }
 
@@ -239,6 +241,7 @@ public class TimePickerDialog {
      * 获取时间选择的值
      */
     private void getTimePickerValue() {
+        // api23这两个方法过时
         // api23这两个方法过时
         mHour = mTimePicker.getCurrentHour();// timePicker.getHour();
         mMinute = mTimePicker.getCurrentMinute();// timePicker.getMinute();

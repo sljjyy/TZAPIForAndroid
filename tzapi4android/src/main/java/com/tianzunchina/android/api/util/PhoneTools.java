@@ -9,6 +9,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.provider.Settings;
+import android.support.v4.content.FileProvider;
 import android.telephony.TelephonyManager;
 
 import com.tianzunchina.android.api.base.TZApplication;
@@ -95,12 +96,26 @@ public class PhoneTools {
      * @param path .apk文件路径
      * @return
      */
-    public Intent getApkFileIntent(String path)  {
+    public Intent getApkFileIntent(String path,Context context)  {
         Intent intent = new Intent();
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.setAction(android.content.Intent.ACTION_VIEW);
-        Uri uri = Uri.fromFile(new File(path));
-        intent.setDataAndType(uri, "application/vnd.android.package-archive");
+
+        int currentapiVersion = android.os.Build.VERSION.SDK_INT;
+        if (currentapiVersion < 24) {
+            Uri uri = Uri.fromFile(new File(path));
+            intent.setDataAndType(uri, "application/vnd.android.package-archive");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        } else {
+            String packageName = context.getApplicationContext().getPackageName() + ".tianzunchina.fileprovider";
+            String provider = "com.tianzunchina.tz.supervision.fileprovider";
+            Uri uri = FileProvider.getUriForFile(TZApplication.getInstance().getApplicationContext(),provider,new File(path));
+            intent.setDataAndType(uri, "application/vnd.android.package-archive");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION); //添加这一句表示对目标应用临时授权该Uri所代表的文件
+        }
+
         return intent;
     }
 

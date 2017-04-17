@@ -11,35 +11,37 @@ import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-
 import com.tianzunchina.android.api.R;
 import com.tianzunchina.android.api.log.TZLog;
+import com.tianzunchina.android.api.util.PhotoTools;
 import com.tianzunchina.android.api.view.recycler.RecyclerItemClickListener;
 import com.tianzunchina.android.api.view.recycler.TZRecyclerViewAdapter;
 import com.tianzunchina.android.api.view.recycler.TZRecyclerViewHolder;
-
 import org.apache.commons.lang3.StringUtils;
-
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-
 import pl.aprilapps.easyphotopicker.DefaultCallback;
 import pl.aprilapps.easyphotopicker.EasyImage;
 
 /**
- * CraetTime 2016-4-6
+ * CreateTime 2016-4-6
  *
  * @author SunLiang
  */
 public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListener {
     private int count = 2;
-    private int widht, height = 100;
+    private int width, height = 100;
     private TZRecyclerViewAdapter adapter;
     private boolean isReadyDel = false;
     private List<TZPhotoBox> boxes = new ArrayList<>();
     private boolean isLinear = true;
     private int column = 2;
+    private boolean isCompress = false;//是否压缩，默认不压缩
+    private float WIDTH = 1024;//压缩的宽度
+    private float HEIGHT = 1024;//压缩的高度
+    private int quality = 90;//压缩的质量
 
     public TZPhotoBoxGroup(Context context) {
         super(context);
@@ -79,13 +81,15 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
             if (attr == R.styleable.TZPhotoBoxGroup_boxCount) {
                 count = a.getInt(attr, 2);
             } else if (attr == R.styleable.TZPhotoBoxGroup_boxWidth) {
-                widht = (int) a.getDimension(attr, 100);
+                width = (int) a.getDimension(attr, 100);
             } else if (attr == R.styleable.TZPhotoBoxGroup_boxHeight) {
                 height = (int) a.getDimension(attr, 100);
             } else if (attr == R.styleable.TZPhotoBoxGroup_boxIsLinear) {
                 isLinear = a.getBoolean(attr, true);
             } else if (!isLinear && attr == R.styleable.TZPhotoBoxGroup_boxColumn) {
                 column = a.getInt(attr, 2);
+            }else if (!isLinear && attr == R.styleable.TZPhotoBoxGroup_isCompress ){
+                isCompress = a.getBoolean(attr,false);
             }
         }
         a.recycle();
@@ -119,6 +123,10 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
         }));
     }
 
+    /**
+     * 显示照片
+     * @param index 索引
+     */
     public void showPhotos(int index) {
         Intent intent = new Intent(getContext(), PreviewActivity.class);
         if (boxes.get(0).mode == TZPhotoBox.MODE_ONLY_READ) {
@@ -154,6 +162,10 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
         }
     }
 
+    /**
+     * 获取照片的绝对路径的数组
+     * @return 绝对路径数组
+     */
     public List<String> getBoxPaths() {
         List<String> paths = new ArrayList<>();
         for (int i = 0; i < boxes.size(); i++) {
@@ -165,6 +177,10 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
         return paths;
     }
 
+    /**
+     * 获取url
+     * @return url数组
+     */
     public List<String> getBoxURLs() {
         List<String> paths = new ArrayList<>();
         for (int i = 0; i < boxes.size(); i++) {
@@ -191,11 +207,18 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
             @Override
             public void onImagePicked(File imageFile, EasyImage.ImageSource source, int type) {
                 if (type >= 10) type -= 10;
-                boxes.get(type).addPhoto(imageFile);
+                if(isCompress){
+                    boxes.get(type).addPhoto(PhotoTools.getCompressImageFile(imageFile,WIDTH,HEIGHT,quality));
+                   // PhotoTools.getFileFromBytes(PhotoTools.File2byte(PhotoTools.getCompressImageFile(imageFile,WIDTH,HEIGHT,quality).getPath()),"/sdcard/" + new Date().toString() +".jpg");
+                }else {
+                    boxes.get(type).addPhoto(imageFile);
+                }
+                TZLog.e("Group",imageFile.toString());
                 if (type == 0 && !boxes.get(1).isBrowse()) {
                     boxes.get(1).allow();
                 }
             }
+
         });
     }
 
@@ -214,10 +237,18 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
         return paths;
     }
 
+    /**
+     * 获取当前控件的索引（第几个）
+     * @param index 索引
+     * @return
+     */
     public TZPhotoBox get(int index) {
         return boxes.get(index);
     }
 
+    /**
+     * 只读模式
+     */
     public void onlyRead() {
         for (TZPhotoBox box : boxes) {
             box.onlyRead();
@@ -255,6 +286,9 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
         }
     }
 
+    /**
+     * 初始化适配器
+     */
     private void initAdapter() {
         for (int i = 0; i < count; i++) {
             TZPhotoBoxView view = new TZPhotoBoxView(getContext());
@@ -272,7 +306,7 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
             public void convert(TZRecyclerViewHolder holder, TZPhotoBox pb, int position) {
                 switch (pb.mode) {
                     case TZPhotoBox.MODE_READY_DELETE:
-                        holder.setImage(R.id.ivPhoto, pb.fileImage, pb.url, R.mipmap.pic_loading, widht, height);
+                        holder.setImage(R.id.ivPhoto, pb.fileImage, pb.url, R.mipmap.pic_loading, width, height);
                         holder.setVisible(R.id.ivDel, true);
                         break;
                     case TZPhotoBox.MODE_ADD:
@@ -283,7 +317,7 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
                     case TZPhotoBox.MODE_ONLY_READ:
                     case TZPhotoBox.MODE_BROWSE:
                     default:
-                        holder.setImage(R.id.ivPhoto, pb.fileImage, pb.url, R.mipmap.pic_loading, widht, height);
+                        holder.setImage(R.id.ivPhoto, pb.fileImage, pb.url, R.mipmap.pic_loading, width, height);
                         holder.setVisible(R.id.ivDel, false);
                         break;
                 }
@@ -391,5 +425,16 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
             return true;
         }
         return def;
+    }
+    /**
+     * 设置压缩的值
+     * @param width 宽度
+     * @param height 高度
+     * @param quality 质量
+     */
+    public void set(float width,float height,int quality){
+        this.WIDTH = width;
+        this.HEIGHT = height;
+        this.quality = quality;
     }
 }

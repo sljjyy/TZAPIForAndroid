@@ -8,24 +8,28 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-
 import com.tianzunchina.android.api.R;
+import com.tianzunchina.android.api.log.TZLog;
+import com.tianzunchina.android.api.util.PhotoTools;
 
 import java.io.File;
 import java.util.ArrayList;
-
 import pl.aprilapps.easyphotopicker.DefaultCallback;
 import pl.aprilapps.easyphotopicker.EasyImage;
 
 /**
- * CraetTime 2016-4-6
+ * CreateTime 2016-4-6
  *
  * @author SunLiang
  */
 public class TZPhotoBoxOne extends TZPhotoBoxView implements PhotoBoxChangeListener, View.OnLongClickListener, View.OnClickListener{
-    private int widht, height = 100, index = 0;
+    private int width, height = 100, index = 0;
     private boolean isReadyDel = false;
     private TZPhotoBox box;
+    private boolean isCompress = false;//是否压缩，默认不压缩
+    private float WIDTH = 1024;//压缩的宽度
+    private float HEIGHT = 1024;//压缩的高度
+    private int quality = 90;//压缩的质量
 
     public TZPhotoBoxOne(Context context) {
         super(context);
@@ -43,11 +47,13 @@ public class TZPhotoBoxOne extends TZPhotoBoxView implements PhotoBoxChangeListe
         for (int i = 0; i < n; i++) {
             int attr = a.getIndex(i);
             if (attr == R.styleable.TZPhotoBoxOne_boxWidth) {
-                widht = (int) a.getDimension(attr, 100);
+                width = (int) a.getDimension(attr, 100);
             } else if (attr == R.styleable.TZPhotoBoxOne_boxHeight) {
                 height = (int) a.getDimension(attr, 100);
             }else if (attr == R.styleable.TZPhotoBoxOne_boxIndex) {
                 index = a.getInt(attr, 0);
+            }else if (attr == R.styleable.TZPhotoBoxGroup_isCompress ){
+                isCompress = a.getBoolean(attr,false);
             }
         }
         a.recycle();
@@ -55,11 +61,18 @@ public class TZPhotoBoxOne extends TZPhotoBoxView implements PhotoBoxChangeListe
         box.allow();
     }
 
+    /**
+     * 初始化点击监听
+     */
     private void initClickListener(){
         this.setOnLongClickListener(this);
         this.setOnClickListener(this);
         box.setPhotoBoxChangeListener(this);
     }
+
+    /**
+     * 显示图片
+     */
     public void showPhoto() {
         Intent intent = new Intent(getContext(), PreviewActivity.class);
         if (box.mode == TZPhotoBox.MODE_ONLY_READ) {
@@ -70,6 +83,10 @@ public class TZPhotoBoxOne extends TZPhotoBoxView implements PhotoBoxChangeListe
         getContext().startActivity(intent);
     }
 
+    /**
+     * 设置照片的url
+     * @param url 地址
+     */
     public void setPhotoByURL(String url) {
         box.addPhoto(url);
     }
@@ -84,6 +101,10 @@ public class TZPhotoBoxOne extends TZPhotoBoxView implements PhotoBoxChangeListe
         box.addPhoto(file);
     }
 
+    /**
+     * 得到照片的绝对路径
+     * @return null或者绝对路径
+     */
     public String getBoxPath() {
         if (box.isBrowse()) {
             return box.getFileImage().getAbsolutePath();
@@ -116,7 +137,12 @@ public class TZPhotoBoxOne extends TZPhotoBoxView implements PhotoBoxChangeListe
                     return;
                 }
                 if (!box.isBrowse()) {
-                    box.addPhoto(imageFile);
+                    TZLog.e("One",imageFile.toString());
+                    if(isCompress){
+                        box.addPhoto(PhotoTools.getCompressImageFile(imageFile,WIDTH,HEIGHT,quality));
+                    }else {
+                        box.addPhoto(imageFile);
+                    }
                 }
             }
         });
@@ -142,7 +168,7 @@ public class TZPhotoBoxOne extends TZPhotoBoxView implements PhotoBoxChangeListe
     /**
      * 获取指定索引下的图片路径
      *
-     * @return
+     * @return 返回图片的绝对路径
      */
     public String getPath() {
         return box.getFileImage().getAbsolutePath();
@@ -245,5 +271,17 @@ public class TZPhotoBoxOne extends TZPhotoBoxView implements PhotoBoxChangeListe
             return false;
         }
         return true;
+    }
+
+    /**
+     * 设置压缩的值
+     * @param width 宽度
+     * @param height 高度
+     * @param quality 质量
+     */
+    public void set(float width,float height,int quality){
+        this.WIDTH = width;
+        this.HEIGHT = height;
+        this.quality = quality;
     }
 }

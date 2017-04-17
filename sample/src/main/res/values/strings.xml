@@ -5,4 +5,27 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_event">EventActivity</string>
+    <string name="submit_event">事件上报</string>
+    <string name="xzsp">行政审批</string>
+    <string name="office">公文查询</string>
+    <string name="law">法律条文</string>
+    <string name="move_car">移车通知</string>
+    <string name="comm">实时通讯</string>
+    <string name="folder">文件库</string>
+
+
+
+
+
+    <!--崩溃时出现-->
+    <string name="customactivityoncrash_error_activity_error_occurred_explanation">抱歉!sample运行时遇到问题 \n可以尝试重启应用解决 \n如果尝试多次仍然出现该问题 可以进入错误描述进行截图或等待技术人员解决, 谢谢谅解</string>
+    <string name="customactivityoncrash_error_activity_unknown_exception">未知异常</string>
+    <string name="customactivityoncrash_error_activity_restart_app">重启sample</string>
+    <string name="customactivityoncrash_error_activity_close_app">关闭sample</string>
+    <string name="customactivityoncrash_error_activity_error_details">错误描述</string>
+    <string name="customactivityoncrash_error_activity_error_details_title">错误描述</string>
+    <string name="customactivityoncrash_error_activity_error_details_close">关闭</string>
+    <string name="customactivityoncrash_error_activity_error_details_copy">复制到剪贴板</string>
+    <string name="customactivityoncrash_error_activity_error_details_copied">已成功复制信息</string>
+    <string name="customactivityoncrash_error_activity_error_details_clipboard_label">错误信息</string>
 </resources>

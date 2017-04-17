@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        layout="@layout/title_base"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/fragment_app_background"
+        android:scrollbars="none">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFFFFF">
+
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/llMyCircles"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.tianzunchina.android.api.widget.HomePageGridView
+                    android:id="@+id/gvMyCircles"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:columnWidth="200dp"
+                    android:numColumns="2"
+                    android:stretchMode="columnWidth"></com.tianzunchina.android.api.widget.HomePageGridView>
+            </LinearLayout>
+            <include
+                android:id="@+id/indCircleData"
+                layout="@layout/item_list1"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                />
+
+            <include
+                android:id="@+id/indAllCircles"
+                layout="@layout/item_list1"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:layout_below="@id/indCircleData" />
+
+            <include
+                android:id="@+id/indMyCircles"
+                layout="@layout/item_list1"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:layout_below="@id/indAllCircles" />
+
+            <include
+                android:id="@+id/indAllActivities"
+                layout="@layout/item_list1"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:layout_below="@id/indMyCircles" />
+
+            <include
+                android:id="@+id/indMyActivities"
+                layout="@layout/item_list1"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:layout_below="@id/indAllActivities" />
+        </RelativeLayout>
+    </ScrollView>
+</LinearLayout>

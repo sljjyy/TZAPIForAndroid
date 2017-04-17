@@ -193,7 +193,7 @@ public class TZDownloadFile {
     private void cancleNotify(String filePath) {
         tzNotification.cancle(DOWNLOAD_ID);
         // 安装apk
-        Intent intent = PhoneTools.getInstance().getApkFileIntent(filePath);
+        Intent intent = PhoneTools.getInstance().getApkFileIntent(filePath,context);
         context.startActivity(intent);
     }
 

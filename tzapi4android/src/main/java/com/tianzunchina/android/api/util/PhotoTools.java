@@ -14,15 +14,23 @@ import android.graphics.RectF;
 import android.media.ExifInterface;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
+import android.os.Environment;
 import android.provider.MediaStore;
-
+import com.tianzunchina.android.api.base.TZApplication;
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.ref.WeakReference;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Date;
+
+import id.zelory.compressor.Compressor;
 
 
 /**
@@ -357,5 +365,89 @@ public class PhotoTools {
             }
         }
         return degree;
+    }
+
+    /**
+     *
+     * @param file 原文件
+     * @param width 宽度
+     * @param height 高度
+     * @param quality 压缩的质量
+     * @return 压缩文件
+     */
+    public static File getCompressImageFile(File file,float width,float height,int quality){
+        File compressImageFile = new Compressor.Builder(TZApplication.getInstance().getApplicationContext())
+                .setMaxWidth(width)
+                .setMaxHeight(height)
+                .setQuality(quality)
+                .setCompressFormat(CompressFormat.JPEG)
+                .setDestinationDirectoryPath(Environment.getExternalStoragePublicDirectory(
+                        Environment.DIRECTORY_PICTURES).getAbsolutePath())
+                .build()
+                .compressToFile(file);
+        getFileFromBytes(File2byte(compressImageFile.getPath()), "/sdcard/" + new Date().toString() +".jpg");
+        return compressImageFile;
+    }
+
+    /**
+     * 保存图片
+     * @param b 字节
+     * @param outputFile 输出的文件路径
+     * @return
+     */
+    public static File getFileFromBytes(byte[] b, String outputFile) {
+        BufferedOutputStream stream = null;
+        File file = null;
+        try {
+            file = new File(outputFile);
+            FileOutputStream fstream = new FileOutputStream(file);
+            stream = new BufferedOutputStream(fstream);
+            stream.write(b);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (stream != null) {
+                try {
+                    stream.close();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        }
+        return file;
+    }
+
+    /**
+     * file转byte[]
+     * @param filePath 文件path
+     * @return byte
+     */
+    public static byte[] File2byte(String filePath)
+    {
+        byte[] buffer = null;
+        try
+        {
+            File file = new File(filePath);
+            FileInputStream fis = new FileInputStream(file);
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            byte[] b = new byte[1024];
+            int n;
+            while ((n = fis.read(b)) != -1)
+            {
+                bos.write(b, 0, n);
+            }
+            fis.close();
+            bos.close();
+            buffer = bos.toByteArray();
+        }
+        catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        return buffer;
     }
 }

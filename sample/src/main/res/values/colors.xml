@@ -3,4 +3,11 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="red">#ffff1b32</color>
+    <color name="list_def_divider">#D2D2D2</color>
+    <color name="fragment_app_background">#F6F6F6</color>
+    <color name="line">#ddd</color>
+    <color name="text_333">#333333</color>
+    <color name="green">#42a370</color>
+
 </resources>

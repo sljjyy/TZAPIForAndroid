@@ -29,7 +29,7 @@ public class TimeConverter {
     public static final String DEF_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
     public static final String DEF_DATE_FORMAT_NEW = "yyyy-MM-dd HH:mm";
     public static final String DEF_DATE_YMD_FORMAT = "yyyy-MM-dd";
-    public static final String DEF_DATE_TIME_FORMAT = "HH:mm:ss";
+    public static final String DEF_DATE_TIME_FORMAT = "HH:mm";
     public static String getSrcOfDate(Date date, String reg) {
         SimpleDateFormat formatter = new SimpleDateFormat(reg);
         if (date == null) {

@@ -24,12 +24,6 @@ public class AppVersion extends TZAppVersion {
 	}
 
 	public void parse(JSONObject json) {
-		try {
-			setVersionCode(json.getInt(VERSION_CODE));
-			setVersionName(json.getString(VERSION_NAME));
-			setVersionURL(json.getString(VERSION_URL));
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
+
 	}
 }
