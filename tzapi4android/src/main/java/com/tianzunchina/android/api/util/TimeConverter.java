@@ -63,6 +63,10 @@ public class TimeConverter {
         return dateFormat.format(date);
     }
 
+    public static String date2Str(long time, String format) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(format, Locale.CHINA);
+        return dateFormat.format(new Date(time));
+    }
     /**
      * 根据文本转换日期
      * @param str 格式：yyyy-MM-dd HH:mm
@@ -182,4 +186,5 @@ public class TimeConverter {
         int d2 = date2.getYear();
         return d1 == d2;
     }
+
 }

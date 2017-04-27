@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+
+        style="@style/TableTrMargin"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvName"
+            android:text="@string/party_name"
+            style="@style/TitleTextFont" />
+
+        <EditText
+            android:id="@+id/etvName"
+            android:layout_marginLeft="20dp"
+            android:background="@null"
+            style="@style/ValueTextFont"
+            android:hint="@string/input_party_name"
+            android:imeOptions="actionNext"
+            android:singleLine="true"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@drawable/img_prefresh_list_cutline" />
+
+    <LinearLayout
+        style="@style/TableTrMargin"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvSex"
+            android:layout_gravity="center"
+            style="@style/TitleTextFont"
+            android:text="@string/party_gender" />
+
+        <RadioGroup
+            android:id="@+id/rgGender"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rbBoy"
+                android:text="@string/rb_boy"
+                android:checked="true"
+                android:tag="@string/rb_boy"
+                style="@style/TitleTextFont" />
+
+            <RadioButton
+                android:id="@+id/rbGirl"
+                android:tag="@string/rb_girl"
+                android:text="@string/rb_girl"
+                style="@style/TitleTextFont"
+
+                />
+        </RadioGroup>
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@drawable/img_prefresh_list_cutline" />
+
+    <LinearLayout
+        style="@style/TableTrMargin"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvPeopleId"
+            android:text="@string/party_id_card"
+            style="@style/TitleTextFont" />
+
+        <EditText
+            android:id="@+id/etvPeopleId"
+            android:layout_marginLeft="20dp"
+            android:background="@null"
+            style="@style/ValueTextFont"
+            android:hint="@string/input_party_id_card"
+            android:imeOptions="actionNext"
+            android:singleLine="true"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@drawable/img_prefresh_list_cutline" />
+
+
+</LinearLayout>

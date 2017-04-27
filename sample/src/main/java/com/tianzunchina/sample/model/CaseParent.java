@@ -1,4 +1,4 @@
-package com.tianzunchina.sample.view;
+package com.tianzunchina.sample.model;
 
 import org.json.JSONException;
 import org.json.JSONObject;

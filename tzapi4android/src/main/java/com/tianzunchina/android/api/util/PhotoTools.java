@@ -1,6 +1,8 @@
 package com.tianzunchina.android.api.util;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
@@ -16,6 +18,8 @@ import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.text.TextUtils;
+
 import com.tianzunchina.android.api.base.TZApplication;
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
@@ -51,7 +55,7 @@ public class PhotoTools {
         return photoTools;
     }
 
-    private PhotoTools(){
+    public PhotoTools(){
         converter = UnitConverter.getInstance();
     }
 
@@ -449,5 +453,70 @@ public class PhotoTools {
             e.printStackTrace();
         }
         return buffer;
+    }
+
+    /**
+     * 保存图片到本地
+     *
+     * @param filePath 文件路径
+     * @param bitmap   图片
+     * @param quality
+     * @return file
+     */
+    public static File saveBitmap(String filePath, Bitmap bitmap, int quality) {
+        File file = null;
+        try {
+            if (bitmap != null && !TextUtils.isEmpty(filePath)) {
+                file = new File(filePath);
+                BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file));
+                bitmap.compress(Bitmap.CompressFormat.JPEG, quality, bos);
+                bos.flush();
+                bos.close();
+                return file;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return file;
+    }
+
+    public static Uri getImageContentUri(Context context, File imageFile) {
+        String filePath = imageFile.getAbsolutePath();
+        Cursor cursor = context.getContentResolver().query(
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                new String[]{MediaStore.Images.Media._ID},
+                MediaStore.Images.Media.DATA + "=? ",
+                new String[]{filePath}, null);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            int id = cursor.getInt(cursor
+                    .getColumnIndex(MediaStore.MediaColumns._ID));
+            Uri baseUri = Uri.parse("content://media/external/images/media");
+            return Uri.withAppendedPath(baseUri, "" + id);
+        } else {
+            if (imageFile.exists()) {
+                ContentValues values = new ContentValues();
+                values.put(MediaStore.Images.Media.DATA, filePath);
+                return context.getContentResolver().insert(
+                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+            } else {
+                return null;
+            }
+        }
+    }
+
+    /**
+     * @param uri 图片地址
+     * @return
+     */
+    public static Bitmap decodeUriAsBitmap(Uri uri,Context context) {
+        Bitmap bitmap = null;
+        try {
+            bitmap = BitmapFactory.decodeStream(context.getContentResolver().openInputStream(uri));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return bitmap;
     }
 }

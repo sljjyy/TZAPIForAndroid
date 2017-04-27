@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:api="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/corners_bg"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    style="@style/TableTrMargin"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/TitleTextFont"
+                        android:text="@string/parking_car_kinds" />
+
+                    <LinearLayout
+                        android:id="@+id/llParkingCarKinds"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tvParkingKinds"
+                            style="@style/ValueTextFont"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:tag="02"
+                            android:text="@string/small_car" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_vertical"
+                            android:src="@drawable/ico_group_fold_arrow" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:background="@drawable/img_prefresh_list_cutline" />
+
+                <LinearLayout
+                    style="@style/TableTrMargin"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/TitleTextFont"
+                        android:text="@string/illegal_time" />
+
+                    <LinearLayout
+                        android:id="@+id/llParkingDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tvParkingDate"
+                            style="@style/ValueTextFont"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:text="2015-01-01" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center_vertical"
+                            android:src="@drawable/ico_group_fold_arrow" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/corners_bg"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp">
+
+                    <TextView
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="@string/scene_evidence_photo"
+                        android:textColor="@color/red" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp">
+
+                    <com.tianzunchina.android.api.widget.photo.TZPhotoBoxGroup
+                        android:id="@+id/pbGroup"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        api:boxCount="3" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/corners_bg"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    style="@style/TableTrMargin"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/TitleTextFont"
+                        android:text="@string/park_docNo" />
+
+                    <EditText
+                        android:id="@+id/etParkDocNo"
+                        style="@style/ValueTextFont"
+                        android:layout_marginLeft="20dp"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:digits="0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                        android:hint="@string/input_park_docNo"
+                        android:imeOptions="actionNext"
+                        android:maxLength="9"
+                        android:singleLine="true" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:background="@drawable/img_prefresh_list_cutline" />
+
+                <LinearLayout
+                    style="@style/TableTrMargin"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/TitleTextFont"
+                        android:text="@string/park_carNo" />
+
+                    <EditText
+                        android:id="@+id/etParkCarNo"
+                        style="@style/ValueTextFont"
+                        android:layout_marginLeft="20dp"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:hint="@string/input_park_carNo"
+                        android:imeOptions="actionNext"
+                        android:maxLength="7"
+
+                        android:singleLine="true" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/vSearchAddressCode"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:background="@drawable/img_prefresh_list_cutline" />
+
+                <LinearLayout
+                    android:id="@+id/llSearchAddressCode"
+                    style="@style/TableTrMargin"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/TitleTextFont"
+                        android:text="@string/park_addressKey" />
+
+                    <AutoCompleteTextView
+                        android:id="@+id/etParkAddressKey"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:dropDownHeight="wrap_content"
+                        android:dropDownWidth="fill_parent"
+                        android:hint="@string/input_keyword"
+                        android:imeOptions="actionDone"
+                        android:textColor="@color/line"
+                        android:textSize="13dp" />
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/vAddressCode"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:background="@drawable/img_prefresh_list_cutline" />
+
+                <LinearLayout
+                    android:id="@+id/llAddressCode"
+                    style="@style/TableTrMargin"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/TitleTextFont"
+                        android:text="@string/park_address_number" />
+
+                    <EditText
+                        android:id="@+id/etParkAddressCode"
+                        style="@style/ValueTextFont"
+                        android:layout_marginLeft="20dp"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:editable="false" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:background="@drawable/img_prefresh_list_cutline" />
+
+                <LinearLayout
+                    style="@style/TableTrMargin"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/TitleTextFont"
+                        android:text="@string/address_describe" />
+
+                    <EditText
+                        android:id="@+id/etParkAddress"
+                        style="@style/ValueTextFont"
+                        android:layout_marginLeft="20dp"
+                        android:layout_weight="1"
+                        android:background="@null" />
+
+                </LinearLayout>
+
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:background="@drawable/img_prefresh_list_cutline" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/llIpCaseMore"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/corners_bg"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    style="@style/TableTrMargin"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/TitleTextFont"
+                        android:text="@string/disposed_status" />
+
+                    <TextView
+                        android:id="@+id/tvIpCaseStatus"
+                        style="@style/ValueTextFont"
+                        android:layout_marginLeft="20dp"
+                        android:layout_weight="1"
+                        android:background="@null" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:background="@drawable/img_prefresh_list_cutline" />
+
+                <LinearLayout
+                    style="@style/TableTrMargin"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/TitleTextFont"
+                        android:text="@string/data_status" />
+
+                    <TextView
+                        android:id="@+id/tvIpCaseData"
+                        style="@style/ValueTextFont"
+                        android:layout_marginLeft="20dp"
+                        android:layout_weight="1"
+                        android:background="@null" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <include layout="@layout/inc_submit_bottom" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
+
+

@@ -24,7 +24,7 @@
         android:layout_centerVertical="true"
         android:text="首页"
         android:textColor="#FFFFFF"
-        android:textSize="15dp"
+        android:textSize="18dp"
         android:textStyle="bold" />
     <TextView
         android:visibility="gone"

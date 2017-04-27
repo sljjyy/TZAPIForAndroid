@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/form_case_content_shape"
+    android:orientation="vertical" >
+
+    <com.tianzunchina.sample.widget.ContainsEmojiEditText
+        android:id="@+id/activity_commemnt_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/form_case_content_shape"
+        android:hint="评论内容"
+        android:maxHeight="200dp"
+        android:padding="@dimen/form_textlist_margin"
+        android:textSize="20dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/activity_commemnt_clean"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_app_register_btn_shape"
+            android:gravity="center"
+            android:padding="@dimen/form_textlist_margin"
+            android:text="清除"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/activity_commemnt_submit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_app_register_btn_shape"
+            android:gravity="center"
+            android:padding="@dimen/form_textlist_margin"
+            android:text="发表"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp" />
+    </LinearLayout>
+
+</LinearLayout>

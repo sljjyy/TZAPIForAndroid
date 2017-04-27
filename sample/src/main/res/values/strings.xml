@@ -7,15 +7,124 @@
     <string name="title_activity_event">EventActivity</string>
     <string name="submit_event">事件上报</string>
     <string name="xzsp">行政审批</string>
+    <string name="web">web页面</string>
+
     <string name="office">公文查询</string>
     <string name="law">法律条文</string>
     <string name="move_car">移车通知</string>
     <string name="comm">实时通讯</string>
     <string name="folder">文件库</string>
 
+    <string name="tv_case_photo_title" translatable="false">现场拍照</string>
 
+    <!--执法事件上报-->
+    <string name="problem_big_class">问题大类</string>
+    <string name="problem_small_class">问题小类</string>
+    <string name="big_class">大类</string>
+    <string name="small_class">小类</string>
+    <string name="illegal_time">违法时间</string>
+    <string name="event_scene_photo">事件现场照片</string>
+    <string name="event_contacts">联系人</string>
+    <string name="input_event_contacts">联系人</string>
+    <string name="event_contacts_phone">联系电话</string>
+    <string name="input_event_contacts_phone">联系电话</string>
+    <string name="event_title">事件标题</string>
+    <string name="event_address">事件地址</string>
+    <string name="event_address_location">地址坐标</string>
+    <string name="event_content">事件内容</string>
+    <string name="the_big_team">所属大队</string>
+    <string name="big_team">大队</string>
+    <string name="the_middle_team">所属中队</string>
+    <string name="middle_team">中队</string>
+    <string name="message_remind">短信提醒</string>
+    <string name="event_case_detail">执法事件详情</string>
+    <string name="ip_case_detail">违法停车详情</string>
+    <string name="sample_case_detail">简易案件详情</string>
+    <string name="event_pending_list">待办事件列表</string>
+    <string name="choose_big_class">请选择问题大类</string>
+    <string name="choose_small_class">请选择问题小类</string>
+    <string name="input_title">请输入标题</string>
+    <string name="input_address">请输入地址</string>
+    <string name="input_content">请输入内容</string>
+    <string name="input_map">请点击地图标记并选择位置</string>
+    <string name="submit_success">上报成功</string>
+    <string name="submit_fail">上报失败,请重试</string>
+    <!--违法停车上报-->
+    <string name="parking_car_kinds">号牌种类</string>
+    <string name="small_car">小型汽车</string>
+    <string name="scene_evidence_photo">现场证据照片</string>
+    <string name="park_docNo">抄告单号</string>
+    <string name="input_park_docNo">请输入单号</string>
+    <string name="park_carNo">车辆号牌</string>
+    <string name="input_park_carNo">请输入号牌</string>
+    <string name="park_addressKey">查询地点</string>
+    <string name="park_address_number">地点编号</string>
+    <string name="address_describe">地点描述</string>
+    <string name="must_have_three_photo">必须有三张照片才能提交</string>
+    <string name="disposed_status">处理状态</string>
+    <string name="data_status">数据状态</string>
 
-
+    <!--简易案件上报-->
+    <string name="decision_number">决定书编号</string>
+    <string name="input_decision_number">请输入决定书编号</string>
+    <string name="party_type">当事人类型</string>
+    <string name="case_illegal_address">案件违法地点</string>
+    <string name="case_illegal_time">案件违法时间</string>
+    <string name="party_name">当事人姓名</string>
+    <string name="input_party_name">请输入当事人姓名</string>
+    <string name="party_gender">当事人性别</string>
+    <string name="party_id_card">当事人身份证</string>
+    <string name="input_party_id_card">请输入当事人身份证</string>
+    <string name="fzr_name">负责人姓名</string>
+    <string name="input_fzr_name">请输入负责人姓名</string>
+    <string name="fzr_post">负责人职务</string>
+    <string name="input_fzr_post">请输入负责人职务</string>
+    <string name="fzr_address">负责人所在地址</string>
+    <string name="input_fzr_address">请输入负责人所在地址</string>
+    <string name="case_scene_photo">案件现场照片</string>
+    <string name="illegal">违则</string>
+    <string name="penalty">罚则</string>
+    <string name="the_big_class">所属大类</string>
+    <string name="the_small_class">所属小类</string>
+    <string name="the_son_class">所属子类</string>
+    <string name="son_class">子类</string>
+    <string name="fine_money">罚款金额</string>
+    <string name="input_fine_money">请输入罚款金额</string>
+    <string name="element">元</string>
+    <string name="payment_bank">交款银行</string>
+    <string name="input_payment_bank">请输入交款银行</string>
+    <string name="bank_number">银行账号</string>
+    <string name="input_bank_number">请输入银行账号</string>
+    <string name="bank_name">银行户名</string>
+    <string name="input_bank_name">请输入银行户名</string>
+    <string name="law_enforcement_person">执法人姓名</string>
+    <string name="input_law_enforcement_person">请输入执法人姓名</string>
+    <string name="law_enforcement_number">执法证号</string>
+    <string name="input_law_enforcement_number">请输入执法证号</string>
+    <string name="law_enforcement_time">执法时间</string>
+    <string name="map_point">地图描点</string>
+    <string name="draw">绘制</string>
+    <string name="rb_personal">个人</string>
+    <string name="rb_company">单位</string>
+    <string name="rb_boy">男</string>
+    <string name="rb_girl">女</string>
+    <!--默认-->
+    <string name="refresh">刷新</string>
+    <string name="empty">清空</string>
+    <string name="submit">提交</string>
+    <string name="network_error">网络异常，请稍后重试</string>
+    <string name="no_data_all">获取数据失败</string>
+    <string name="search">搜索</string>
+    <string name="add">添加</string>
+    <string name="close">关闭</string>
+    <string name="input_keyword">请输入关键字</string>
+    <string name="cancel">取消</string>
+    <string name="confirm">确定</string>
+    <string name="disposed">处理</string>
+    <string name="back">回退</string>
+    <string name="temporary_no_data">暂无数据</string>
+    <string name="load_error">加载错误,请重试</string>
+    <string name="map">地图</string>
 
     <!--崩溃时出现-->
     <string name="customactivityoncrash_error_activity_error_occurred_explanation">抱歉!sample运行时遇到问题 \n可以尝试重启应用解决 \n如果尝试多次仍然出现该问题 可以进入错误描述进行截图或等待技术人员解决, 谢谢谅解</string>

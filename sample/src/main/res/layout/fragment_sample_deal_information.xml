@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/corners_bg"
+        android:orientation="vertical">
+
+        <LinearLayout
+            style="@style/TableTrMargin"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvMoney"
+                android:text="@string/fine_money"
+                style="@style/TitleTextFont" />
+
+            <EditText
+                android:id="@+id/etvMoney"
+                android:layout_marginLeft="20dp"
+                android:background="@null"
+                style="@style/ValueTextFont"
+                android:hint="@string/input_fine_money"
+                android:imeOptions="actionNext"
+                android:singleLine="true"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/tvYuan"
+                android:text="@string/element"
+                style="@style/TitleTextFont" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/img_prefresh_list_cutline" />
+
+        <LinearLayout
+            style="@style/TableTrMargin"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvBank"
+                android:text="@string/payment_bank"
+                style="@style/TitleTextFont" />
+
+            <EditText
+                android:id="@+id/etvBank"
+                android:layout_marginLeft="20dp"
+                android:background="@null"
+                android:hint="@string/input_payment_bank"
+                style="@style/ValueTextFont"
+                android:imeOptions="actionNext"
+                android:singleLine="true"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/img_prefresh_list_cutline" />
+
+        <LinearLayout
+            style="@style/TableTrMargin"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvBankAccount"
+                android:text="@string/bank_number"
+                style="@style/TitleTextFont" />
+
+            <EditText
+                android:id="@+id/etvBankAccount"
+                android:layout_marginLeft="20dp"
+                android:background="@null"
+                android:hint="@string/input_bank_number"
+                style="@style/ValueTextFont"
+                android:imeOptions="actionNext"
+                android:singleLine="true"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/img_prefresh_list_cutline" />
+
+        <LinearLayout
+            style="@style/TableTrMargin"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvBankName"
+                android:text="@string/bank_name"
+                style="@style/TitleTextFont" />
+
+            <EditText
+                android:id="@+id/etvBankName"
+                android:layout_marginLeft="20dp"
+                android:hint="@string/input_bank_name"
+                android:background="@null"
+                style="@style/ValueTextFont"
+                android:imeOptions="actionNext"
+                android:singleLine="true"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/img_prefresh_list_cutline" />
+
+        <LinearLayout
+            style="@style/TableTrMargin"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvEnforcementName"
+                android:text="@string/law_enforcement_person"
+                style="@style/TitleTextFont" />
+
+            <EditText
+                android:id="@+id/etvEnforcementName"
+                android:layout_marginLeft="20dp"
+                android:background="@null"
+                android:hint="@string/input_law_enforcement_person"
+                style="@style/ValueTextFont"
+                android:imeOptions="actionNext"
+                android:singleLine="true"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/img_prefresh_list_cutline" />
+
+        <LinearLayout
+            style="@style/TableTrMargin"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvEnforcementId"
+                android:text="@string/law_enforcement_number"
+                style="@style/TitleTextFont" />
+
+            <EditText
+                android:id="@+id/etvEnforcementId"
+                android:layout_marginLeft="20dp"
+                android:hint="@string/input_law_enforcement_number"
+                android:background="@null"
+                style="@style/ValueTextFont"
+                android:imeOptions="actionNext"
+                android:singleLine="true"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/img_prefresh_list_cutline" />
+
+        <LinearLayout
+            style="@style/TableTrMargin"
+            android:orientation="horizontal">
+
+            <TextView
+                android:text="@string/law_enforcement_time"
+                style="@style/TitleTextFont" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_vertical"
+                android:id="@+id/llSampleZfDate">
+
+                <TextView
+                    android:text="2015-01-01"
+                    style="@style/ValueTextFont"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:id="@+id/tvSampleZfDate"
+                    android:layout_gravity="center_vertical" />
+
+                <ImageView
+                    android:id="@+id/ivZfsj"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ico_group_fold_arrow"
+                    android:layout_gravity="center_vertical" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/img_prefresh_list_cutline" />
+
+        <LinearLayout
+            android:visibility="gone"
+            style="@style/TableTrMargin"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvMap"
+                android:text="@string/map_point"
+                style="@style/TitleTextFont" />
+
+            <EditText
+                android:id="@+id/etvMap"
+                android:layout_marginLeft="20dp"
+                android:background="@null"
+                style="@style/ValueTextFont"
+                android:imeOptions="actionNext"
+                android:singleLine="true"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/btnDraw"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/login_button_select"
+                android:text="@string/draw" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</LinearLayout>

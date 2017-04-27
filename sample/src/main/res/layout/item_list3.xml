@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp"
+    android:paddingTop="10dp" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:id="@+id/ivCircleImage"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ico_rank_picture" />
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="2015-01-23 14:12"
+            android:textColor="#7F7F7F"
+            android:textSize="13dp" />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="张三"
+            android:textColor="@android:color/black"
+            android:textSize="13dp"
+            android:paddingLeft="5dp"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/ivCircleImage" />
+
+
+        <TextView
+            android:id="@+id/content"
+            android:layout_below="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="这个活动真心不错！这个活动真心不错！这个活动真心不错！这个活动真心不错！这个活动真心不错！这个活动真心不错！这个活动真心不错！"
+            android:textColor="#7F7F7F"
+            android:textSize="13dp"
+            android:paddingTop="5dp"
+            android:paddingLeft="5dp"
+            android:layout_toRightOf="@+id/ivCircleImage" />
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/view1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/list_def_divider" />
+
+</LinearLayout>

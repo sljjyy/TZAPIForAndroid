@@ -16,22 +16,17 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
-
 import com.flyco.banner.anim.select.RotateEnter;
 import com.flyco.banner.anim.select.ZoomInEnter;
 import com.flyco.banner.anim.unselect.NoAnimExist;
 import com.flyco.banner.transform.ZoomOutSlideTransformer;
 import com.tianzunchina.android.api.network.HTTPWebAPI;
-import com.tianzunchina.android.api.network.SOAPWebAPI;
 import com.tianzunchina.android.api.network.TZRequest;
 import com.tianzunchina.android.api.network.WebCallBackListener;
-import com.tianzunchina.android.api.view.list.TZCommonAdapter;
-import com.tianzunchina.android.api.view.list.TZViewHolder;
 import com.tianzunchina.sample.R;
 import com.tianzunchina.sample.app.SysApplication;
-import com.tianzunchina.sample.event.EventActivity;
 import com.tianzunchina.sample.home.HomePageButtonAdapter;
-import com.tianzunchina.sample.home.News;
+import com.tianzunchina.sample.model.CaseParent;
 import com.tianzunchina.sample.widget.ADImageBanner;
 import com.tianzunchina.sample.widget.ADItem;
 import com.tianzunchina.sample.widget.AppIco;
@@ -40,10 +35,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
-
 /**
  * 台州首页
- * Created by Administrator on 2017/4/17.
+ * Created by yqq on 2017/4/17.
  */
 
 public class TzMainFragment extends Fragment implements AdapterView.OnItemClickListener,View.OnClickListener{
@@ -52,8 +46,6 @@ public class TzMainFragment extends Fragment implements AdapterView.OnItemClickL
     private List<ADItem> adItems = new ArrayList<>();
     View view;
     private ArrayList<AppIco> appIcos = new ArrayList<>();
-    private List<News> recommends = new ArrayList<>();
-    private final int WITHOUT_PHOTO = 0, WITH_PHOTO = 1;
     HTTPWebAPI webAPI = new HTTPWebAPI();
     Intent intent;
     ListView lvPending, lvHis;
@@ -63,7 +55,6 @@ public class TzMainFragment extends Fragment implements AdapterView.OnItemClickL
     ScrollView svCaseList;
     boolean isRefresh = true;
     boolean isRefresh2 = true;
-    boolean isRun = true;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -103,7 +94,7 @@ public class TzMainFragment extends Fragment implements AdapterView.OnItemClickL
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-              //  initHistory();
+                initHistory();
                 initPending();
             }
         }, 0);
@@ -125,7 +116,7 @@ public class TzMainFragment extends Fragment implements AdapterView.OnItemClickL
         hisCases = new ArrayList<>();
         pbHis.setVisibility(View.VISIBLE);
         lvHis.setVisibility(View.GONE);
-      //  getHistoryList();
+        getHistoryList();
     }
 
 
@@ -148,6 +139,18 @@ public class TzMainFragment extends Fragment implements AdapterView.OnItemClickL
 
     @Override
     public void onClick(View v) {
+        Intent i ;
+        switch (v.getId()){
+            case R.id.tvHistoryMore:
+                i = new Intent(this.getActivity(),CaseListActivity.class);
+                startActivity(i);
+
+                break;
+            case R.id.tvPendingMore:
+                i = new Intent(this.getActivity(),EventPendingListActivity.class);
+                startActivity(i);
+                break;
+        }
 
     }
 
@@ -187,13 +190,13 @@ public class TzMainFragment extends Fragment implements AdapterView.OnItemClickL
     }
     //初始化图标
     synchronized private void initAppList() {
-        appIcos.add(new AppIco(EventActivity.class,R.string.submit_event, R.mipmap.img_my_task_event));
-        appIcos.add(new AppIco(R.string.xzsp, R.mipmap.ico_xzsp));
-        appIcos.add(new AppIco(R.string.office, R.mipmap.ico_chaxun));
+        appIcos.add(new AppIco(CaseActivity.class,R.string.submit_event, R.mipmap.img_my_task_event));
+        appIcos.add(new AppIco(R.string.web, R.mipmap.ico_xzsp));
+       /* appIcos.add(new AppIco(R.string.office, R.mipmap.ico_chaxun));
         appIcos.add(new AppIco(R.string.law, R.mipmap.ico_wenshu));
         appIcos.add(new AppIco(R.string.move_car, R.mipmap.ico_move_car));
         appIcos.add(new AppIco(R.string.comm, R.mipmap.ico_send_out));
-        appIcos.add(new AppIco(R.string.folder, R.mipmap.img_folder));
+        appIcos.add(new AppIco(R.string.folder, R.mipmap.img_folder));*/
 
     }
 
@@ -225,10 +228,9 @@ public class TzMainFragment extends Fragment implements AdapterView.OnItemClickL
                         for (int i = 0; i < resData.length(); i++) {
                             CaseParent caseParent = new CaseParent();
                             JSONObject jsonData = resData.getJSONObject(i);
-                            if (jsonData != null) {
-                                caseParent.getCaseParent(jsonData);
-                                pendingCases.add(caseParent);
-                            }
+                            Log.e("this is pendingList",jsonData.toString());
+                            caseParent.getCaseParent(jsonData);
+                            pendingCases.add(caseParent);
                         }
                     }
 
@@ -259,15 +261,13 @@ public class TzMainFragment extends Fragment implements AdapterView.OnItemClickL
 
             @Override
             public void err(String err, TZRequest request) {
-                Log.e("this is err",err.toString());
-            }
+             }
         });
 
     }
 
     private void getHistoryList(){
         TZRequest tzRequest = new TZRequest("http://122.226.143.66:10007/","PhoneWebService.aspx");
-        tzRequest.addParam("reqCode","12");
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("userID", 88);
@@ -277,8 +277,7 @@ public class TzMainFragment extends Fragment implements AdapterView.OnItemClickL
         }catch (JSONException e){
             e.printStackTrace();
         }
-
-        tzRequest.addParam("reqCode","6");
+        tzRequest.addParam("reqCode","12");
         tzRequest.addParam("reqData",jsonObject.toString());
 
         webAPI.callPost(tzRequest, new WebCallBackListener() {
@@ -381,5 +380,6 @@ public class TzMainFragment extends Fragment implements AdapterView.OnItemClickL
     public void onResume() {
         super.onResume();
         initPending();
+        initHistory();
     }
 }

@@ -1,21 +1,25 @@
 package com.tianzunchina.sample.login;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.util.ArrayMap;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-
-import com.tianzunchina.android.api.log.TZLog;
 import com.tianzunchina.android.api.log.TZToastTool;
 import com.tianzunchina.android.api.login.TZLoginActivity;
 import com.tianzunchina.android.api.network.TZRequest;
+import com.tianzunchina.sample.MainActivity;
 import com.tianzunchina.sample.R;
+import com.tianzunchina.sample.model.User;
+import com.tianzunchina.sample.util.LoginUtil;
+import com.tianzunchina.sample.view.RegisterActivity;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- * admin
+ * 登录
  * 2016/12/23 0023.
  */
 
@@ -50,11 +54,15 @@ public class LoginActivity extends TZLoginActivity {
 
     @Override
     public void onClick(View view) {
+        Intent intent;
         switch (view.getId()) {
             case R.id.btnLogin:
                 login();
                 break;
             case R.id.btnRegister:
+                intent = new Intent(this, RegisterActivity.class);
+                startActivity(intent);
+
                 TZToastTool.essential("跳转注册页面");
                 break;
             case R.id.btnForgotPass:
@@ -76,6 +84,18 @@ public class LoginActivity extends TZLoginActivity {
     @Override
     public void success(JSONObject jsonObject, TZRequest request) {
         TZToastTool.essential("恭喜您，登录成功");
+        try {
+            JSONObject body = jsonObject.getJSONObject("Body");
+            JSONObject userJSONObject = body.getJSONObject("User");
+            User user = new User(userJSONObject);
+            LoginUtil.setUser(user);
+        }catch (JSONException e){
+            e.printStackTrace();
+        }
+
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+
     }
 
     @Override
@@ -87,5 +107,13 @@ public class LoginActivity extends TZLoginActivity {
     public void err(String err, TZRequest request) {
         TZToastTool.essential(err);
         message.setText(err);
+    }
+
+
+    public JSONObject getJsonBody(Object obj) throws JSONException {
+        String json = (String) obj;
+        JSONObject dataJson;
+        dataJson = new JSONObject(json);
+        return dataJson.getJSONObject("Body");
     }
 }

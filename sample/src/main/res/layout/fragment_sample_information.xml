@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/corners_bg"
+        android:orientation="vertical">
+
+        <LinearLayout
+            style="@style/TableTrMargin"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvNumber"
+                android:text="@string/decision_number"
+                style="@style/TitleTextFont" />
+
+            <EditText
+                android:id="@+id/etvNumber"
+                android:layout_marginLeft="20dp"
+                android:background="@null"
+                style="@style/ValueTextFont"
+                android:hint="@string/input_decision_number"
+                android:imeOptions="actionNext"
+                android:singleLine="true"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/img_prefresh_list_cutline" />
+
+        <LinearLayout
+            style="@style/TableTrMargin"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvDsrLX"
+                android:layout_gravity="center"
+                style="@style/TitleTextFont"
+                android:text="@string/party_type"></TextView>
+
+            <RadioGroup
+                android:id="@+id/rgType"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rbPersonal"
+                    android:text="@string/rb_personal"
+                    android:checked="true"
+                    android:tag="gr"
+                    style="@style/TitleTextFont" />
+
+                <RadioButton
+                    android:id="@+id/rbCompany"
+                    android:tag="dw"
+                    android:text="@string/rb_company"
+                    style="@style/TitleTextFont"
+
+                    />
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/img_prefresh_list_cutline" />
+
+        <LinearLayout
+            android:id="@+id/layout_personal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <include layout="@layout/fragment_sample_personal" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/layout_company"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <include layout="@layout/fragment_sample_company" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/img_prefresh_list_cutline" />
+
+        <LinearLayout
+            style="@style/TableTrMargin"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvAddress"
+                android:text="@string/case_illegal_address"
+                style="@style/TitleTextFont" />
+
+            <EditText
+                android:id="@+id/etvAddress"
+                android:layout_marginLeft="20dp"
+                android:background="@null"
+                style="@style/ValueTextFont"
+                android:hint="@string/input_address"
+                android:imeOptions="actionNext"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/img_prefresh_list_cutline" />
+
+        <LinearLayout
+            style="@style/TableTrMargin"
+            android:orientation="horizontal">
+
+            <TextView
+                android:text="@string/case_illegal_time"
+                style="@style/TitleTextFont" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center_vertical"
+                android:id="@+id/llSampleCaseDate">
+
+                <TextView
+                    android:text="2015-01-01"
+                    style="@style/ValueTextFont"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:id="@+id/tvSampleCaseDate"
+                    android:layout_gravity="center_vertical" />
+
+                <ImageView
+                    android:id="@+id/ivCaseTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ico_group_fold_arrow"
+                    android:layout_gravity="center_vertical" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <include layout="@layout/fragment_sample_choose" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/corners_bg"
+        android:orientation="vertical">
+
+        <LinearLayout
+            style="@style/TableTrMargin"
+            android:orientation="horizontal">
+
+            <TextView
+                android:text="@string/illegal"
+                style="@style/TitleTextFont" />
+
+            <TextView
+                android:id="@+id/tvIllegal"
+                android:layout_marginLeft="20dp"
+                android:background="@null"
+                style="@style/ValueTextFont"
+                android:imeOptions="actionNext"
+                android:singleLine="false"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="@drawable/img_prefresh_list_cutline" />
+
+        <LinearLayout
+            style="@style/TableTrMargin"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/penalty"
+                style="@style/TitleTextFont" />
+
+            <TextView
+                android:id="@+id/tvPenalty"
+                android:layout_marginLeft="20dp"
+                android:background="@null"
+                style="@style/ValueTextFont"
+                android:imeOptions="actionNext"
+                android:singleLine="false"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

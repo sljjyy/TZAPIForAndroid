@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:api="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/corners_bg"
+            android:orientation="vertical">
+
+            <LinearLayout
+                style="@style/TableTrMargin"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/TitleTextFont"
+                    android:text="@string/problem_big_class" />
+
+                <LinearLayout
+                    android:id="@+id/llBigKinds"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvBigKinds"
+                        style="@style/ValueTextFont"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="@string/big_class" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ico_group_fold_arrow" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@drawable/img_prefresh_list_cutline" />
+
+            <LinearLayout
+                style="@style/TableTrMargin"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/TitleTextFont"
+                    android:text="@string/problem_small_class" />
+
+                <LinearLayout
+                    android:id="@+id/llSmallKinds"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvSmallKinds"
+                        style="@style/ValueTextFont"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="@string/small_class" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ico_group_fold_arrow" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@drawable/img_prefresh_list_cutline" />
+
+
+            <LinearLayout
+                style="@style/TableTrMargin"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/TitleTextFont"
+                    android:text="@string/illegal_time" />
+
+                <LinearLayout
+                    android:id="@+id/llReportDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvReportDate"
+                        style="@style/ValueTextFont"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:text="2015-05-01" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/ico_group_fold_arrow" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/corners_bg"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp">
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="@string/event_scene_photo"
+                    android:textColor="@color/red" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.tianzunchina.android.api.widget.photo.TZPhotoBoxGroup
+                    android:id="@+id/pbGroup"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    api:boxCount="3" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/corners_bg"
+            android:orientation="vertical">
+
+            <LinearLayout
+                style="@style/TableTrMargin"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/TitleTextFont"
+                    android:text="@string/event_contacts" />
+
+                <EditText
+                    android:id="@+id/etContactName"
+                    style="@style/ValueTextFont"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:hint="@string/input_event_contacts"
+                    android:imeOptions="actionNext"
+                    android:singleLine="true" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@drawable/img_prefresh_list_cutline" />
+
+            <LinearLayout
+                style="@style/TableTrMargin"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/TitleTextFont"
+                    android:text="@string/event_contacts_phone" />
+
+                <EditText
+                    android:id="@+id/etContactMobile"
+                    style="@style/ValueTextFont"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:hint="@string/input_event_contacts_phone"
+                    android:imeOptions="actionNext"
+                    android:singleLine="true" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@drawable/img_prefresh_list_cutline" />
+
+            <LinearLayout
+                style="@style/TableTrMargin"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/TitleTextFont"
+                    android:text="@string/event_title" />
+
+                <EditText
+                    android:id="@+id/etEventTitle"
+                    style="@style/ValueTextFont"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:hint="@string/input_title"
+                    android:imeOptions="actionNext"
+                    android:singleLine="true" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@drawable/img_prefresh_list_cutline" />
+
+            <LinearLayout
+                style="@style/TableTrMargin"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/TitleTextFont"
+                    android:text="@string/event_address" />
+
+                <EditText
+                    android:id="@+id/etEventAddress"
+                    style="@style/ValueTextFont"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:hint="@string/input_address"
+                    android:imeOptions="actionNext"
+                    android:singleLine="true" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@drawable/img_prefresh_list_cutline" />
+
+            <LinearLayout
+                android:id="@+id/llMap"
+                style="@style/TableTrMargin"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/TitleTextFont"
+                    android:text="@string/event_address_location" />
+
+                <TextView
+                    android:id="@+id/tvEventLocation"
+                    style="@style/ValueTextFont"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:imeOptions="actionDone"
+                    android:singleLine="true" />
+
+                <LinearLayout
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/ivMap"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_marginLeft="5dp"
+                        android:background="@drawable/ico_map_location"
+                        android:scaleType="fitXY" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="@drawable/img_prefresh_list_cutline" />
+
+
+            <LinearLayout
+                style="@style/TableTrMargin"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/TitleTextFont"
+                    android:text="@string/event_content" />
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:background="@drawable/img_prefresh_list_cutline" />
+
+                <EditText
+                    android:id="@+id/etReportContent"
+                    style="@style/ValueTextFont"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@null"
+                    android:gravity="left|top"
+                    android:hint="@string/input_content"
+                    android:imeOptions="actionDone"
+                    android:textCursorDrawable="@null" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <include layout="@layout/inc_submit_bottom" />
+
+        </LinearLayout>
+    </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
+
+

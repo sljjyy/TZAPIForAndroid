@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/bg">
+
+    <fragment
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:id="@+id/id_frg_hp_title"
+        android:name="com.tianzunchina.sample.AllTitleFrg"
+        layout="@layout/title_bar"
+        tools:layout="@layout/title_bar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_vertical"
+            android:background="@color/bg"
+
+            >
+
+            <include
+                layout="@layout/inc_search"
+                android:layout_margin="10dp"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ProgressBar
+                android:id="@+id/id_all_pb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/no_data_all"
+                android:gravity="center_horizontal"
+                style="@style/TitleTextFont"
+                android:visibility="gone"
+                android:id="@+id/id_tv_all_noData"
+                android:layout_centerInParent="true" />
+
+            <com.tianzunchina.android.api.view.list.XListView
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/xlPending"></com.tianzunchina.android.api.view.list.XListView>
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+</LinearLayout>

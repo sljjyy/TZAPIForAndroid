@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:api="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/id_sample_people_info"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <include layout="@layout/fragment_sample_information" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <include layout="@layout/fragment_sample_illegal_information" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/corners_bg"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp">
+
+                    <TextView
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="@string/case_scene_photo"
+                        android:textColor="@color/red" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llSamplePhoto"
+                    style="@style/TableTrMargin"
+                    android:orientation="horizontal">
+
+                    <com.tianzunchina.android.api.widget.photo.TZPhotoBoxGroup
+                        android:id="@+id/pbGroup"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        api:boxCount="4" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/id_sample_bank"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+                <include layout="@layout/fragment_sample_deal_information" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/llSampleMore"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/corners_bg"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <LinearLayout
+                    style="@style/TableTrMargin"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/TitleTextFont"
+                        android:text="@string/disposed_status" />
+
+                    <TextView
+                        android:id="@+id/id_tv_ipcase_clzt"
+                        style="@style/ValueTextFont"
+                        android:layout_marginLeft="20dp"
+                        android:layout_weight="1"
+                        android:background="@null" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dp"
+                    android:background="@drawable/img_prefresh_list_cutline" />
+
+                <LinearLayout
+                    style="@style/TableTrMargin"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/TitleTextFont"
+                        android:text="@string/data_status" />
+
+                    <TextView
+                        android:id="@+id/tvSampleStatus"
+                        style="@style/ValueTextFont"
+                        android:layout_marginLeft="20dp"
+                        android:layout_weight="1"
+                        android:background="@null" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <include layout="@layout/inc_submit_bottom" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+</RelativeLayout>
+
+

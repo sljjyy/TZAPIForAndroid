@@ -1,7 +1,10 @@
 package com.tianzunchina.sample;
 
 import android.Manifest;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -11,10 +14,11 @@ import android.view.MenuItem;
 import com.tianzunchina.android.api.base.TZAppCompatActivity;
 import com.tianzunchina.android.api.widget.permission.PermissionsActivity;
 import com.tianzunchina.android.api.widget.permission.PermissionsChecker;
-import com.tianzunchina.sample.event.RecordingFragment;
+import com.tianzunchina.sample.home.BootActivity;
 import com.tianzunchina.sample.home.CircleFragment;
 import com.tianzunchina.sample.home.HomeFragment;
 import com.tianzunchina.sample.home.MeFragment;
+import com.tianzunchina.sample.util.BootConfig;
 import com.tianzunchina.sample.view.TzMainFragment;
 import com.tianzunchina.sample.widget.SampleFragmentPagerAdapter;
 import java.util.ArrayList;
@@ -30,17 +34,20 @@ public class MainActivity extends TZAppCompatActivity implements BottomNavigatio
 
     static final String[] PERMISSIONS = new String[]{
             Manifest.permission.READ_PHONE_STATE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+
     };
     private static final int REQUEST_CODE = 900;
     HomeFragment homeFragment = new HomeFragment();
     MeFragment meFragment = new MeFragment();
     CircleFragment circleFragment = new CircleFragment();
-    RecordingFragment recordingFragment = new RecordingFragment();
     TzMainFragment tzMainFragment = new TzMainFragment();
     private ViewPager viewPager;
     private List<Fragment> list_fragment = new ArrayList<>(); //定义要装fragment的列表
     private MenuItem menuItem;
     private BottomNavigationView mNavigationView;
+    public static String FINISH = "finish";
+    Fragment fragment = new Fragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,29 +59,39 @@ public class MainActivity extends TZAppCompatActivity implements BottomNavigatio
         if (mPermissionsChecker.lacksPermissions(PERMISSIONS)) {
             PermissionsActivity.startActivityForResult(this, REQUEST_CODE, PERMISSIONS);
         }
+
+        MyListener listener = new MyListener();
+        registerReceiver(listener, new IntentFilter(FINISH));
+
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         viewPager.setOffscreenPageLimit(4);//设置缓存页面的个数
         setupViewPager(viewPager);
         mNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
         mNavigationView.setOnNavigationItemSelectedListener(this);
         viewPager.addOnPageChangeListener(this);
+        initBoot();
     }
 
     private void setupViewPager(ViewPager viewPager) {
         list_fragment.add(homeFragment);
         list_fragment.add(circleFragment);
-        list_fragment.add(meFragment);
         list_fragment.add(tzMainFragment);
+        list_fragment.add(meFragment);
         SampleFragmentPagerAdapter adapter = new SampleFragmentPagerAdapter(this,getSupportFragmentManager(),list_fragment);
         viewPager.setAdapter(adapter);
     }
 
-    @Override protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         // 拒绝时, 关闭页面, 缺少主要权限, 无法运行
         if (requestCode == REQUEST_CODE && resultCode == PermissionsActivity.PERMISSIONS_DENIED) {
             finish();
         }
+        if(fragment == null){
+            return;
+        }
+        fragment.onActivityResult(requestCode, resultCode, data);
     }
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -82,17 +99,22 @@ public class MainActivity extends TZAppCompatActivity implements BottomNavigatio
             case R.id.shouye:
 
                 viewPager.setCurrentItem(0);
+                fragment = homeFragment;
                 break;
             case R.id.circle:
 
                 viewPager.setCurrentItem(1);
+                fragment = circleFragment;
+
                 break;
             case R.id.me:
+                viewPager.setCurrentItem(3);
+                fragment = tzMainFragment;
 
-                viewPager.setCurrentItem(2);
                 break;
             case R.id.tz:
-                viewPager.setCurrentItem(3);
+                viewPager.setCurrentItem(2);
+                fragment = meFragment;
 
                 break;
         }
@@ -112,15 +134,37 @@ public class MainActivity extends TZAppCompatActivity implements BottomNavigatio
         } else {
             mNavigationView.getMenu().getItem(0).setChecked(false);
         }
-        if(homeFragment != null){
-
-        }
         menuItem = mNavigationView.getMenu().getItem(position);
         menuItem.setChecked(true);
+        if(position == 3){
+            fragment = meFragment;
+        }
     }
 
     @Override
     public void onPageScrollStateChanged(int i) {
 
     }
+
+    private void initBoot() {
+        BootConfig bc = new BootConfig();
+        if (!bc.isBoot()) {
+            Intent intent = new Intent(this, BootActivity.class);
+            startActivity(intent);
+            finish();
+        }
+    }
+    /**
+     * 广播，当退出时，关闭此页面
+     */
+    private class MyListener extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals(FINISH)) {
+                finish();
+            }
+        }
+    }
+
 }

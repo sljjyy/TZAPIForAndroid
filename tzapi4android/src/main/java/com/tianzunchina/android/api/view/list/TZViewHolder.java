@@ -24,6 +24,7 @@ import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 import com.tianzunchina.android.api.util.image.CircleTransform;
 
@@ -107,6 +108,18 @@ public class TZViewHolder {
     public TZViewHolder setText(int viewId, SpannableString text) {
         TextView tv = getView(viewId);
         tv.setText(text);
+        return this;
+    }
+
+    /**
+     * 根据url设置图片
+     * @param id   控件id
+     * @param url  图片Url
+     * @return
+     */
+    public TZViewHolder setImage(int id, String url) {
+        ImageView imageView = getView(id);
+        Glide.with(mContext).load(url).into(imageView);
         return this;
     }
 

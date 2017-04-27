@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+    <padding 
+         android:left="@dimen/tv_submit_padding_horizontal" 
+         android:top="@dimen/tv_submit_padding_vertical" 
+         android:right="@dimen/tv_submit_padding_horizontal" 
+         android:bottom="@dimen/tv_submit_padding_vertical" >
+     </padding>
+    <corners android:radius="10dp" />
+    <solid android:color="#20FFFFFF" />
+    <stroke android:width="1dip" android:color="#80FFFFFF"/>  
+</shape>

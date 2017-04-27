@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#FFFFFF"
+    android:orientation="vertical">
+
+    <fragment
+        app:layout_scrollFlags="scroll|snap"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:id="@+id/id_frg_hp_title"
+        android:name="com.tianzunchina.sample.AllTitleFrg"
+        layout="@layout/title_bar"
+        tools:layout="@layout/title_bar" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/circle_image"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginRight="20dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/ico_rank_picture" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/circle_image"
+                android:orientation="vertical">
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/circle_act_createTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:text="2015-04-29 21:00"
+                        android:textColor="#7F7F7F"
+                        android:textSize="15dp" />
+
+                    <TextView
+                        android:id="@+id/circle_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginRight="10dp"
+                        android:layout_toLeftOf="@id/circle_act_createTime"
+                        android:text="所属圈子名称，例如：望江街道党工委"
+                        android:textColor="@android:color/black"
+                        android:textSize="17dp" />
+                </RelativeLayout>
+            </LinearLayout>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/circle_act_photo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"></LinearLayout>
+
+        <TextView
+            android:id="@+id/circle_act_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:text="活动名称，例如：组织对民情e点通的第二轮培训"
+            android:textColor="@android:color/black"
+            android:textSize="17dp" />
+
+
+        <TextView
+            android:id="@+id/circle_act_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="活动内容，例如：针对民情e点通中圈子等新增模块，近期将组织集中培训。时间安排在3月5等新增模块，安排在3月5日下午两点，将组织集中培训中培训。时间安排在3月5日下午两点，地点安排在睦邻驿站。活动内容，例如：针对民情e点通中圈子等新增模块，近期将组织集中培训。时间安排在3月5日下午两点，地点安排在睦邻驿站。活动内容，例如：针对民情e点通中圈子等新增模块，近期将组织集中培训。时间安排在3月5日下午两点，地点安排在睦邻驿站。活动内容，例如：针对民情e点通中圈子等新增模块，近期将组织集中培训。时间安排在3月5日下午两点，地点安排在睦邻驿站。活动内容，例如：针对民情e点通中圈子等新增模块，近期将组织集中培训。时间安排在3月5日下午两点，地点安排在睦邻驿站。活动内容，例如：针对民情e点通中圈子等新增模块，近期将组织集中培训。时间安排在3月5日下午两点，地点安排在睦邻驿站。活动内容，例如：针对民情e点通中圈子等新增模块，近期将组织集中培训。时间安排在3月5日下午两点，地点安排在睦邻驿站。活动内容，例如：针对民情e点通中圈子等新增模块，近期将组织集中培训。时间安排在3月5日下午两点，地点安排在睦邻驿站。活动内容，例如：针对民情e点通中圈子等新增模块，近期将组织集中培训。时间安排在3月5日下午两点，地点安排在睦邻驿站。活动内容，例如：针对民情e点通中圈子等新增模块，近期将组织集中培训。时间安排在3月5日下午两点，地点安排在睦邻驿站。活动内容，例如：针对民情e点通中圈子等新增模块，近期将组织集中培训。时间安排在3月5日下午两点，地点安排在睦邻驿站。活动内容，例如：针对民情e点通中圈子等新增模块，近期将组织集中培训。时间安排在3月5日下午两点，地点安排在睦邻驿站。活动内容，例如：针对民情e点通中圈子等新增模块，近期将组织集中培训。时间安排在3月5日下午两点，地点安排在睦邻驿站。活动内容，例如：针对民情e点通中圈子等新增模块，近期将组织集中培训。时间安排在3月5日下午两点，地点安排在睦邻驿站。活动内容，例如：针对民情e点通中圈子等新增模块，近期将组织集中培训。时间安排在3月5日下午两点，地点安排在睦邻驿站。活动内容，例如：针对民情e点通中圈子等新增模块，近期将组织集中培训。时间安排在3月5日下午两点，地点安排在睦邻驿站。活动内容，例如：针对民情e点通中圈子等新增模块，近期将组织集中培训。时间安排在3月5日下午两点，地点安排在睦邻驿站。活动内容，例如：针对民情e点通中圈子等新增模块，近期将组织集中培训。时间安排在3月5日下午两点，地点安排在睦邻驿站。活动内容，例如：针对民情e点通中圈子等新增模块，近期将组织集中培训。时间安排在3月5日下午两点，地点安排在睦邻驿站。活动内容，例如：针对民情e点通中圈子等新增模块，近期将组织集中培训。时间安排在3月5日下午两点，地点安排在睦邻驿站。活动内容，例如：针对民情e点通中圈子等新增模块，近期将组织集中培训。时间安排在3月5日下午两点，地点安排在睦邻驿站。活动内容，例如：针对民情e点通中圈子等新增模块，近期将组织集中培训。时间安排在3月5日下午两点，地点安排在睦邻驿站。活动内容，例如：针对民情e点通中圈子等新增模块，近期将组织集中培训。时间安排在3月5日下午两点，地点安排在睦邻驿站。活动内容，例如：针对民情e点通中圈子等新增模块，近期将组织集中培训。时间安排在3月5日下午两点，地点安排在睦邻驿站。活动内容，例如：针对民情e点通中圈子等新增模块，近期将组织集中培训。时间安排在3月5日下午两点，地点安排在睦邻驿站。活动内容，例如：针对民情e点通中圈子等新增模块，近期将组织集中培训。时间安排在3月5日下午两点，地点安排在睦邻驿站。活动内容，例如：针对民情e点通中圈子等新增模块，近期将组织集中培训。时间安排在3月5日下午两点，地点安排在睦邻驿站。活动内容，例如：针对民情e点通中圈子等新增模块，近期将组织集中培训。时间安排在3月5日下午两点，地点安排在睦邻驿站。活动内容，例如：针对民情e点通中圈子等新增模块，近期将组织集中培训。时间安排在3月5日下午两点，地点安排在睦邻驿站。活动内容，例如：针对民情e点通中圈子等新增模块，近期将组织集中培训。时间安排在3月5日下午两点，地点安排在睦邻驿站。活动内容，例如：针对民情e点通中圈子等新增模块，近期将组织集中培训。时间安排在3月5日下午两点，地点安排在睦邻驿站。活动内容，例如：针对民情e点通中圈子等新增模块，近期将组织集中培训。时间安排在3月5日下午两点，地点安排在睦邻驿站。活动内容，例如：针对民情e点通中圈子等新增模块，近期将组织集中培训。时间安排在3月5日下午两点，地点安排在睦邻驿站。活。"
+            android:textColor="@android:color/black"
+            android:ellipsize="end"
+            android:maxLines="4"
+            android:textSize="15dp" />
+
+    </LinearLayout>
+
+</LinearLayout>

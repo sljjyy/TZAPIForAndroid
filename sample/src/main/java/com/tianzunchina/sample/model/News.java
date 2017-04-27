@@ -1,4 +1,4 @@
-package com.tianzunchina.sample.home;
+package com.tianzunchina.sample.model;
 
 
 import com.tianzunchina.android.api.util.TimeConverter;

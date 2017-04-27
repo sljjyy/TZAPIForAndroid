@@ -114,4 +114,13 @@ public class FileCache {
         url = url.replace("/", "_");
         return url;
     }
+
+    public static File getThumbDir() {
+        File dir = new File(Environment.getExternalStorageDirectory(),
+                ".".concat(TZApplication.getInstance().getPackageName()));
+        if (!dir.exists()) {
+            dir.mkdir();
+        }
+        return dir;
+    }
 }

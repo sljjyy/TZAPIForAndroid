@@ -32,7 +32,7 @@ public class WebViewUtil extends WebViewClient {
         this.loadingStr = loadingStr;
         progressDialog = ProgressDialog.show(context, null, loadingStr);
         Timer timer = new Timer();
-        timer.schedule(new TimeOutTask(), 10000);
+        timer.schedule(new TimeOutTask(), 1000 * 10);
     }
 
     /**
@@ -48,7 +48,7 @@ public class WebViewUtil extends WebViewClient {
         this.webView = webView;
         progressDialog = ProgressDialog.show(context, null, loadingStr);
         Timer timer = new Timer();
-        timer.schedule(new TimeOutTask(), 10000);
+        timer.schedule(new TimeOutTask(), 1000 * 5);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
         webView.setDownloadListener(new MyWebViewDownLoadListener());

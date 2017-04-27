@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.tianzunchina.sample.R;
+import com.tianzunchina.sample.model.CaseParent;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -83,48 +84,15 @@ public class CaseListAdapter extends BaseAdapter {
             } else {
                 holder.ivHot.setVisibility(View.GONE);
             }
-           /* if(status_show != -1){
-                if(caseParent.getStatus() == 0){
-                    holder.tvStatus.setText("未上报");
-                    holder.tvStatus.setTextColor(activity.getResources().getColor(R.color.red));
-                }else{
-                    holder.tvStatus.setText("已上报");
-                    holder.tvStatus.setTextColor(activity.getResources().getColor(R.color.green));
-                }
-            }else*/
-            {
-                //holder.tvStatus.setVisibility(View.GONE);
-            }
             if (caseParent.getPicture1() != null) {
                 String url = caseParent.getPicture1();
                 Glide.with(context).load(url).override(100, 100).into(holder.iv);
-                //imageLoader.displayImage(url,holder.iv,SysApplication.getInstance().getOptions());
-
-                /*
-                 if(url.startsWith("http")){
-                    final Holder holder1 = holder;
-                    ImageRequest imgRequest = new ImageRequest(url,
-                            new Response.Listener<Bitmap>() {
-                                @Override
-                                public void onResponse(Bitmap bitmap) {
-                                    holder1.iv.setImageBitmap(WindowsUtil.toRoundCorner(bitmap,40));
-                                }
-                            }, 0, 0, Bitmap.Config.RGB_565, new ErrResponse());
-                    queue.add(imgRequest);
-                    queue.start();
-                    imageLoader.displayImage(url,holder.iv,SysApplication.getInstance().getOptions());
-                }
-                 */
-
             } else {
                 holder.iv.setImageResource(R.drawable.img_holder);
             }
 
-            // Bitmap bitmap = BitmapFactory.decodeResource(activity.getResources(),lists.get(i).getImgId());
-            //holder.iv.setImageBitmap(bitmap);
+
         }
-        //if(imageLoader != null)
-        // imageLoader.destroy();
         return view;
     }
 

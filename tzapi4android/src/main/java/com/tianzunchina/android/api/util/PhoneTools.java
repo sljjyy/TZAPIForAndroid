@@ -9,6 +9,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.provider.Settings;
+import android.support.annotation.NonNull;
 import android.support.v4.content.FileProvider;
 import android.telephony.TelephonyManager;
 
@@ -108,9 +109,7 @@ public class PhoneTools {
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
         } else {
-            String packageName = context.getApplicationContext().getPackageName() + ".tianzunchina.fileprovider";
-            String provider = "com.tianzunchina.tz.supervision.fileprovider";
-            Uri uri = FileProvider.getUriForFile(TZApplication.getInstance().getApplicationContext(),provider,new File(path));
+            Uri uri = getUriToFile(context,new File(path));
             intent.setDataAndType(uri, "application/vnd.android.package-archive");
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION); //添加这一句表示对目标应用临时授权该Uri所代表的文件
@@ -166,6 +165,12 @@ public class PhoneTools {
             activity.startActivityForResult(intent, 0);
         } catch (Exception e) {
         }
+    }
+
+    static Uri getUriToFile(@NonNull Context context, @NonNull File file) {
+        String packageName = context.getApplicationContext().getPackageName();
+        String authority = packageName + ".tianzunchina.fileprovider";
+        return FileProvider.getUriForFile(context, authority, file);
     }
 
     private static final String SETTING_DATETIME = "DateTimeSettings";

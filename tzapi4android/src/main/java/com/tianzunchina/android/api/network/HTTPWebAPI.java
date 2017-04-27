@@ -27,8 +27,7 @@ public class HTTPWebAPI implements WebAPIable {
     }
 
     public void callByMethod(int method, final TZRequest request, final WebCallBackListener listener) {
-        StringRequest stringRequest = new StringRequest(method, request.getUrlParams(),
-                new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(method, request.getUrlParams(), new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 listener.success(response, request);

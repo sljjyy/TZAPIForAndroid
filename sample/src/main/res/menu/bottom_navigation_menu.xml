@@ -3,18 +3,19 @@
     <item
         android:id="@+id/shouye"
         android:icon="@mipmap/ico_shouye1"
-        android:title="首页" />
+        android:title="身边" />
     <item
         android:id="@+id/circle"
         android:icon="@mipmap/ico_me1"
         android:title="圈子" />
+
+    <item
+        android:id="@+id/tz"
+        android:icon="@mipmap/ico_shouye1"
+        android:title="首页" />
     <item
         android:id="@+id/me"
         android:icon="@mipmap/ico_me1"
         android:title="我" />
-    <item
-        android:id="@+id/tz"
-        android:icon="@mipmap/ico_me1"
-        android:title="台州首页" />
 </menu>
 

@@ -48,6 +48,7 @@ public class ADImageBanner extends BaseIndicatorBanner<ADItem, ADImageBanner> {
         iv.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
         String imgUrl = item.getPicUrl();
+        int res = item.getRes();
 
         if (!TextUtils.isEmpty(imgUrl)) {
             Glide.with(getContext())
@@ -55,7 +56,15 @@ public class ADImageBanner extends BaseIndicatorBanner<ADItem, ADImageBanner> {
                     .placeholder(colorDrawable)
                     .into(iv);
         } else {
-            iv.setImageDrawable(colorDrawable);
+            if(res != -1){
+                iv.setImageResource(res);
+               /* Glide.with(getContext())
+                        .load(res)
+                        .placeholder(colorDrawable)
+                        .into(iv);*/
+            }else {
+                iv.setImageDrawable(colorDrawable);
+            }
         }
 
         return inflate;

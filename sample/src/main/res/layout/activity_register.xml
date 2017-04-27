@@ -1,0 +1,192 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#F2F2F2">
+
+    <fragment
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:id="@+id/icTop"
+        android:name="com.tianzunchina.sample.AllTitleFrg"
+        layout="@layout/title_bar"
+        tools:layout="@layout/title_bar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/icTop">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="20dp">
+
+            <EditText
+                android:id="@+id/etUserName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_app_register_text_shape"
+                android:gravity="center_vertical"
+                android:hint="用户名"
+                android:maxLength="16"
+                android:padding="12dp"
+                android:singleLine="true"
+                android:textSize="18dp">
+
+                <requestFocus />
+            </EditText>
+
+            <TextView
+                android:id="@+id/tvHint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@id/etUserName"
+                android:layout_below="@id/etUserName"
+                android:layout_marginLeft="5dp"
+                android:text="支持字母数字下划线, 3-16位"
+                android:textColor="#BFBFBF"
+                android:textSize="14dp" />
+
+            <LinearLayout
+                android:id="@+id/llPwd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvHint"
+                android:background="@drawable/bg_app_register_text_shape"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/etPwd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:gravity="center_vertical"
+                    android:hint="密码"
+                    android:inputType="textPassword"
+                    android:maxLength="16"
+                    android:padding="12dp"
+                    android:singleLine="true"
+                    android:textSize="18dp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@drawable/divider_horizontal_line" />
+
+                <EditText
+                    android:id="@+id/etConfirmPwd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#00ffffff"
+                    android:hint="确认密码"
+                    android:inputType="textPassword"
+                    android:maxLength="16"
+                    android:padding="12dp"
+                    android:textSize="18dp" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/etStreet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/llPwd"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_app_register_text_shape"
+                android:gravity="center_vertical"
+                android:hint="街道"
+                android:inputType="phone"
+                android:maxLength="11"
+                android:padding="12dp"
+                android:singleLine="true"
+                android:textSize="18dp" />
+
+            <EditText
+                android:id="@+id/etRegion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/etStreet"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_app_register_text_shape"
+                android:gravity="center_vertical"
+                android:hint="社区"
+                android:inputType="phone"
+                android:maxLength="11"
+                android:padding="12dp"
+                android:singleLine="true"
+                android:textSize="18dp" />
+
+            <EditText
+                android:id="@+id/etPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/etRegion"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_app_register_text_shape"
+                android:gravity="center_vertical"
+                android:hint="手机号码"
+                android:inputType="phone"
+                android:maxLength="11"
+                android:padding="12dp"
+                android:singleLine="true"
+                android:textSize="18dp" />
+
+            <RelativeLayout
+                android:id="@+id/rlVerificationCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/etPhone"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_app_register_text_shape"
+                android:visibility="gone">
+
+                <EditText
+                    android:id="@+id/etVerificationCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:background="@null"
+                    android:gravity="center_vertical"
+                    android:hint="验证码"
+                    android:inputType="number"
+                    android:maxLength="6"
+                    android:padding="12dp"
+                    android:singleLine="true"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/tvTestGetCode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="13dp"
+                    android:background="@drawable/bg_app_verify_shape"
+                    android:paddingBottom="3dp"
+                    android:paddingLeft="13dp"
+                    android:paddingRight="12dp"
+                    android:paddingTop="3dp"
+                    android:text="获取验证码"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16dp" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tvRegister"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rlVerificationCode"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_app_register_btn_shape"
+                android:gravity="center_horizontal|center_vertical"
+                android:padding="10dp"
+                android:text="注册"
+                android:textColor="#FFFFFF"
+                android:textSize="18dp" />
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

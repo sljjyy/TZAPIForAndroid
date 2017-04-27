@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <fragment
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:id="@+id/id_frg_hp_title"
+        android:name="com.tianzunchina.sample.AllTitleFrg"
+        layout="@layout/title_bar"
+        tools:layout="@layout/title_bar" />
+
+    <WebView
+        android:id="@+id/webView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/id_frg_hp_title"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/tvErrData"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/id_frg_hp_title"
+        android:gravity="center"
+        android:text="暂无数据"
+        android:textSize="20sp"
+        android:visibility="invisible" />
+</RelativeLayout>

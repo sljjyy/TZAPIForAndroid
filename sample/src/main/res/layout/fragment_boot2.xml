@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/boot2_bg1"
+    android:padding="20dp">
+
+    <ImageView
+        android:id="@+id/ivLogo1"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/boot2_logo1" />
+
+    <ImageView
+        android:id="@+id/ivLogo2"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@id/ivLogo1"
+        android:src="@drawable/boot2_logo2" />
+
+    <TextView
+        android:id="@+id/tvClose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/form_case_btn_subimt_shape_transparent"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="进入民情e点通"
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/tv_submit_textsize"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/tvClose"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical"></LinearLayout>
+
+    <ImageView
+        android:id="@+id/ivTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:src="@drawable/boot2_title1" />
+
+    <ImageView
+        android:id="@+id/ivPic"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ivTitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/boot2_pic1" />
+</RelativeLayout>

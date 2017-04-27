@@ -9,5 +9,11 @@
     <color name="line">#ddd</color>
     <color name="text_333">#333333</color>
     <color name="green">#42a370</color>
+    <color name="top_gb">#3bafda</color>
+    <color name="bg">#eaeaea</color>
+    <color name="main_background_bule">#2964C1</color>
+    <color name="form_case_content_stroke">#DFDFDF</color>
+    <color name="form_case_content_background">#FFFFFF</color>
+    <color name="main_viewpage_background">#FFFFFF</color>
 
 </resources>

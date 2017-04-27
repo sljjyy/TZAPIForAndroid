@@ -45,6 +45,21 @@
             android:name=".view.TimeActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".view.CaseActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.EventPendingListActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.CaseListActivity"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".form.DynamicFormActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -57,9 +72,48 @@
             android:name=".notify.NotifyActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:windowSoftInputMode="adjustUnspecified|stateHidden"
+            android:name=".view.RegisterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:windowSoftInputMode="adjustUnspecified|stateHidden"
+            android:name=".home.CircleActActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:windowSoftInputMode="adjustUnspecified|stateHidden"
+            android:name=".home.CircleJoinedActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:windowSoftInputMode="adjustUnspecified|stateHidden"
+            android:name=".home.CircleActListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:windowSoftInputMode="adjustUnspecified|stateHidden"
+            android:name=".home.CircleTypeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:windowSoftInputMode="adjustUnspecified|stateHidden"
+            android:name=".home.CircleListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:windowSoftInputMode="adjustUnspecified|stateHidden"
+            android:name=".home.CircleActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:windowSoftInputMode="adjustUnspecified|stateHidden"
+            android:launchMode="singleTask"
+            android:name=".view.WebViewActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".login.LoginActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".app.download.DownloadFileActivity" />
+
+        <activity
+            android:name=".home.BootActivity"
+            android:label="BootActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.tianzunchina.android.api.base.TZFragment;
@@ -16,6 +15,7 @@ import com.tianzunchina.android.api.network.SOAPWebAPI;
 import com.tianzunchina.android.api.network.TZRequest;
 import com.tianzunchina.android.api.network.WebCallBackListener;
 import com.tianzunchina.sample.R;
+import com.tianzunchina.sample.model.Circle;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -27,11 +27,11 @@ import java.util.ArrayList;
  */
 
 public class CircleFragment extends TZFragment implements View.OnClickListener {
-    private View view;
     private GridView gvCircle;
     private ArrayList<Circle> mCircleColumns = new ArrayList<>();
     private HomePageColumnAdapter mHomePageColumnAdapter;
     SOAPWebAPI webAPI = new SOAPWebAPI();
+    private View view;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -141,6 +141,20 @@ public class CircleFragment extends TZFragment implements View.OnClickListener {
     public void onClick(View v) {
         Intent intent;
         switch (v.getId()) {
+            case R.id.indAllActivities://所有活动
+                intent = new Intent(getActivity(), CircleActListActivity.class);
+                intent.putExtra("circleID", 0);
+                intent.putExtra("circleName", "所有活动");
+                startActivity(intent);
+                break;
+            case R.id.indAllCircles://海量圈子入口
+                intent = new Intent(getActivity(), CircleTypeActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.indMyCircles://我的圈子
+                intent = new Intent(getActivity(), CircleJoinedActivity.class);
+                startActivity(intent);
+                break;
 
         }
     }
@@ -160,8 +174,8 @@ public class CircleFragment extends TZFragment implements View.OnClickListener {
 
     private void GetFixedCircle(){
         TZRequest tzRequest = new TZRequest("http://218.108.93.154:8090/CirclesService.asmx","GetCirclesOfHome");
-        tzRequest.addParam("UserID",10);
-        tzRequest.addParam("RegionID",33);
+        tzRequest.addParam("UserID",60);
+        tzRequest.addParam("RegionID",1);
         webAPI.call(tzRequest, new WebCallBackListener() {
             @Override
             public void success(JSONObject jsonObject, TZRequest request) {

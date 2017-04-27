@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/main"
     android:orientation="vertical">
 
     <include
@@ -43,7 +44,7 @@
                         />
 
                     <TextView
-                        android:id="@+id/id_tv_me_name"
+                        android:id="@+id/tvName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
@@ -65,99 +66,6 @@
                         android:textSize="15dp" />
                 </LinearLayout>
             </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/corners_bg"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="联系方式" />
-
-                    <TextView
-                        android:id="@+id/id_tv_me_mobile"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_weight="1"
-                        android:gravity="right"
-                        android:textColor="#42a370"
-                        android:textSize="14dp" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="@drawable/corners_bg"
-                android:orientation="vertical">
-
-
-                <LinearLayout
-                    android:id="@+id/id_ll_change_password"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="修改密码" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="fill_parent"
-                        android:src="@mipmap/ico_group_fold_arrow" />
-
-                </LinearLayout>
-
-                <View
-                    android:visibility="gone"
-                    android:layout_width="fill_parent"
-                    android:layout_height="1dp"
-                    android:background="@mipmap/img_prefresh_list_cutline" />
-
-                <LinearLayout
-                    android:id="@+id/id_ll_signin"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:orientation="horizontal"
-                    android:visibility="gone">
-
-                    <TextView
-                        android:layout_width="fill_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="实时签到" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="fill_parent"
-                        android:src="@mipmap/ico_group_fold_arrow" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -187,7 +95,7 @@
 
                         <TextView
 
-                            android:id="@+id/id_tv_me_appVsersion"
+                            android:id="@+id/tvAppVsersion"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="20dp"
@@ -204,7 +112,7 @@
                         android:background="@mipmap/img_prefresh_list_cutline" />
 
                     <LinearLayout
-                        android:id="@+id/id_ll_version_update"
+                        android:id="@+id/llVersionUpdate"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
@@ -290,7 +198,7 @@
                 android:orientation="vertical">
 
                 <Button
-                    android:id="@+id/id_bt_logout"
+                    android:id="@+id/btnLogout"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
                     android:layout_weight="1"

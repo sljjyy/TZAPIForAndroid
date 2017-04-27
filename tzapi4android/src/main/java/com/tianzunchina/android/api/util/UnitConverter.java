@@ -20,7 +20,7 @@ import java.io.InputStream;
  */
 public class UnitConverter {
     private static UnitConverter converter;
-    private Application app = TZApplication.getInstance();
+    private static  Application app = TZApplication.getInstance();
 
     public static UnitConverter getInstance(){
         if(converter == null){
@@ -45,7 +45,7 @@ public class UnitConverter {
     /**
      * 把bytes转换为base64
      */
-    public String byte2base64(byte[] bytes) {
+    public static String byte2base64(byte[] bytes) {
         if (bytes == null || bytes.length == 0) {
             return null;
         }
@@ -62,7 +62,7 @@ public class UnitConverter {
         return Base64.decode(str, Base64.DEFAULT);
     }
 
-    public byte[] file2byte(File file) {
+    public static byte[] file2byte(File file) {
         byte[] bytes = null;
         try {
             if (file != null && file.exists()) {
@@ -97,7 +97,7 @@ public class UnitConverter {
      * @param dpValue
      * @return
      */
-    public int dip2px(float dpValue) {
+    public static int dip2px(float dpValue) {
         final float scale = app.getResources()
                 .getDisplayMetrics().density;
         return (int) (dpValue * scale + 0.5f);
