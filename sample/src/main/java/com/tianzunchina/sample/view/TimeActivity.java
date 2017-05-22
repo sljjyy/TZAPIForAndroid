@@ -2,7 +2,6 @@ package com.tianzunchina.sample.view;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.tianzunchina.android.api.util.TimeDialogUtil;
@@ -16,7 +15,7 @@ import java.util.GregorianCalendar;
  * Created by yqq on 2017/1/23.
  */
 
-public class TimeActivity extends Activity implements View.OnClickListener, com.tianzunchina.android.api.widget.dialog.TimePickerDialog.TimePickerDialogInterface {
+public class TimeActivity extends Activity implements com.tianzunchina.android.api.widget.dialog.TimePickerDialog.TimePickerDialogInterface {
 
     TextView tvUtil, tvDialog;
     LinearLayout llUtil, llDialog;
@@ -36,22 +35,9 @@ public class TimeActivity extends Activity implements View.OnClickListener, com.
         llUtil = (LinearLayout) findViewById(R.id.llUtil);
         tvDialog = (TextView) findViewById(R.id.tvDialog);
         tvUtil = (TextView) findViewById(R.id.tvUtil);
-        llDialog.setOnClickListener(this);
-        llUtil.setOnClickListener(this);
+        llDialog.setOnClickListener(v -> timePickerDialog.showDateAndTimePickerDialog());
+        llUtil.setOnClickListener(v -> TimeDialogUtil.getInstance().showTime(TimeActivity.this, tvUtil));
         timePickerDialog = new TimePickerDialog(this);
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.llDialog:
-                timePickerDialog.showDateAndTimePickerDialog();
-                break;
-            case R.id.llUtil:
-                TimeDialogUtil.getInstance().showTime(this, tvUtil);
-                break;
-
-        }
     }
 
     @Override

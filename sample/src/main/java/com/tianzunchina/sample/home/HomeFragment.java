@@ -24,7 +24,7 @@ import com.tianzunchina.sample.R;
 import com.tianzunchina.sample.event.EventActivity;
 import com.tianzunchina.sample.model.Advertisement;
 import com.tianzunchina.sample.model.News;
-import com.tianzunchina.sample.view.WebViewActivity;
+import com.tianzunchina.sample.util.ocr.platerecognizer.ui.CameraActivity;
 import com.tianzunchina.sample.widget.ADImageBanner;
 import com.tianzunchina.sample.widget.ADItem;
 import com.tianzunchina.sample.widget.AppIco;
@@ -39,7 +39,7 @@ import java.util.List;
  * Created by yqq on 2017/4/6.
  */
 
-public class HomeFragment extends TZFragment implements AdapterView.OnItemClickListener {
+public class HomeFragment extends TZFragment  {
 
     private ADImageBanner adIBanner;
     private List<ADItem> adItems = new ArrayList<>();
@@ -100,7 +100,9 @@ public class HomeFragment extends TZFragment implements AdapterView.OnItemClickL
             }
         };
         lvNewsList.setAdapter(nAdapter);
-        lvNewsList.setOnItemClickListener(this);
+        lvNewsList.setOnItemClickListener((parent, view1, position, id) -> {
+
+        });
         initGridView();
 
         getHomeAdvertisements();
@@ -114,11 +116,6 @@ public class HomeFragment extends TZFragment implements AdapterView.OnItemClickL
                 .setUnselectAnimClass(NoAnimExist.class)
                 .setTransformerClass(ZoomOutSlideTransformer.class)
                 .startScroll();
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
     }
 
     private class ItemClickListener implements AdapterView.OnItemClickListener {
@@ -158,7 +155,7 @@ public class HomeFragment extends TZFragment implements AdapterView.OnItemClickL
     //初始化图标
     synchronized private void initAppList() {
         appIcos.add(new AppIco(EventActivity.class,R.string.submit_event, R.mipmap.img_my_task_event));
-        appIcos.add(new AppIco(WebViewActivity.class,R.string.web, R.mipmap.ico_xzsp));
+        appIcos.add(new AppIco(CameraActivity.class,R.string.web, R.mipmap.ico_xzsp));
       /*  appIcos.add(new AppIco(R.string.office, R.mipmap.ico_chaxun));
         appIcos.add(new AppIco(R.string.law, R.mipmap.ico_wenshu));
         appIcos.add(new AppIco(R.string.move_car, R.mipmap.ico_move_car));

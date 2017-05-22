@@ -1,21 +1,21 @@
 package com.tianzunchina.sample.home;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.databinding.DataBindingUtil;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import com.tianzunchina.android.api.base.TZAppCompatActivity;
 import com.tianzunchina.android.api.network.SOAPWebAPI;
 import com.tianzunchina.android.api.network.TZRequest;
 import com.tianzunchina.android.api.network.WebCallBackListener;
@@ -26,7 +26,6 @@ import com.tianzunchina.sample.R;
 import com.tianzunchina.sample.model.Circle;
 import com.tianzunchina.sample.model.CircleAct;
 import com.tianzunchina.sample.widget.StickyLayout;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -37,8 +36,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class CircleActivity extends Activity implements OnClickListener,
-        XListView.IXListViewListener, StickyLayout.OnGiveUpTouchEventListener {
+public class CircleActivity extends TZAppCompatActivity implements XListView.IXListViewListener, StickyLayout.OnGiveUpTouchEventListener {
     private static final int CIRCLE_ACT_LIST = 1, CIRCLE_APPLY = 2, takeNumber = 10;
     private String ACTIVITY_NAME = "CircleActivity";
     private Circle circle;
@@ -47,15 +45,11 @@ public class CircleActivity extends Activity implements OnClickListener,
     private List<CircleAct> circleActivities;
     private CircleActListAdapter mAdapter;
     private PhotoTools pt = new PhotoTools();
-
     private ImageView circleImage;
     private TextView circleTitle,
             circleDesc, circleApply;
-    private RelativeLayout operateApply, operateCreateAct, operateApplication, operateMenber;
+    private RelativeLayout operateApply;
     private XListView mXListView;
-
-    private MyListener listener = null;
-
     private static final int APPLYNO = 0;
     private static final int APPLYOK = 1;
     private static final int APPLYWAIT = 2;
@@ -64,13 +58,14 @@ public class CircleActivity extends Activity implements OnClickListener,
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_circle);
+      //  ActivityCircleBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_circle);
         init();
     }
 
     private void init() {
         userID = 60;
 
-        listener = new MyListener();
+        MyListener listener = new MyListener();
         registerReceiver(listener, new IntentFilter(ACTIVITY_NAME));
         webAPI = new SOAPWebAPI();
 
@@ -95,7 +90,9 @@ public class CircleActivity extends Activity implements OnClickListener,
         switch (circle.getIsApply()) {
             case APPLYNO:
                 circleApply.setText("申请加入");
-                operateApply.setOnClickListener(this);
+                operateApply.setOnClickListener(v -> {
+
+                });
                 break;
             case APPLYOK:
                 circleApply.setText("已加入");
@@ -106,14 +103,18 @@ public class CircleActivity extends Activity implements OnClickListener,
         }
 
         if (1 == circle.getCreateAccess()) {
-            operateCreateAct = (RelativeLayout) findViewById(R.id.circle_operate_create_act);
-            operateApplication = (RelativeLayout) findViewById(R.id.circle_operate_application);
+            RelativeLayout operateCreateAct = (RelativeLayout) findViewById(R.id.circle_operate_create_act);
+            RelativeLayout operateApplication = (RelativeLayout) findViewById(R.id.circle_operate_application);
 
             operateCreateAct.setVisibility(View.VISIBLE);
             operateApplication.setVisibility(View.VISIBLE);
 
-            operateCreateAct.setOnClickListener(this);
-            operateApplication.setOnClickListener(this);
+            operateCreateAct.setOnClickListener(v -> {
+
+            });
+            operateApplication.setOnClickListener(v -> {
+
+            });
         }
     }
 
@@ -123,7 +124,7 @@ public class CircleActivity extends Activity implements OnClickListener,
         circleDesc = (TextView) findViewById(R.id.circle_description);
         circleApply = (TextView) findViewById(R.id.circle_isApply);
         operateApply = (RelativeLayout) findViewById(R.id.circle_operate_apply);
-        operateMenber = (RelativeLayout) findViewById(R.id.circle_operate_menber);
+        RelativeLayout operateMenber = (RelativeLayout) findViewById(R.id.circle_operate_menber);
         StickyLayout mStickyLayout = (StickyLayout) findViewById(R.id.sticky_layout);
         mXListView = (XListView) findViewById(R.id.circle_activities);
         circleActivities = new ArrayList<>();
@@ -133,7 +134,9 @@ public class CircleActivity extends Activity implements OnClickListener,
         mXListView.setPullLoadEnable(false);
         mXListView.setXListViewListener(this);
 
-        operateMenber.setOnClickListener(this);
+        operateMenber.setOnClickListener(v -> {
+
+        });
         mStickyLayout.setOnGiveUpTouchEventListener(this);
     }
 
@@ -168,25 +171,6 @@ public class CircleActivity extends Activity implements OnClickListener,
     public void updateApplyStatus() {
         circleApply.setText("审核中");
         operateApply.setOnClickListener(null);
-    }
-
-    @Override
-    public void onClick(View v) {
-        Intent intent;
-        switch (v.getId()) {
-            case R.id.circle_operate_apply:
-
-                break;
-            case R.id.circle_operate_create_act:
-
-                break;
-            case R.id.circle_operate_application:
-
-                break;
-            case R.id.circle_operate_menber:
-
-                break;
-        }
     }
 
     private class SetImageViewThread extends Thread {

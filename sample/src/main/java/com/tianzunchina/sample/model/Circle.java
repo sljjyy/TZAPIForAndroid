@@ -18,6 +18,20 @@ public class Circle extends GVItem {
 
 	private final static String[] APPLY_STATUS = {"未加入", "已加入", "审核中"};
 
+	public Circle(int id,String title,long createTime,int createAccess,int authority,int isApply,String smallPath
+			,String actCount,String circleMemCount,String content){
+		this.id = id;
+		this.title =title;
+		this.createTime = createTime;
+		this.createAccess = createAccess;
+		this.authority = authority;
+		this.isApply = isApply;
+		this.smallPath = smallPath;
+		this.actCount = actCount;
+		this.circleMemCount = circleMemCount;
+		this.content = content;
+	}
+
 	public Circle(JSONObject json) {
 		try {
 			this.id = json.getInt("CircleID");

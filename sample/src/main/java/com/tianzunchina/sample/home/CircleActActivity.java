@@ -49,7 +49,7 @@ import java.util.List;
  * 我的活动，所有活动，活动详情页面
  */
 @SuppressWarnings("deprecation")
-public class CircleActActivity extends TZAppCompatActivity implements OnClickListener {
+public class CircleActActivity extends TZAppCompatActivity  {
 
     private Handler mOpenKeyboardHandler;
     // 检测时间间隔，单位：毫秒
@@ -112,10 +112,18 @@ public class CircleActActivity extends TZAppCompatActivity implements OnClickLis
         setCircleActView();
         getCircleActStatistics();
 
-        mCircleActSign.setOnClickListener(this);
-        mCircleActComment.setOnClickListener(this);
-        mCircleActEvaluate.setOnClickListener(this);
-        mCircleActAlbum.setOnClickListener(this);
+        mCircleActSign.setOnClickListener(v -> {
+
+        });
+        mCircleActComment.setOnClickListener(v -> {
+
+        });
+        mCircleActEvaluate.setOnClickListener(v -> {
+
+        });
+        mCircleActAlbum.setOnClickListener(v -> {
+
+        });
     }
 
     private void setCircleActView() {
@@ -240,23 +248,6 @@ public class CircleActActivity extends TZAppCompatActivity implements OnClickLis
         registerReceiver(mBroadcastReceiver, intentFilter);
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-
-            case R.id.circle_act_sign:
-
-                break;
-            case R.id.circle_act_comment:
-                break;
-            case R.id.circle_act_evaluate:
-
-                break;
-            case R.id.circle_act_album://活动相册
-
-                break;
-        }
-    }
 
     private class SetImageViewThread extends Thread {
         private int imageType;
@@ -350,24 +341,14 @@ public class CircleActActivity extends TZAppCompatActivity implements OnClickLis
                 .findViewById(R.id.activity_commemnt_clean);
         Button submitButton = (Button) popupWindow
                 .findViewById(R.id.activity_commemnt_submit);
-        cleanButton.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                commentContentText.setText("");
-            }
-        });
-        submitButton.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                commentContent = commentContentText.getText().toString();
-                if (commentContent.isEmpty()) {
-                    showInfo("请先填写评论内容再发表，谢谢！");
-                } else {
-                    commentCircleAct();
-                    openDialog(CIRCLE_ACT_COMM);
-                }
+        cleanButton.setOnClickListener(v -> commentContentText.setText(""));
+        submitButton.setOnClickListener(v -> {
+            commentContent = commentContentText.getText().toString();
+            if (commentContent.isEmpty()) {
+                showInfo("请先填写评论内容再发表，谢谢！");
+            } else {
+                commentCircleAct();
+                openDialog(CIRCLE_ACT_COMM);
             }
         });
     }
@@ -413,13 +394,10 @@ public class CircleActActivity extends TZAppCompatActivity implements OnClickLis
      * 打开软键盘
      */
     private void openKeyboard(Handler mHandler, int s) {
-        mHandler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                inputMethodManager.toggleSoftInput(0,
-                        InputMethodManager.HIDE_NOT_ALWAYS);
-            }
+        mHandler.postDelayed(() -> {
+            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            inputMethodManager.toggleSoftInput(0,
+                    InputMethodManager.HIDE_NOT_ALWAYS);
         }, s);
     }
 

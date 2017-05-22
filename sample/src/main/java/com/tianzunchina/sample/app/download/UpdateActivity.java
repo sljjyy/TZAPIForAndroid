@@ -4,20 +4,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.tianzunchina.android.api.log.TZToastTool;
-import com.tianzunchina.android.api.network.HTTPWebAPI;
 import com.tianzunchina.android.api.network.SOAPWebAPI;
 import com.tianzunchina.android.api.network.TZRequest;
-import com.tianzunchina.android.api.network.WebAPIable;
-import com.tianzunchina.android.api.network.WebCallBackListener;
 import com.tianzunchina.android.api.network.download.TZAppVersion;
 import com.tianzunchina.android.api.network.download.TZUpdateListener;
 import com.tianzunchina.android.api.network.download.TZUpdateManager;
 import com.tianzunchina.android.api.util.PhoneTools;
 import com.tianzunchina.android.api.util.TimeConverter;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.Date;
 
 /**

@@ -15,7 +15,6 @@ import com.tianzunchina.android.api.network.TZRequest;
 import com.tianzunchina.android.api.network.WebCallBackListener;
 import com.tianzunchina.android.api.widget.form.select.ArrayAdapterItem;
 import com.tianzunchina.android.api.widget.form.select.ItemSelectedBottomSheetDialog;
-import com.tianzunchina.android.api.widget.form.select.ItemSelectedCallBack;
 import com.tianzunchina.android.api.widget.photo.TZPhotoBoxGroup;
 import com.tianzunchina.android.api.widget.photo.TZPhotoBoxOne;
 import com.tianzunchina.sample.R;
@@ -64,18 +63,8 @@ public class EventActivity extends TZAppCompatActivity {
         });
 
         final ItemSelectedBottomSheetDialog dialog = new ItemSelectedBottomSheetDialog(this, items);
-        dialog.setCallBack(new ItemSelectedCallBack() {
-            @Override
-            public void select(ArrayAdapterItem item) {
-                tvSelect.setText(item.getVal());
-            }
-        });
-        tvSelect.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.show();
-            }
-        });
+        dialog.setCallBack(item -> tvSelect.setText(item.getVal()));
+        tvSelect.setOnClickListener(v -> dialog.show());
 
     }
 

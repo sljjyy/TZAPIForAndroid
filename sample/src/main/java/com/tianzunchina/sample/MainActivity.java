@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -29,12 +28,12 @@ import java.util.List;
  * CraetTime 2016-3-14
  * @author SunLiang
  */
-public class MainActivity extends TZAppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener
-,ViewPager.OnPageChangeListener{
+public class MainActivity extends TZAppCompatActivity  {
 
     static final String[] PERMISSIONS = new String[]{
             Manifest.permission.READ_PHONE_STATE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.CAMERA,
 
     };
     private static final int REQUEST_CODE = 900;
@@ -67,8 +66,58 @@ public class MainActivity extends TZAppCompatActivity implements BottomNavigatio
         viewPager.setOffscreenPageLimit(4);//设置缓存页面的个数
         setupViewPager(viewPager);
         mNavigationView = (BottomNavigationView) findViewById(R.id.navigation);
-        mNavigationView.setOnNavigationItemSelectedListener(this);
-        viewPager.addOnPageChangeListener(this);
+        mNavigationView.setOnNavigationItemSelectedListener(menuItem1 -> {
+            switch (menuItem1.getItemId()) {
+                case R.id.shouye:
+
+                    viewPager.setCurrentItem(0);
+                    fragment = homeFragment;
+                    break;
+                case R.id.circle:
+
+                    viewPager.setCurrentItem(1);
+                    fragment = circleFragment;
+
+                    break;
+                case R.id.me:
+                    viewPager.setCurrentItem(3);
+                    fragment = tzMainFragment;
+
+                    break;
+                case R.id.tz:
+                    viewPager.setCurrentItem(2);
+                    fragment = meFragment;
+
+                    break;
+            }
+
+            return true;
+        });
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int i, float v, int i1) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if (menuItem != null) {
+                    menuItem.setChecked(false);
+                } else {
+                    mNavigationView.getMenu().getItem(0).setChecked(false);
+                }
+                menuItem = mNavigationView.getMenu().getItem(position);
+                menuItem.setChecked(true);
+                if(position == 3){
+                    fragment = meFragment;
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int i) {
+
+            }
+        });
         initBoot();
     }
 
@@ -92,58 +141,6 @@ public class MainActivity extends TZAppCompatActivity implements BottomNavigatio
             return;
         }
         fragment.onActivityResult(requestCode, resultCode, data);
-    }
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        switch (menuItem.getItemId()) {
-            case R.id.shouye:
-
-                viewPager.setCurrentItem(0);
-                fragment = homeFragment;
-                break;
-            case R.id.circle:
-
-                viewPager.setCurrentItem(1);
-                fragment = circleFragment;
-
-                break;
-            case R.id.me:
-                viewPager.setCurrentItem(3);
-                fragment = tzMainFragment;
-
-                break;
-            case R.id.tz:
-                viewPager.setCurrentItem(2);
-                fragment = meFragment;
-
-                break;
-        }
-
-        return true;
-    }
-
-    @Override
-    public void onPageScrolled(int i, float v, int i1) {
-
-    }
-
-    @Override
-    public void onPageSelected(int position) {
-        if (menuItem != null) {
-            menuItem.setChecked(false);
-        } else {
-            mNavigationView.getMenu().getItem(0).setChecked(false);
-        }
-        menuItem = mNavigationView.getMenu().getItem(position);
-        menuItem.setChecked(true);
-        if(position == 3){
-            fragment = meFragment;
-        }
-    }
-
-    @Override
-    public void onPageScrollStateChanged(int i) {
-
     }
 
     private void initBoot() {

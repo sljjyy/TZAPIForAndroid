@@ -44,14 +44,11 @@ public class Boot2Fragment extends TZFragment {
             return view;
         }
         tvClose.setVisibility(View.VISIBLE);
-        tvClose.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                BootConfig bc = new BootConfig();
-                bc.boot();
-                Intent intent = new Intent(getActivity(), MainActivity.class);
-                startActivity(intent);
-            }
+        tvClose.setOnClickListener(v -> {
+            BootConfig bc = new BootConfig();
+            bc.boot();
+            Intent intent = new Intent(getActivity(), MainActivity.class);
+            startActivity(intent);
         });
         return view;
     }

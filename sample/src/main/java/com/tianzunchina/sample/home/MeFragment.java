@@ -53,7 +53,7 @@ import pl.aprilapps.easyphotopicker.EasyImage;
  * Created by yqq on 2017/4/7.
  */
 
-public class MeFragment extends TZFragment implements View.OnClickListener {
+public class MeFragment extends TZFragment  {
 
     private static final String VERSION_CODE = "versionCode";
     private static final String VERSION_NAME = "versionName";
@@ -85,14 +85,33 @@ public class MeFragment extends TZFragment implements View.OnClickListener {
         TextView tvTitle = (TextView) view.findViewById(R.id.tvTitle);
         tvTitle.setText("个人信息");
         ivUserHeader = (ImageView) view.findViewById(R.id.ivHeader);
-        ivUserHeader.setOnClickListener(this);
+        ivUserHeader.setOnClickListener(v -> {
+            if (checkLogin()) {
+                menuWindow = new SelectPicPopupWindow(
+                        MeFragment.this.getActivity(), itemsOnClick);
+                menuWindow.showAtLocation(
+                        MeFragment.this.getActivity().findViewById(R.id.main),
+                        Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0); // 设置layout在PopupWindow中显示的位置
+            }
+        });
         btnLogout = (Button) view.findViewById(R.id.btnLogout);
-        btnLogout.setOnClickListener(this);
+        btnLogout.setOnClickListener(v -> {
+
+            if (LoginUtil.getCacheUser(MeFragment.this.getActivity()) != null) {
+                if (LoginUtil.getCacheUser(MeFragment.this.getActivity()).isRemember() == false) {
+                    LoginUtil.clearCacheUserPassWord(MeFragment.this.getActivity());
+                }
+            }
+            Intent intent = new Intent(MeFragment.this.getActivity(), LoginActivity.class);
+            startActivity(intent);
+            broadcast();
+            getActivity().finish();
+        });
         tvName = (TextView) view.findViewById(R.id.tvName);
         tvAppVsersion = (TextView) view.findViewById(R.id.tvAppVsersion);
 
         llVersionUpdate = (LinearLayout) view.findViewById(R.id.llVersionUpdate);
-        llVersionUpdate.setOnClickListener(this);
+        llVersionUpdate.setOnClickListener(v -> showUpdateDialog());
         user = LoginUtil.getNowUser();
         tvName.setText(user.getName());
 
@@ -132,11 +151,8 @@ public class MeFragment extends TZFragment implements View.OnClickListener {
             builder.setTitle("提示");
             builder.setMessage("请登录后操作");
             builder.setPositiveButton("确定",
-                    new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            return;
-                        }
+                    (dialog1, which) -> {
+                        return;
                     });
             builder.create().show();
             return false;
@@ -165,36 +181,6 @@ public class MeFragment extends TZFragment implements View.OnClickListener {
             }
         }
     };
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.ivHeader:
-                if (checkLogin()) {
-                    menuWindow = new SelectPicPopupWindow(
-                            MeFragment.this.getActivity(), itemsOnClick);
-                    menuWindow.showAtLocation(
-                            MeFragment.this.getActivity().findViewById(R.id.main),
-                            Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0); // 设置layout在PopupWindow中显示的位置
-                }
-                break;
-            case R.id.llVersionUpdate:
-                showUpdateDialog();
-                break;
-            case R.id.btnLogout:
-                if (LoginUtil.getCacheUser(MeFragment.this.getActivity()) != null) {
-                    if (LoginUtil.getCacheUser(MeFragment.this.getActivity()).isRemember() == false) {
-                        LoginUtil.clearCacheUserPassWord(MeFragment.this.getActivity());
-                    }
-                }
-                Intent intent = new Intent(MeFragment.this.getActivity(), LoginActivity.class);
-                startActivity(intent);
-                broadcast();
-                getActivity().finish();
-                break;
-        }
-
-    }
 
     /**
      * 发送广播

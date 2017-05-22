@@ -7,16 +7,13 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
-
 import com.piterwilson.audio.MP3RadioStreamDelegate;
 import com.piterwilson.audio.MP3RadioStreamPlayer;
 import com.shuyu.waveview.AudioWaveView;
 import com.tianzunchina.sample.R;
-
 import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -55,12 +52,7 @@ public class WavePlayActivity extends AppCompatActivity implements MP3RadioStrea
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wave_play);
         ButterKnife.bind(this);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                play();
-            }
-        }, 1000);
+        new Handler().postDelayed(() -> play(), 1000);
         playBtn.setEnabled(false);
         seekBar.setEnabled(false);
 
@@ -188,15 +180,11 @@ public class WavePlayActivity extends AppCompatActivity implements MP3RadioStrea
     @Override
     public void onRadioPlayerStopped(MP3RadioStreamPlayer player) {
         Log.i(TAG, "onRadioPlayerStopped");
-        this.runOnUiThread(new Runnable() {
-
-            @Override
-            public void run() {
-                playeEnd = true;
-                playBtn.setText("播放");
-                playBtn.setEnabled(true);
-                seekBar.setEnabled(false);
-            }
+        this.runOnUiThread(() -> {
+            playeEnd = true;
+            playBtn.setText("播放");
+            playBtn.setEnabled(true);
+            seekBar.setEnabled(false);
         });
 
     }
@@ -204,14 +192,10 @@ public class WavePlayActivity extends AppCompatActivity implements MP3RadioStrea
     @Override
     public void onRadioPlayerError(MP3RadioStreamPlayer player) {
         Log.i(TAG, "onRadioPlayerError");
-        this.runOnUiThread(new Runnable() {
-
-            @Override
-            public void run() {
-                playeEnd = false;
-                playBtn.setEnabled(true);
-                seekBar.setEnabled(false);
-            }
+        this.runOnUiThread(() -> {
+            playeEnd = false;
+            playBtn.setEnabled(true);
+            seekBar.setEnabled(false);
         });
 
     }
@@ -219,13 +203,9 @@ public class WavePlayActivity extends AppCompatActivity implements MP3RadioStrea
     @Override
     public void onRadioPlayerBuffering(MP3RadioStreamPlayer player) {
         Log.i(TAG, "onRadioPlayerBuffering");
-        this.runOnUiThread(new Runnable() {
-
-            @Override
-            public void run() {
-                playBtn.setEnabled(false);
-                seekBar.setEnabled(false);
-            }
+        this.runOnUiThread(() -> {
+            playBtn.setEnabled(false);
+            seekBar.setEnabled(false);
         });
 
     }

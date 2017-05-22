@@ -18,7 +18,6 @@ import org.json.JSONObject;
 
 public class CircleJoinedActivity extends TZCommonListActivity<Circle> {
 
-    private static final int HBQY_CIRCLE_ID = 190;
     private static final int TIME_OUT = 10000;
 
     @Override

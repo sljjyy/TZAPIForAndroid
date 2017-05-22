@@ -40,7 +40,7 @@ import java.util.List;
  * Created by yqq on 2017/4/17.
  */
 
-public class TzMainFragment extends Fragment implements AdapterView.OnItemClickListener,View.OnClickListener{
+public class TzMainFragment extends Fragment{
 
     private ADImageBanner adIBanner;
     private List<ADItem> adItems = new ArrayList<>();
@@ -70,9 +70,17 @@ public class TzMainFragment extends Fragment implements AdapterView.OnItemClickL
         lvPending = (ListView) view.findViewById(R.id.lvPendingList);
         lvHis = (ListView) view.findViewById(R.id.lvHistoryList);
         tvGd = (TextView) view.findViewById(R.id.tvHistoryMore);//事件清单
-        tvGd.setOnClickListener(this);
+        tvGd.setOnClickListener(v -> {
+            Intent  i = new Intent(TzMainFragment.this.getActivity(),CaseListActivity.class);
+            startActivity(i);
+
+        });
         tvDclGd = (TextView) view.findViewById(R.id.tvPendingMore);//待办事件
-        tvDclGd.setOnClickListener(this);
+        tvDclGd.setOnClickListener(v -> {
+            Intent i = new Intent(TzMainFragment.this.getActivity(),EventPendingListActivity.class);
+            startActivity(i);
+
+        });
         pbHis = (ProgressBar) view.findViewById(R.id.pbHistory);
         pbPending = (ProgressBar) view.findViewById(R.id.pbPending);
         svCaseList = (ScrollView) view.findViewById(R.id.id_sv_hp_case_list);
@@ -91,12 +99,9 @@ public class TzMainFragment extends Fragment implements AdapterView.OnItemClickL
      * 初始化
      */
     private void initView() {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                initHistory();
-                initPending();
-            }
+        new Handler().postDelayed(() -> {
+            initHistory();
+            initPending();
         }, 0);
     }
     /**
@@ -118,10 +123,6 @@ public class TzMainFragment extends Fragment implements AdapterView.OnItemClickL
         lvHis.setVisibility(View.GONE);
         getHistoryList();
     }
-
-
-
-
     //TODO 广告栏配置
     private void setAdData() {
         adIBanner.setSelectAnimClass(ZoomInEnter.class)
@@ -130,28 +131,6 @@ public class TzMainFragment extends Fragment implements AdapterView.OnItemClickL
                 .setUnselectAnimClass(NoAnimExist.class)
                 .setTransformerClass(ZoomOutSlideTransformer.class)
                 .startScroll();
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-    }
-
-    @Override
-    public void onClick(View v) {
-        Intent i ;
-        switch (v.getId()){
-            case R.id.tvHistoryMore:
-                i = new Intent(this.getActivity(),CaseListActivity.class);
-                startActivity(i);
-
-                break;
-            case R.id.tvPendingMore:
-                i = new Intent(this.getActivity(),EventPendingListActivity.class);
-                startActivity(i);
-                break;
-        }
-
     }
 
     class ItemClickListener implements AdapterView.OnItemClickListener {
@@ -239,7 +218,9 @@ public class TzMainFragment extends Fragment implements AdapterView.OnItemClickL
                             CaseListAdapter adapterPending = new CaseListAdapter(SysApplication.getInstance().getContext(), pendingCases, -1);
                             lvPending.setAdapter(adapterPending);
                             resetList(lvPending, 0);
-                            lvPending.setOnItemClickListener(TzMainFragment.this);
+                            lvPending.setOnItemClickListener((parent, view1, position, id) -> {
+
+                            });
                             lvPending.setVisibility(View.VISIBLE);
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -304,7 +285,9 @@ public class TzMainFragment extends Fragment implements AdapterView.OnItemClickL
                             CaseListAdapter adapterPending = new CaseListAdapter(SysApplication.getInstance().getContext(), hisCases, -1);
                             lvHis.setAdapter(adapterPending);
                             resetList(lvHis, 0);
-                            lvHis.setOnItemClickListener(TzMainFragment.this);
+                            lvHis.setOnItemClickListener((parent, view1, position, id) -> {
+
+                            });
                             lvHis.setVisibility(View.VISIBLE);
                         } catch (Exception e) {
                             e.printStackTrace();

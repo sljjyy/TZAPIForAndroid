@@ -10,7 +10,6 @@ import com.tianzunchina.sample.model.Circle;
 import java.util.List;
 
 public class CircleListAdapter extends TZCommonAdapter<Circle> {
-    public static final int HBQY_CIRCLE_ID = 190;
     private boolean isRank;
     private String countDetail = "圈友$1名，活动$2次";
     private String rankCountDetail = "圈友$1名，活动$2次,排名第$3";

@@ -16,7 +16,7 @@ import java.util.List;
  * Created by yqq on 2017/4/18.
  */
 
-public class CaseActivity  extends TZAppCompatActivity  {
+public class CaseActivity  extends TZAppCompatActivity {
 
     private SamplePagerAdapter fAdapter;//定义适配器
     EventCaseFragment eventCaseFragment = new EventCaseFragment();

@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <!-- 查询手机ID权限 -->
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <!-- 请求访问网络 -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -97,7 +98,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:windowSoftInputMode="adjustUnspecified|stateHidden"
-            android:name=".home.CircleActivity"
+            android:name=".home.ActivityCircleBinding"
             android:screenOrientation="portrait" />
         <activity
             android:windowSoftInputMode="adjustUnspecified|stateHidden"
@@ -114,6 +115,17 @@
             android:label="BootActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".util.ocr.platerecognizer.base.BaseActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".util.ocr.platerecognizer.ui.CameraActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>

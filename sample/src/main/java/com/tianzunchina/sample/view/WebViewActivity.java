@@ -10,6 +10,7 @@ import com.tianzunchina.android.api.network.browser.WebViewUtil;
 import com.tianzunchina.sample.R;
 
 /**
+ * webView访问页面
  * Created by yqq on 2017/4/25.
  */
 

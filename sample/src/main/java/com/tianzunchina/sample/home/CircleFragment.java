@@ -26,7 +26,7 @@ import java.util.ArrayList;
  * Created by yqq on 2017/4/14.
  */
 
-public class CircleFragment extends TZFragment implements View.OnClickListener {
+public class CircleFragment extends TZFragment  {
     private GridView gvCircle;
     private ArrayList<Circle> mCircleColumns = new ArrayList<>();
     private HomePageColumnAdapter mHomePageColumnAdapter;
@@ -112,11 +112,26 @@ public class CircleFragment extends TZFragment implements View.OnClickListener {
         tvCircleDataDesc.setText("圈子排名、人气活动");
        /* gvCircle.setAdapter(mHomePageColumnAdapter);
         gvCircle.setOnItemClickListener(new GridItemClickListener());*/
-        rlCircleType.setOnClickListener(this);
-        rlMyCircle.setOnClickListener(this);
-        rlCircleAtc.setOnClickListener(this);
-        rlMyCircleAtc.setOnClickListener(this);
-        rlCircleData.setOnClickListener(this);
+        rlCircleType.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), CircleTypeActivity.class);
+            startActivity(intent);
+        });
+        rlMyCircle.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), CircleJoinedActivity.class);
+            startActivity(intent);
+        });
+        rlCircleAtc.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), CircleActListActivity.class);
+            intent.putExtra("circleID", 0);
+            intent.putExtra("circleName", "所有活动");
+            startActivity(intent);
+        });
+        rlMyCircleAtc.setOnClickListener(v -> {
+
+        });
+        rlCircleData.setOnClickListener(v -> {
+
+        });
     }
 
     private void fixedView(View view) {
@@ -135,28 +150,6 @@ public class CircleFragment extends TZFragment implements View.OnClickListener {
     public void setData(ArrayList<Circle> circles) {
         mCircleColumns = circles;
         mHomePageColumnAdapter.setList(mCircleColumns);
-    }
-
-    @Override
-    public void onClick(View v) {
-        Intent intent;
-        switch (v.getId()) {
-            case R.id.indAllActivities://所有活动
-                intent = new Intent(getActivity(), CircleActListActivity.class);
-                intent.putExtra("circleID", 0);
-                intent.putExtra("circleName", "所有活动");
-                startActivity(intent);
-                break;
-            case R.id.indAllCircles://海量圈子入口
-                intent = new Intent(getActivity(), CircleTypeActivity.class);
-                startActivity(intent);
-                break;
-            case R.id.indMyCircles://我的圈子
-                intent = new Intent(getActivity(), CircleJoinedActivity.class);
-                startActivity(intent);
-                break;
-
-        }
     }
 
     class GridItemClickListener implements AdapterView.OnItemClickListener {

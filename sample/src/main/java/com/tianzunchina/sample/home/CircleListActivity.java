@@ -2,8 +2,6 @@ package com.tianzunchina.sample.home;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.TextView;
 import com.tianzunchina.android.api.base.TZActivity;
 import com.tianzunchina.android.api.network.SOAPWebAPI;
@@ -62,15 +60,12 @@ public class CircleListActivity extends TZActivity implements XListView.IXListVi
                 holder.setImage(R.id.image, "http://218.108.93.154:8090/ImgHandler.ashx?Path=" + circle.getSmallPath(), R.drawable.ico_rank_picture, 80, 80);
             }
         });
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(CircleListActivity.this, CircleActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("circle", circles.get(position - 1));
-                intent.putExtras(bundle);
-                startActivity(intent);
-            }
+        mListView.setOnItemClickListener((parent, view, position, id) -> {
+            Intent intent = new Intent(CircleListActivity.this, CircleActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("circle", circles.get(position - 1));
+            intent.putExtras(bundle);
+            startActivity(intent);
         });
 
         mListView.setPullLoadEnable(false);

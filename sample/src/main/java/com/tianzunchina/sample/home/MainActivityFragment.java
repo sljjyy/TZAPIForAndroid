@@ -24,9 +24,7 @@ import java.util.ArrayList;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class MainActivityFragment extends TZFragment implements View.OnClickListener,
-        BaseQuickAdapter.OnRecyclerViewItemClickListener,
-        BaseQuickAdapter.OnRecyclerViewItemLongClickListener {
+public class MainActivityFragment extends TZFragment  {
     private static final Class<?>[] ACTIVITYS = {EventActivity.class, UpdateActivity.class, NotifyActivity.class,
             LoginActivity.class, DynamicFormActivity.class, TimeActivity.class};
     private static final String[] TITLES = {"案件上报", "版本更新", "通知栏", "登录", "表单框", "时间选择"};
@@ -40,16 +38,14 @@ public class MainActivityFragment extends TZFragment implements View.OnClickList
         RecyclerView rvList = (RecyclerView) view.findViewById(R.id.rvList);
         BaseQuickAdapter homeAdapter = new HomeAdapter(R.layout.item_home, mDataList);
         homeAdapter.openLoadAnimation();
-        homeAdapter.setOnRecyclerViewItemClickListener(this);
-        homeAdapter.setOnRecyclerViewItemLongClickListener(this);
+        homeAdapter.setOnRecyclerViewItemClickListener((view1, i) -> {
+            Intent intent = new Intent(getActivity(), ACTIVITYS[i]);
+            startActivity(intent);
+        });
+        homeAdapter.setOnRecyclerViewItemLongClickListener((view12, i) -> false);
         rvList.setLayoutManager(new LinearLayoutManager(getActivity()));
         rvList.setAdapter(homeAdapter);
         return view;
-    }
-
-    @Override
-    public void onClick(View v) {
-
     }
 
     @Override
@@ -66,14 +62,4 @@ public class MainActivityFragment extends TZFragment implements View.OnClickList
         }
     }
 
-    @Override
-    public void onItemClick(View view, int i) {
-        Intent intent = new Intent(getActivity(), ACTIVITYS[i]);
-        startActivity(intent);
-    }
-
-    @Override
-    public boolean onItemLongClick(View view, int i) {
-        return false;
-    }
 }
