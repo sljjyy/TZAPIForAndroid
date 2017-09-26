@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.tianzunchina.sample.R;
-import com.tianzunchina.sample.widget.GVItem;
+import com.tianzunchina.sample.widget.GVItem1;
 
 import java.util.ArrayList;
 
@@ -20,16 +20,16 @@ import java.util.ArrayList;
 
 public class HomePageButtonAdapter extends BaseAdapter{
 
-    private ArrayList<? extends GVItem> fixedNewsColumns = new ArrayList<>();
+    private ArrayList<? extends GVItem1> fixedNewsColumns = new ArrayList<>();
     private Context context;
 
     public HomePageButtonAdapter(Context context,
-                                 ArrayList<? extends GVItem> fixedNewsColumns) {
+                                 ArrayList<? extends GVItem1> fixedNewsColumns) {
         this.fixedNewsColumns = fixedNewsColumns;
         this.context = context;
     }
 
-    public void setList(ArrayList<? extends GVItem> items) {
+    public void setList(ArrayList<? extends GVItem1> items) {
         fixedNewsColumns = items;
         notifyDataSetChanged();
     }
@@ -62,7 +62,7 @@ public class HomePageButtonAdapter extends BaseAdapter{
         } else {
             holder = (HomePageColumnAdapter.ViewHolder) convertView.getTag();
         }
-        GVItem column = fixedNewsColumns.get(position);
+        GVItem1 column = fixedNewsColumns.get(position);
         holder.title.setText(column.getTitle());
 
         if (column.getResID() != -1) {//本地图片

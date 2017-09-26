@@ -9,11 +9,11 @@ import android.widget.TextView;
 import com.tianzunchina.android.api.log.TZToastTool;
 import com.tianzunchina.android.api.login.TZLoginActivity;
 import com.tianzunchina.android.api.network.TZRequest;
-import com.tianzunchina.sample.MainActivity;
+import com.tianzunchina.sample.MainActivity1;
 import com.tianzunchina.sample.R;
-import com.tianzunchina.sample.model.User;
-import com.tianzunchina.sample.util.LoginUtil;
-import com.tianzunchina.sample.view.RegisterActivity;
+import com.tianzunchina.sample.model.User1;
+import com.tianzunchina.sample.util.LoginUtil1;
+import com.tianzunchina.sample.view.RegisterActivity1;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -60,7 +60,7 @@ public class LoginActivity extends TZLoginActivity {
                 login();
                 break;
             case R.id.btnRegister:
-                intent = new Intent(this, RegisterActivity.class);
+                intent = new Intent(this, RegisterActivity1.class);
                 startActivity(intent);
 
                 TZToastTool.essential("跳转注册页面");
@@ -87,13 +87,13 @@ public class LoginActivity extends TZLoginActivity {
         try {
             JSONObject body = jsonObject.getJSONObject("Body");
             JSONObject userJSONObject = body.getJSONObject("User");
-            User user = new User(userJSONObject);
-            LoginUtil.setUser(user);
+            User1 user = new User1(userJSONObject);
+            LoginUtil1.Companion.setUser(user);
         }catch (JSONException e){
             e.printStackTrace();
         }
 
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, MainActivity1.class);
         startActivity(intent);
 
     }

@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 25
@@ -80,6 +82,7 @@ dependencies {
     compile 'io.reactivex:rxandroid:1.2.1'
     compile 'com.github.CarGuo:RecordWave:v1.1.2'
     compile 'com.jakewharton:butterknife:8.0.1'
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 }
 repositories {
     mavenCentral()

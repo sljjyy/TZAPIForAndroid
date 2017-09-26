@@ -33,12 +33,12 @@ import com.tianzunchina.android.api.util.PhoneTools;
 import com.tianzunchina.android.api.util.PhotoTools;
 import com.tianzunchina.android.api.util.TimeConverter;
 import com.tianzunchina.android.api.util.UnitConverter;
-import com.tianzunchina.sample.MainActivity;
+import com.tianzunchina.sample.MainActivity1;
 import com.tianzunchina.sample.R;
 import com.tianzunchina.sample.login.LoginActivity;
 import com.tianzunchina.sample.service.WebService;
-import com.tianzunchina.sample.util.LoginUtil;
-import com.tianzunchina.sample.widget.SelectPicPopupWindow;
+import com.tianzunchina.sample.util.LoginUtil1;
+import com.tianzunchina.sample.widget.SelectPicPopupWindow1;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.ByteArrayOutputStream;
@@ -71,8 +71,8 @@ public class MeFragment extends TZFragment  {
     TextView tvName, tvAppVsersion;
     private static final String FilePath = "clipping_picture.jpg";
     Button btnLogout;
-    private SelectPicPopupWindow menuWindow;
-    com.tianzunchina.sample.model.User user;
+    private SelectPicPopupWindow1 menuWindow;
+    com.tianzunchina.sample.model.User1 user;
     LinearLayout llVersionUpdate;
     AlertDialog.Builder builder;
     AlertDialog dialog;
@@ -87,7 +87,7 @@ public class MeFragment extends TZFragment  {
         ivUserHeader = (ImageView) view.findViewById(R.id.ivHeader);
         ivUserHeader.setOnClickListener(v -> {
             if (checkLogin()) {
-                menuWindow = new SelectPicPopupWindow(
+                menuWindow = new SelectPicPopupWindow1(
                         MeFragment.this.getActivity(), itemsOnClick);
                 menuWindow.showAtLocation(
                         MeFragment.this.getActivity().findViewById(R.id.main),
@@ -97,9 +97,9 @@ public class MeFragment extends TZFragment  {
         btnLogout = (Button) view.findViewById(R.id.btnLogout);
         btnLogout.setOnClickListener(v -> {
 
-            if (LoginUtil.getCacheUser(MeFragment.this.getActivity()) != null) {
-                if (LoginUtil.getCacheUser(MeFragment.this.getActivity()).isRemember() == false) {
-                    LoginUtil.clearCacheUserPassWord(MeFragment.this.getActivity());
+            if (LoginUtil1.Companion.getCacheUser(MeFragment.this.getActivity()) != null) {
+                if (LoginUtil1.Companion.getCacheUser(MeFragment.this.getActivity()).isRemember() == false) {
+                    LoginUtil1.Companion.clearCacheUserPassWord(MeFragment.this.getActivity());
                 }
             }
             Intent intent = new Intent(MeFragment.this.getActivity(), LoginActivity.class);
@@ -112,7 +112,7 @@ public class MeFragment extends TZFragment  {
 
         llVersionUpdate = (LinearLayout) view.findViewById(R.id.llVersionUpdate);
         llVersionUpdate.setOnClickListener(v -> showUpdateDialog());
-        user = LoginUtil.getNowUser();
+        user = LoginUtil1.Companion.getNowUser();
         tvName.setText(user.getName());
 
         EasyImage.configuration(this.getActivity())
@@ -133,20 +133,20 @@ public class MeFragment extends TZFragment  {
     */
     private void initData() {
 
-        if (LoginUtil.isGuest()) {
+        if (LoginUtil1.Companion.isGuest()) {
             btnLogout.setText("登陆/注册");
         } else {
             btnLogout.setText("退出账户");
         }
         //设置圆形头像
-        Glide.with(this.getActivity()).load(WebService.getPicUrl() + LoginUtil.getNowUser().getPicPath())
+        Glide.with(this.getActivity()).load(WebService.getPicUrl() + LoginUtil1.Companion.getNowUser().getPicPath())
                 .error(R.drawable.ico_rank_picture).into(ivUserHeader);
 
     }
 
     //检查是否登录
     public boolean checkLogin() {
-        if (LoginUtil.isGuest()) {
+        if (LoginUtil1.Companion.isGuest()) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this.getActivity());
             builder.setTitle("提示");
             builder.setMessage("请登录后操作");
@@ -187,7 +187,7 @@ public class MeFragment extends TZFragment  {
      */
     private void broadcast() {
         Intent i = new Intent();
-        i.setAction(MainActivity.FINISH);
+        i.setAction(MainActivity1.Companion.getFINISH());
         getActivity().sendBroadcast(i);
     }
 
@@ -302,7 +302,7 @@ public class MeFragment extends TZFragment  {
         String pic = null;
         if (file != null)
             pic = UnitConverter.byte2base64(UnitConverter.file2byte(file));
-        tzRequest.addParam("UserID", LoginUtil.getNowUser().getUserID());
+        tzRequest.addParam("UserID", LoginUtil1.Companion.getNowUser().getUserID());
         tzRequest.addParam("photo", pic);
         webAPI.call(tzRequest, new WebCallBackListener() {
             @Override

@@ -9,7 +9,7 @@ import android.widget.LinearLayout;
 import com.bumptech.glide.Glide;
 import com.tianzunchina.android.api.base.TZFragmentActivity;
 import com.tianzunchina.sample.R;
-import com.tianzunchina.sample.widget.ViewPageFragmentAdapter;
+import com.tianzunchina.sample.widget.ViewPageFragmentAdapter1;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,9 +33,9 @@ public class BootActivity extends TZFragmentActivity {
     private void init() {
         ViewPager mPager = (ViewPager) findViewById(R.id.vPager);
         listViews = new ArrayList<>();
-        listViews.add(new Boot2Fragment(R.drawable.boot2_bg1, R.drawable.boot2_pic1, R.drawable.boot2_title1, false));
-        listViews.add(new Boot2Fragment(R.drawable.boot2_bg2, R.drawable.boot2_pic2, R.drawable.boot2_title2, true));
-        mPager.setAdapter(new ViewPageFragmentAdapter(getSupportFragmentManager(), listViews));
+        listViews.add(new Boot2Fragment1(R.drawable.boot2_bg1, R.drawable.boot2_pic1, R.drawable.boot2_title1, false));
+        listViews.add(new Boot2Fragment1(R.drawable.boot2_bg2, R.drawable.boot2_pic2, R.drawable.boot2_title2, true));
+        mPager.setAdapter(new ViewPageFragmentAdapter1(getSupportFragmentManager(), listViews));
         mPager.setCurrentItem(0);
         mPager.setOnPageChangeListener(new ViewPageChangeListener());
         initDots();

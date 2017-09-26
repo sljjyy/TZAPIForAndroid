@@ -5,7 +5,7 @@
     android:background="@drawable/form_case_content_shape"
     android:orientation="vertical" >
 
-    <com.tianzunchina.sample.widget.ContainsEmojiEditText
+    <com.tianzunchina.sample.widget.ContainsEmojiEditText1
         android:id="@+id/activity_commemnt_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

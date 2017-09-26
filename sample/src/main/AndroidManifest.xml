@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.tianzunchina.sample">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -19,13 +20,13 @@
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
 
     <application
-        android:name=".app.SysApplication"
+        android:name=".app.SysApplication1"
         android:allowBackup="true"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.Sample">
         <activity
-            android:name=".MainActivity"
+            android:name=".MainActivity1"
             android:label="@string/app_name"
             android:launchMode="singleTop"
             android:screenOrientation="portrait">
@@ -36,32 +37,29 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".event.EventActivity"
+            android:name=".event.EventActivity1"
             android:label="@string/title_activity_event"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".event.WavePlayActivity"
+            android:name=".view.TimeActivity1"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.TimeActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".view.CaseActivity"
+            android:name=".view.CaseActivity1"
             android:windowSoftInputMode="adjustUnspecified|stateHidden"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.EventPendingListActivity"
+            android:name=".view.EventPendingListActivity1"
             android:windowSoftInputMode="adjustUnspecified|stateHidden"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".view.CaseListActivity"
+            android:name=".view.CaseListActivity1"
             android:windowSoftInputMode="adjustUnspecified|stateHidden"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".form.DynamicFormActivity"
+            android:name=".form.DynamicFormActivity1"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.tianzunchina.android.api.widget.photo.PreviewActivity"
@@ -70,11 +68,11 @@
             android:name=".app.download.UpdateActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".notify.NotifyActivity"
+            android:name=".notify.NotifyActivity1"
             android:screenOrientation="portrait" />
         <activity
             android:windowSoftInputMode="adjustUnspecified|stateHidden"
-            android:name=".view.RegisterActivity"
+            android:name=".view.RegisterActivity1"
             android:screenOrientation="portrait" />
         <activity
             android:windowSoftInputMode="adjustUnspecified|stateHidden"
@@ -96,14 +94,11 @@
             android:windowSoftInputMode="adjustUnspecified|stateHidden"
             android:name=".home.CircleListActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:windowSoftInputMode="adjustUnspecified|stateHidden"
-            android:name=".home.ActivityCircleBinding"
-            android:screenOrientation="portrait" />
+
         <activity
             android:windowSoftInputMode="adjustUnspecified|stateHidden"
             android:launchMode="singleTask"
-            android:name=".view.WebViewActivity"
+            android:name=".view.WebViewActivity1"
             android:screenOrientation="portrait" />
         <activity
             android:name=".login.LoginActivity"

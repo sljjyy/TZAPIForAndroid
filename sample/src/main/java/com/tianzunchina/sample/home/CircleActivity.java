@@ -25,7 +25,7 @@ import com.tianzunchina.android.api.view.list.XListView;
 import com.tianzunchina.sample.R;
 import com.tianzunchina.sample.model.Circle;
 import com.tianzunchina.sample.model.CircleAct;
-import com.tianzunchina.sample.widget.StickyLayout;
+import com.tianzunchina.sample.widget.StickyLayout1;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -36,7 +36,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class CircleActivity extends TZAppCompatActivity implements XListView.IXListViewListener, StickyLayout.OnGiveUpTouchEventListener {
+public class CircleActivity extends TZAppCompatActivity implements XListView.IXListViewListener, StickyLayout1.OnGiveUpTouchEventListener {
     private static final int CIRCLE_ACT_LIST = 1, CIRCLE_APPLY = 2, takeNumber = 10;
     private String ACTIVITY_NAME = "CircleActivity";
     private Circle circle;
@@ -125,7 +125,7 @@ public class CircleActivity extends TZAppCompatActivity implements XListView.IXL
         circleApply = (TextView) findViewById(R.id.circle_isApply);
         operateApply = (RelativeLayout) findViewById(R.id.circle_operate_apply);
         RelativeLayout operateMenber = (RelativeLayout) findViewById(R.id.circle_operate_menber);
-        StickyLayout mStickyLayout = (StickyLayout) findViewById(R.id.sticky_layout);
+        StickyLayout1 mStickyLayout = (StickyLayout1) findViewById(R.id.sticky_layout);
         mXListView = (XListView) findViewById(R.id.circle_activities);
         circleActivities = new ArrayList<>();
 

@@ -11,12 +11,12 @@ import android.view.ViewGroup;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.tianzunchina.android.api.base.TZFragment;
 import com.tianzunchina.sample.R;
-import com.tianzunchina.sample.view.TimeActivity;
-import com.tianzunchina.sample.form.DynamicFormActivity;
+import com.tianzunchina.sample.view.TimeActivity1;
+import com.tianzunchina.sample.form.DynamicFormActivity1;
 import com.tianzunchina.sample.login.LoginActivity;
-import com.tianzunchina.sample.notify.NotifyActivity;
+import com.tianzunchina.sample.notify.NotifyActivity1;
 import com.tianzunchina.sample.app.download.UpdateActivity;
-import com.tianzunchina.sample.event.EventActivity;
+import com.tianzunchina.sample.event.EventActivity1;
 
 import java.util.ArrayList;
 
@@ -25,8 +25,8 @@ import java.util.ArrayList;
  * A placeholder fragment containing a simple view.
  */
 public class MainActivityFragment extends TZFragment  {
-    private static final Class<?>[] ACTIVITYS = {EventActivity.class, UpdateActivity.class, NotifyActivity.class,
-            LoginActivity.class, DynamicFormActivity.class, TimeActivity.class};
+    private static final Class<?>[] ACTIVITYS = {EventActivity1.class, UpdateActivity.class, NotifyActivity1.class,
+            LoginActivity.class, DynamicFormActivity1.class, TimeActivity1.class};
     private static final String[] TITLES = {"案件上报", "版本更新", "通知栏", "登录", "表单框", "时间选择"};
     private ArrayList<HomeItem> mDataList = new ArrayList<>();
 

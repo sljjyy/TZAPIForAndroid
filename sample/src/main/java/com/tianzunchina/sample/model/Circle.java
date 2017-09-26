@@ -6,7 +6,6 @@ import org.json.JSONObject;
 
 public class Circle extends GVItem {
 	private static final long serialVersionUID = 1L;
-	private String countDetail = "圈友$1名，活动$2次";
 	private Long createTime;
 	private int createAccess;
 	private int authority;
@@ -44,6 +43,7 @@ public class Circle extends GVItem {
 			this.smallPath = json.getString("SmallAttach");
 			this.actCount = json.getString("ActivityCount");
 			this.circleMemCount = json.getString("CircleMemberCount");
+			String countDetail = "圈友$1名，活动$2次";
 			this.description = countDetail.replace("$1", this.circleMemCount)
 					.replace("$2", this.actCount);
 			this.content = json.getString("CircleContent");

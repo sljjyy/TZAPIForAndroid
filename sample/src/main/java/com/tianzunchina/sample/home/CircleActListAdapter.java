@@ -59,6 +59,18 @@ public class CircleActListAdapter extends TZCommonAdapter<CircleAct> {
                 break;
         }
 
+        holder.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, CircleActActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("circleAct", circleAct);
+                bundle.putBoolean("isComment", false);
+                intent.putExtras(bundle);
+                mContext.startActivity(intent);
+            }
+        });
+
         holder.setOnClickListener(view -> {
             Intent intent = new Intent(mContext, CircleActActivity.class);
             Bundle bundle = new Bundle();

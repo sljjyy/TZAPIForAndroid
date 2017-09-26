@@ -37,7 +37,7 @@ import com.tianzunchina.android.api.util.PhotoTools;
 import com.tianzunchina.android.api.util.UnitConverter;
 import com.tianzunchina.sample.R;
 import com.tianzunchina.sample.model.CircleAct;
-import com.tianzunchina.sample.widget.SamplePagerAdapter;
+import com.tianzunchina.sample.widget.SamplePagerAdapter1;
 import org.json.JSONObject;
 import java.io.File;
 import java.net.MalformedURLException;
@@ -80,7 +80,7 @@ public class CircleActActivity extends TZAppCompatActivity  {
     TextView tvTitle;
     private String tabTitles[] = new String[]{"参与","评论","打分"};
     List<Fragment> listFragment;
-    private SamplePagerAdapter fAdapter;//定义适配器
+    private SamplePagerAdapter1 fAdapter;//定义适配器
     CircleActParticipateFrg circleActParticipateFrg = new CircleActParticipateFrg();
     CircleActCommentFrg circleActCommentFrg = new CircleActCommentFrg();
     CircleActEvalActListFrg circleActEvalActListFrg = new CircleActEvalActListFrg();
@@ -199,7 +199,7 @@ public class CircleActActivity extends TZAppCompatActivity  {
                 tab.setCustomView(fAdapter.getTabView(i));
             }
         }
-        fAdapter = new SamplePagerAdapter(this, this.getSupportFragmentManager(), listFragment,tabTitles);
+        fAdapter = new SamplePagerAdapter1(this, this.getSupportFragmentManager(), listFragment,tabTitles);
         //tabLayout加载viewpager
         tableLayout.setupWithViewPager(vpCircle);
         //viewpager加载adapter

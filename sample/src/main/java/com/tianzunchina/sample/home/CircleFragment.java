@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -27,7 +25,6 @@ import java.util.ArrayList;
  */
 
 public class CircleFragment extends TZFragment  {
-    private GridView gvCircle;
     private ArrayList<Circle> mCircleColumns = new ArrayList<>();
     private HomePageColumnAdapter mHomePageColumnAdapter;
     SOAPWebAPI webAPI = new SOAPWebAPI();
@@ -150,19 +147,6 @@ public class CircleFragment extends TZFragment  {
     public void setData(ArrayList<Circle> circles) {
         mCircleColumns = circles;
         mHomePageColumnAdapter.setList(mCircleColumns);
-    }
-
-    class GridItemClickListener implements AdapterView.OnItemClickListener {
-        @Override
-        public void onItemClick(AdapterView<?> parent, View view, int position,
-                                long id) {
-            Circle circle = (Circle) parent.getAdapter().getItem(position);
-           /* Intent intent = new Intent(getActivity(), CircleActivity.class);
-            Bundle bundle = new Bundle();
-            bundle.putSerializable("circle", circle);
-            intent.putExtras(bundle);
-            startActivity(intent);*/
-        }
     }
 
     private void GetFixedCircle(){

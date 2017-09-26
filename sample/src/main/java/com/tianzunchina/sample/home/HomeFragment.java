@@ -21,13 +21,14 @@ import com.tianzunchina.android.api.network.WebCallBackListener;
 import com.tianzunchina.android.api.view.list.TZCommonAdapter;
 import com.tianzunchina.android.api.view.list.TZViewHolder;
 import com.tianzunchina.sample.R;
-import com.tianzunchina.sample.event.EventActivity;
-import com.tianzunchina.sample.model.Advertisement;
-import com.tianzunchina.sample.model.News;
+import com.tianzunchina.sample.event.EventActivity1;
+import com.tianzunchina.sample.model.Advertisement1;
+import com.tianzunchina.sample.model.News1;
 import com.tianzunchina.sample.util.ocr.platerecognizer.ui.CameraActivity;
-import com.tianzunchina.sample.widget.ADImageBanner;
-import com.tianzunchina.sample.widget.ADItem;
-import com.tianzunchina.sample.widget.AppIco;
+import com.tianzunchina.sample.view.WebViewActivity1;
+import com.tianzunchina.sample.widget.ADImageBanner1;
+import com.tianzunchina.sample.widget.ADItem1;
+import com.tianzunchina.sample.widget.AppIco1;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -41,13 +42,13 @@ import java.util.List;
 
 public class HomeFragment extends TZFragment  {
 
-    private ADImageBanner adIBanner;
-    private List<ADItem> adItems = new ArrayList<>();
+    private ADImageBanner1 adIBanner;
+    private List<ADItem1> adItems = new ArrayList<>();
     View view;
-    private ArrayList<AppIco> appIcos = new ArrayList<>();
+    private ArrayList<AppIco1> appIcos = new ArrayList<>();
     ListView lvNewsList ;
-    private TZCommonAdapter<News> nAdapter;
-    private List<News> adNews = new ArrayList<>();
+    private TZCommonAdapter<News1> nAdapter;
+    private List<News1> adNews = new ArrayList<>();
     private final int WITHOUT_PHOTO = 0, WITH_PHOTO = 1;
     SOAPWebAPI webAPI = new SOAPWebAPI();
     Intent intent;
@@ -67,7 +68,7 @@ public class HomeFragment extends TZFragment  {
         TextView tvTitle = (TextView) view.findViewById(R.id.tvTitle);
         tvTitle.setText("身边");
         lvNewsList = (ListView) view.findViewById(R.id.lvRecommendList);
-        nAdapter = new TZCommonAdapter<News>(this.getActivity(), adNews, R.layout.item_news) {
+        nAdapter = new TZCommonAdapter<News1>(this.getActivity(), adNews, R.layout.item_news) {
 
             @Override
             public int getItemViewType(int position) {
@@ -80,7 +81,7 @@ public class HomeFragment extends TZFragment  {
             }
 
             @Override
-            public void convert(TZViewHolder holder, News news, int position) {
+            public void convert(TZViewHolder holder, News1 news, int position) {
                 switch (news.getType()) {
                     case WITHOUT_PHOTO:
                         holder.setText(R.id.tvTitle, news.getTitle());
@@ -106,7 +107,7 @@ public class HomeFragment extends TZFragment  {
         initGridView();
 
         getHomeAdvertisements();
-        adIBanner = (ADImageBanner) view.findViewById(R.id.adibanner);
+        adIBanner = (ADImageBanner1) view.findViewById(R.id.adibanner);
     }
     //TODO 广告栏配置
     private void setAdData() {
@@ -121,7 +122,7 @@ public class HomeFragment extends TZFragment  {
     private class ItemClickListener implements AdapterView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            AppIco appIco = (AppIco) parent.getAdapter().getItem(position);
+            AppIco1 appIco = (AppIco1) parent.getAdapter().getItem(position);
             Class<?> toClass = appIco.getToClass();
             if (toClass != null) {
                 intent = new Intent(getActivity(), toClass);
@@ -154,13 +155,13 @@ public class HomeFragment extends TZFragment  {
     }
     //初始化图标
     synchronized private void initAppList() {
-        appIcos.add(new AppIco(EventActivity.class,R.string.submit_event, R.mipmap.img_my_task_event));
-        appIcos.add(new AppIco(CameraActivity.class,R.string.web, R.mipmap.ico_xzsp));
-      /*  appIcos.add(new AppIco(R.string.office, R.mipmap.ico_chaxun));
-        appIcos.add(new AppIco(R.string.law, R.mipmap.ico_wenshu));
-        appIcos.add(new AppIco(R.string.move_car, R.mipmap.ico_move_car));
-        appIcos.add(new AppIco(R.string.comm, R.mipmap.ico_send_out));
-        appIcos.add(new AppIco(R.string.folder, R.mipmap.img_folder));*/
+        appIcos.add(new AppIco1(EventActivity1.class,R.string.submit_event, R.mipmap.img_my_task_event));
+        appIcos.add(new AppIco1(WebViewActivity1.class,R.string.web, R.mipmap.ico_xzsp));
+      /*  appIcos.add(new AppIco1(R.string.office, R.mipmap.ico_chaxun));
+        appIcos.add(new AppIco1(R.string.law, R.mipmap.ico_wenshu));
+        appIcos.add(new AppIco1(R.string.move_car, R.mipmap.ico_move_car));
+        appIcos.add(new AppIco1(R.string.comm, R.mipmap.ico_send_out));
+        appIcos.add(new AppIco1(R.string.folder, R.mipmap.img_folder));*/
 
     }
 
@@ -177,9 +178,9 @@ public class HomeFragment extends TZFragment  {
                     JSONObject body = jsonObject.getJSONObject("Body");
                     JSONArray jsonList = body.getJSONArray("News");
                     int size = jsonList.length();
-                    List<News> newses = new ArrayList<>();
+                    List<News1> newses = new ArrayList<>();
                     for (int i = 0; i < size; i++) {
-                        News news = new News(jsonList.getJSONObject(i));
+                        News1 news = new News1(jsonList.getJSONObject(i));
                         if (!newses.contains(news)) {
                             newses.add(news);
                         }
@@ -206,12 +207,12 @@ public class HomeFragment extends TZFragment  {
 
     }
 
-    protected void setNewsList(int skip, List<News> list) {
+    protected void setNewsList(int skip, List<News1> list) {
         if (skip == 0) {
             adNews.clear();
             adNews.addAll(list);
         } else {
-            for (News t : list) {
+            for (News1 t : list) {
                 if (!adNews.contains(t)) {
                     adNews.add(t);
                 }
@@ -234,10 +235,10 @@ public class HomeFragment extends TZFragment  {
 
                     adItems.clear();
                     for (int i = 0; i < adSize; i++) {
-                        Advertisement advertisement = new Advertisement(jsonList.getJSONObject(i));
-                        adNews.add(new News(advertisement.getNewsTitle(), advertisement.getNewsURL()));
+                        Advertisement1 advertisement = new Advertisement1(jsonList.getJSONObject(i));
+                        adNews.add(new News1(advertisement.getNewsTitle(), advertisement.getNewsURL()));
                         String imgePath = advertisement.getAdPicURL();
-                        adItems.add(new ADItem(advertisement.getNewsTitle(), "http://218.108.93.154:8090/" + imgePath));
+                        adItems.add(new ADItem1(advertisement.getNewsTitle(), "http://218.108.93.154:8090/" + imgePath));
                     }
                     setAdData();
                 } catch (JSONException e) {

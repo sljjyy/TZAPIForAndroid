@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            tools:context="com.tianzunchina.sample.event.EventActivityFragment"
+            tools:context="com.tianzunchina.sample.event.EventActivityFragment1"
             tools:showIn="@layout/activity_event">
 
             <Button

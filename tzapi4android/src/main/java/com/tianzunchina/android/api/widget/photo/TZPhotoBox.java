@@ -111,7 +111,6 @@ public class TZPhotoBox {
 		ivPhoto.setOnLongClickListener(null);
 	}
 
-
 	/**
 	 * 待删除状态
 	 * 显示删除图标，保留缩略图

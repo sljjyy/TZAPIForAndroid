@@ -10,7 +10,7 @@
         android:layout_width="fill_parent"
         android:layout_height="40dp"
         android:id="@+id/id_frg_hp_title"
-        android:name="com.tianzunchina.sample.AllTitleFrg"
+        android:name="com.tianzunchina.sample.AllTitleFrg1"
         layout="@layout/title_bar"
         tools:layout="@layout/title_bar" />
 

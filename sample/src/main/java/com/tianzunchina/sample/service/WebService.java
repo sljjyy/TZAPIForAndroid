@@ -26,7 +26,7 @@ public class WebService {
         /**
          * 测试服务器url
          */
-        public static final ICCServer ICC_SERVER_TEST = new ICCServer(
+        public static final ICCServer1 ICC_SERVER_TEST = new ICCServer1(
                 "http://218.108.93.154:8090/",
                 "http://218.108.93.154:8081/ICCWapTest/Discounts/DiscountsScanSuccess_wap?decryptString=",
                 "http://218.108.93.154:8090/ImgHandler.ashx?Path=",
@@ -39,7 +39,7 @@ public class WebService {
         /**
          * 正式服务器url
          */
-        public static final ICCServer ICC_SERVER = new ICCServer(
+        public static final ICCServer1 ICC_SERVER = new ICCServer1(
                 "http://218.108.93.154/",
                 "http://218.108.93.154:8080/Discounts/DiscountsScanSuccess_wap?decryptString=",
                 "http://218.108.93.154/ImgHandler.ashx?Path=",
@@ -50,7 +50,7 @@ public class WebService {
                 "http://218.108.93.154:8089/PocketMailboxsWap/Index?UserID=",
                 "http://218.108.93.154:8089/DailyAccounts/index?UserID=");
 
-        public static ICCServer server = ICC_SERVER_TEST;
+        public static ICCServer1 server = ICC_SERVER_TEST;
 
         public static final int HANDLE_OK = 1;
         public static final int HANDLE_ERR = -1;
