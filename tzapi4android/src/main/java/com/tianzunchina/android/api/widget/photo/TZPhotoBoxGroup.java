@@ -150,6 +150,7 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
                     case TZPhotoBox.MODE_ONLY_READ:
 //                        photoBox.ivPhoto.callOnClick();
                         showPhotos(position);
+                        isLock = true;
                         break;
                 }
             }
