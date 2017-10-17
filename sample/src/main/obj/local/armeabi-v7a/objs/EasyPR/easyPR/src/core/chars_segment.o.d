@@ -1,7 +1,7 @@
-D:/androidProjects/TZAPIForAndroid/sample/src/main/obj/local/armeabi-v7a/objs/EasyPR/easyPR/src/core/chars_segment.o: \
-  D:/androidProjects/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/chars_segment.cpp \
-  D:/androidProjects/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/core/chars_segment.h \
-  D:/androidProjects/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/core/core_func.h \
+E:/androidProject/TZAPIForAndroid/sample/src/main/obj/local/armeabi-v7a/objs/EasyPR/easyPR/src/core/chars_segment.o: \
+  E:/androidProject/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/chars_segment.cpp \
+  E:/androidProject/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/core/chars_segment.h \
+  E:/androidProject/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/core/core_func.h \
   ../../../../OpencvNative/jni/include\opencv2/opencv.hpp \
   ../../../../OpencvNative/jni/include\opencv2/core.hpp \
   ../../../../OpencvNative/jni/include\opencv2/core/cvdef.h \
@@ -67,9 +67,9 @@ D:/androidProjects/TZAPIForAndroid/sample/src/main/obj/local/armeabi-v7a/objs/Ea
   E:/AndroidSDK/sdk/ndk-bundle/build//../sources/cxx-stl/gnu-libstdc++/4.9/include\map \
   E:/AndroidSDK/sdk/ndk-bundle/build//../sources/cxx-stl/gnu-libstdc++/4.9/include\iostream
 
-D:/androidProjects/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/core/chars_segment.h:
+E:/androidProject/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/core/chars_segment.h:
 
-D:/androidProjects/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/core/core_func.h:
+E:/androidProject/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/core/core_func.h:
 
 ../../../../OpencvNative/jni/include\opencv2/opencv.hpp:
 

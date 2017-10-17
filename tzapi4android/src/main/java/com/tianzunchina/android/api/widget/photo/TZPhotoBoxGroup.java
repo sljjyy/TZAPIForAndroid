@@ -73,6 +73,7 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
             GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(), column);
             setLayoutManager(gridLayoutManager);
         }
+
         initClickListener();
     }
 
@@ -93,23 +94,34 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
                 column = a.getInt(attr, 2);
             }else if (!isLinear && attr == R.styleable.TZPhotoBoxGroup_isCompress ){
                 isCompress = a.getBoolean(attr,false);
-            }else if (attr == R.styleable.TZPhotoBoxGroup_groupCode){
+            }
+            else if (attr == R.styleable.TZPhotoBoxGroup_groupCode){
                 setCode(a.getInt(attr,1));
             }
+
         }
         a.recycle();
     }
 
+    public void setCode(int id){
+        this.code = id;
+    }
+
+    public int getCode(){
+        return code;
+    }
+
     private void initClickListener() {
+
         this.addOnItemTouchListener(new RecyclerItemClickListener(getContext(), this, new RecyclerItemClickListener.OnItemClickListener() {
 
             @Override
             public void onItemLongClick(View view, int position) {
                 boxes.get(position).ivPhoto.performLongClick();
             }
-
             @Override
             public void onItemClick(View view, int position) {
+
                 switch (getCode()){
                     case ONE:
                         isLock = false;
@@ -137,20 +149,11 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
                     case TZPhotoBox.MODE_BROWSE:
                     case TZPhotoBox.MODE_ONLY_READ:
 //                        photoBox.ivPhoto.callOnClick();
-                        isLock = true;
                         showPhotos(position);
                         break;
                 }
             }
         }));
-    }
-
-    public void setCode(int id){
-        this.code = id;
-    }
-
-    public int getCode(){
-        return code;
     }
 
     /**
@@ -242,7 +245,7 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
                 if (type >= 10) type -= 10;
                 if(isCompress){
                     boxes.get(type).addPhoto(PhotoTools.getCompressImageFile(imageFile,WIDTH,HEIGHT,quality));
-                   // PhotoTools.getFileFromBytes(PhotoTools.File2byte(PhotoTools.getCompressImageFile(imageFile,WIDTH,HEIGHT,quality).getPath()),"/sdcard/" + new Date().toString() +".jpg");
+                    // PhotoTools.getFileFromBytes(PhotoTools.File2byte(PhotoTools.getCompressImageFile(imageFile,WIDTH,HEIGHT,quality).getPath()),"/sdcard/" + new Date().toString() +".jpg");
                 }else {
                     boxes.get(type).addPhoto(imageFile);
                 }
@@ -252,8 +255,10 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
                 }
             }
 
+
         });
         isLock = true;
+
     }
 
     /**
@@ -369,17 +374,14 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
         switch (mode) {
             case TZPhotoBox.MODE_READY_DELETE:
                 isReadyDel = true;
-                isLock = true;
                 break;
             case TZPhotoBox.MODE_ADD:
                 deleted(index);
                 isReadyDel = false;
-                isReadyDel = true;
-
+                break;
             case TZPhotoBox.MODE_BROWSE:
                 added(index);
                 isReadyDel = false;
-                isReadyDel = true;
                 break;
         }
         adapter.notifyItemChanged(index + 1);

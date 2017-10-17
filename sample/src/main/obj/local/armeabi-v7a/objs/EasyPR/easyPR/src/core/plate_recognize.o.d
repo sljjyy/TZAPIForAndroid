@@ -1,10 +1,10 @@
-D:/androidProjects/TZAPIForAndroid/sample/src/main/obj/local/armeabi-v7a/objs/EasyPR/easyPR/src/core/plate_recognize.o: \
-  D:/androidProjects/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/plate_recognize.cpp \
-  D:/androidProjects/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/core/plate_recognize.h \
-  D:/androidProjects/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/core/plate_detect.h \
-  D:/androidProjects/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/core/plate_locate.h \
-  D:/androidProjects/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/core/plate.h \
-  D:/androidProjects/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/core/core_func.h \
+E:/androidProject/TZAPIForAndroid/sample/src/main/obj/local/armeabi-v7a/objs/EasyPR/easyPR/src/core/plate_recognize.o: \
+  E:/androidProject/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/plate_recognize.cpp \
+  E:/androidProject/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/core/plate_recognize.h \
+  E:/androidProject/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/core/plate_detect.h \
+  E:/androidProject/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/core/plate_locate.h \
+  E:/androidProject/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/core/plate.h \
+  E:/androidProject/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/core/core_func.h \
   ../../../../OpencvNative/jni/include\opencv2/opencv.hpp \
   ../../../../OpencvNative/jni/include\opencv2/core.hpp \
   ../../../../OpencvNative/jni/include\opencv2/core/cvdef.h \
@@ -69,27 +69,27 @@ D:/androidProjects/TZAPIForAndroid/sample/src/main/obj/local/armeabi-v7a/objs/Ea
   ../../../../OpencvNative/jni/include\opencv2/ml.hpp \
   E:/AndroidSDK/sdk/ndk-bundle/build//../sources/cxx-stl/gnu-libstdc++/4.9/include\map \
   E:/AndroidSDK/sdk/ndk-bundle/build//../sources/cxx-stl/gnu-libstdc++/4.9/include\iostream \
-  D:/androidProjects/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/core/plate_judge.h \
-  D:/androidProjects/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/core/feature.h \
-  D:/androidProjects/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/core/chars_recognise.h \
-  D:/androidProjects/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/core/chars_segment.h \
-  D:/androidProjects/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/core/chars_identify.h \
-  D:/androidProjects/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/core/../util/kv.h \
+  E:/androidProject/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/core/plate_judge.h \
+  E:/androidProject/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/core/feature.h \
+  E:/androidProject/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/core/chars_recognise.h \
+  E:/androidProject/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/core/chars_segment.h \
+  E:/androidProject/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/core/chars_identify.h \
+  E:/androidProject/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/core/../util/kv.h \
   E:/AndroidSDK/sdk/ndk-bundle/build//../sources/cxx-stl/gnu-libstdc++/4.9/include\memory \
-  D:/androidProjects/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/core/../util/util.h \
+  E:/androidProject/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/core/../util/util.h \
   E:/AndroidSDK/sdk/ndk-bundle/build//../sources/cxx-stl/gnu-libstdc++/4.9/include\fstream \
   ../../../../OpencvNative/jni/include\opencv2/core/core.hpp \
-  D:/androidProjects/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/config.h
+  E:/androidProject/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/config.h
 
-D:/androidProjects/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/core/plate_recognize.h:
+E:/androidProject/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/core/plate_recognize.h:
 
-D:/androidProjects/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/core/plate_detect.h:
+E:/androidProject/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/core/plate_detect.h:
 
-D:/androidProjects/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/core/plate_locate.h:
+E:/androidProject/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/core/plate_locate.h:
 
-D:/androidProjects/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/core/plate.h:
+E:/androidProject/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/core/plate.h:
 
-D:/androidProjects/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/core/core_func.h:
+E:/androidProject/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/core/core_func.h:
 
 ../../../../OpencvNative/jni/include\opencv2/opencv.hpp:
 
@@ -219,24 +219,24 @@ E:/AndroidSDK/sdk/ndk-bundle/build//../sources/cxx-stl/gnu-libstdc++/4.9/include
 
 E:/AndroidSDK/sdk/ndk-bundle/build//../sources/cxx-stl/gnu-libstdc++/4.9/include\iostream:
 
-D:/androidProjects/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/core/plate_judge.h:
+E:/androidProject/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/core/plate_judge.h:
 
-D:/androidProjects/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/core/feature.h:
+E:/androidProject/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/core/feature.h:
 
-D:/androidProjects/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/core/chars_recognise.h:
+E:/androidProject/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/core/chars_recognise.h:
 
-D:/androidProjects/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/core/chars_segment.h:
+E:/androidProject/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/core/chars_segment.h:
 
-D:/androidProjects/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/core/chars_identify.h:
+E:/androidProject/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/core/chars_identify.h:
 
-D:/androidProjects/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/core/../util/kv.h:
+E:/androidProject/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/core/../util/kv.h:
 
 E:/AndroidSDK/sdk/ndk-bundle/build//../sources/cxx-stl/gnu-libstdc++/4.9/include\memory:
 
-D:/androidProjects/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/core/../util/util.h:
+E:/androidProject/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/core/../util/util.h:
 
 E:/AndroidSDK/sdk/ndk-bundle/build//../sources/cxx-stl/gnu-libstdc++/4.9/include\fstream:
 
 ../../../../OpencvNative/jni/include\opencv2/core/core.hpp:
 
-D:/androidProjects/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/config.h:
+E:/androidProject/TZAPIForAndroid/sample/src/main/jni/easyPR/src/core/../../include/config.h:

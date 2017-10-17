@@ -1,6 +1,6 @@
-D:/androidProjects/TZAPIForAndroid/sample/src/main/obj/local/armeabi-v7a/objs/EasyPR/easyPR/src/util/util.o: \
-  D:/androidProjects/TZAPIForAndroid/sample/src/main/jni/easyPR/src/util/util.cpp \
-  D:/androidProjects/TZAPIForAndroid/sample/src/main/jni/easyPR/src/util/../../include/util/util.h \
+E:/androidProject/TZAPIForAndroid/sample/src/main/obj/local/armeabi-v7a/objs/EasyPR/easyPR/src/util/util.o: \
+  E:/androidProject/TZAPIForAndroid/sample/src/main/jni/easyPR/src/util/util.cpp \
+  E:/androidProject/TZAPIForAndroid/sample/src/main/jni/easyPR/src/util/../../include/util/util.h \
   E:/AndroidSDK/sdk/ndk-bundle/build//../sources/cxx-stl/gnu-libstdc++/4.9/include\fstream \
   E:/AndroidSDK/sdk/ndk-bundle/build//../sources/cxx-stl/gnu-libstdc++/4.9/include\iostream \
   E:/AndroidSDK/sdk/ndk-bundle/build//../sources/cxx-stl/gnu-libstdc++/4.9/include\vector \
@@ -49,7 +49,7 @@ D:/androidProjects/TZAPIForAndroid/sample/src/main/obj/local/armeabi-v7a/objs/Ea
   ../../../../OpencvNative/jni/include\opencv2/imgcodecs/imgcodecs_c.h \
   ../../../../OpencvNative/jni/include\opencv2/videoio/videoio_c.h
 
-D:/androidProjects/TZAPIForAndroid/sample/src/main/jni/easyPR/src/util/../../include/util/util.h:
+E:/androidProject/TZAPIForAndroid/sample/src/main/jni/easyPR/src/util/../../include/util/util.h:
 
 E:/AndroidSDK/sdk/ndk-bundle/build//../sources/cxx-stl/gnu-libstdc++/4.9/include\fstream:
 

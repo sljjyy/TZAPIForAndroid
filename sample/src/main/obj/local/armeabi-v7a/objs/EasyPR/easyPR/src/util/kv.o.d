@@ -1,8 +1,8 @@
-D:/androidProjects/TZAPIForAndroid/sample/src/main/obj/local/armeabi-v7a/objs/EasyPR/easyPR/src/util/kv.o: \
-  D:/androidProjects/TZAPIForAndroid/sample/src/main/jni/easyPR/src/util/kv.cpp \
-  D:/androidProjects/TZAPIForAndroid/sample/src/main/jni/easyPR/src/util/../../include/util/kv.h \
+E:/androidProject/TZAPIForAndroid/sample/src/main/obj/local/armeabi-v7a/objs/EasyPR/easyPR/src/util/kv.o: \
+  E:/androidProject/TZAPIForAndroid/sample/src/main/jni/easyPR/src/util/kv.cpp \
+  E:/androidProject/TZAPIForAndroid/sample/src/main/jni/easyPR/src/util/../../include/util/kv.h \
   E:/AndroidSDK/sdk/ndk-bundle/build//../sources/cxx-stl/gnu-libstdc++/4.9/include\map \
-  D:/androidProjects/TZAPIForAndroid/sample/src/main/jni/easyPR/src/util/../../include/util/util.h \
+  E:/androidProject/TZAPIForAndroid/sample/src/main/jni/easyPR/src/util/../../include/util/util.h \
   E:/AndroidSDK/sdk/ndk-bundle/build//../sources/cxx-stl/gnu-libstdc++/4.9/include\fstream \
   E:/AndroidSDK/sdk/ndk-bundle/build//../sources/cxx-stl/gnu-libstdc++/4.9/include\iostream \
   E:/AndroidSDK/sdk/ndk-bundle/build//../sources/cxx-stl/gnu-libstdc++/4.9/include\vector \
@@ -41,11 +41,11 @@ D:/androidProjects/TZAPIForAndroid/sample/src/main/obj/local/armeabi-v7a/objs/Ea
   ../../../../OpencvNative/jni/include\opencv2/core/types_c.h \
   ../../../../OpencvNative/jni/include\opencv2/core/optim.hpp
 
-D:/androidProjects/TZAPIForAndroid/sample/src/main/jni/easyPR/src/util/../../include/util/kv.h:
+E:/androidProject/TZAPIForAndroid/sample/src/main/jni/easyPR/src/util/../../include/util/kv.h:
 
 E:/AndroidSDK/sdk/ndk-bundle/build//../sources/cxx-stl/gnu-libstdc++/4.9/include\map:
 
-D:/androidProjects/TZAPIForAndroid/sample/src/main/jni/easyPR/src/util/../../include/util/util.h:
+E:/androidProject/TZAPIForAndroid/sample/src/main/jni/easyPR/src/util/../../include/util/util.h:
 
 E:/AndroidSDK/sdk/ndk-bundle/build//../sources/cxx-stl/gnu-libstdc++/4.9/include\fstream:
 
