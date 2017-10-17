@@ -26,21 +26,21 @@ allprojects {
 
 //定义GroupID和Version，ArtefactID会自动使用Project名
 group = 'com.github.sljjyy'
-version = '1.7.2'
+version = '1.7.4'
 
 repositories {
     mavenCentral();
 }
 
 artifacts {
-    archives file('tzapi4android-1.7.2.aar')
+    archives file('tzapi4android-1.7.4.aar')
 }
 
 signing {
     sign configurations.archives
 }
 
-/*uploadArchives {
+uploadArchives {
         repositories {
             mavenDeployer {
                 //为Pom文件做数字签名
@@ -85,5 +85,5 @@ signing {
                 }
             }
         }
-}*/
+}
 

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:api="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.tianzunchina.android.api.widget.photo.TZPhotoBoxGroup
+        android:id="@+id/pbg1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        api:groupCode="1"
+        api:boxColumn="2"
+        api:boxCount="5"
+        api:boxHeight="200dp"
+        api:boxIsLinear="false"
+        api:boxWidth="200dp" />
+
+    <com.tianzunchina.android.api.widget.photo.TZPhotoBoxGroup
+        android:id="@+id/pbg2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        api:groupCode="2"
+        api:boxColumn="2"
+        api:boxCount="5"
+        api:boxHeight="200dp"
+        api:boxIsLinear="false"
+        api:boxWidth="200dp" />
+
+</LinearLayout>

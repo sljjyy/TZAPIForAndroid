@@ -137,6 +137,7 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
                     case TZPhotoBox.MODE_BROWSE:
                     case TZPhotoBox.MODE_ONLY_READ:
 //                        photoBox.ivPhoto.callOnClick();
+                        isLock = true;
                         showPhotos(position);
                         break;
                 }
@@ -368,14 +369,17 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
         switch (mode) {
             case TZPhotoBox.MODE_READY_DELETE:
                 isReadyDel = true;
+                isLock = true;
                 break;
             case TZPhotoBox.MODE_ADD:
                 deleted(index);
                 isReadyDel = false;
-                break;
+                isReadyDel = true;
+
             case TZPhotoBox.MODE_BROWSE:
                 added(index);
                 isReadyDel = false;
+                isReadyDel = true;
                 break;
         }
         adapter.notifyItemChanged(index + 1);
