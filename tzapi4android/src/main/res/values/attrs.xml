@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <attr name="groupCode" format="integer" />
     <attr name="boxCount" format="integer" />
     <attr name="boxWidth" format="dimension" />
     <attr name="boxHeight" format="dimension" />
@@ -8,10 +9,10 @@
     <attr name="boxColumn" format="integer" />
     <attr name="boxIndex" format="integer" />
     <attr name="isCompress" format="boolean" />
-
     <attr name="title" format="string" />
     <attr name="hint" format="string" />
     <declare-styleable name="TZPhotoBoxGroup">
+        <attr name="groupCode" />
         <attr name="boxCount" />
         <attr name="boxWidth" />
         <attr name="boxHeight" />

@@ -1,6 +1,7 @@
 package com.tianzunchina.android.api.widget.photo;
 
 import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -12,6 +13,11 @@ public class ViewPageViewAdapter extends PagerAdapter {
 	public ViewPageViewAdapter(List<View> pages) {
 		super();
 		this.pages = pages;
+	}
+
+	@Override
+	public void destroyItem(ViewGroup container, int position, Object object) {
+		((ViewPager) container).removeView((View) object);
 	}
 
 	@Override

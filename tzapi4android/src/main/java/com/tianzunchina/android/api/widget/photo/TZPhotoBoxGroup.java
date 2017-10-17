@@ -41,6 +41,10 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
     private float WIDTH = 1024;//压缩的宽度
     private float HEIGHT = 1024;//压缩的高度
     private int quality = 90;//压缩的质量
+    private boolean isLock = true;
+    public static final int NO_ID = -1;
+    int code = NO_ID ;//区分group
+    public static final int ONE = 1, TWO = 2,THREE =3,FOUR = 4;
 
     public TZPhotoBoxGroup(Context context) {
         super(context);
@@ -89,6 +93,8 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
                 column = a.getInt(attr, 2);
             }else if (!isLinear && attr == R.styleable.TZPhotoBoxGroup_isCompress ){
                 isCompress = a.getBoolean(attr,false);
+            }else if (attr == R.styleable.TZPhotoBoxGroup_groupCode){
+                setCode(a.getInt(attr,1));
             }
         }
         a.recycle();
@@ -104,9 +110,25 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
 
             @Override
             public void onItemClick(View view, int position) {
+                switch (getCode()){
+                    case ONE:
+                        isLock = false;
+                        break;
+                    case TWO:
+                        isLock = false;
+                        break;
+                    case THREE:
+                        isLock = false;
+                        break;
+                    case FOUR:
+                        isLock = false;
+                        break;
+                }
+
                 TZPhotoBox photoBox = boxes.get(position);
                 switch (photoBox.mode) {
                     case TZPhotoBox.MODE_READY_DELETE:
+                        isLock = true;
                         photoBox.ivDel.callOnClick();
                         break;
                     case TZPhotoBox.MODE_ADD:
@@ -120,6 +142,14 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
                 }
             }
         }));
+    }
+
+    public void setCode(int id){
+        this.code = id;
+    }
+
+    public int getCode(){
+        return code;
     }
 
     /**
@@ -197,6 +227,9 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
     }
 
     public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent data) {
+        if(isLock) {
+            return;
+        }
         EasyImage.handleActivityResult(requestCode, resultCode, data, activity, new DefaultCallback() {
             @Override
             public void onImagePickerError(Exception e, EasyImage.ImageSource source, int type) {
@@ -219,6 +252,7 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
             }
 
         });
+        isLock = true;
     }
 
     /**
