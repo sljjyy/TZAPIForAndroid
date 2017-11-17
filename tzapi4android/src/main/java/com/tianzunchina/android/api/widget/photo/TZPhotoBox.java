@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.View;
 import android.widget.ImageView;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.squareup.picasso.Callback;
 import com.tianzunchina.android.api.R;
 import com.tianzunchina.android.api.log.TZLog;
@@ -27,6 +29,13 @@ public class TZPhotoBox {
 	String url;
 	private PhotoBoxChangeListener listener;
 	private PhotoTools pt = PhotoTools.getInstence();
+	RequestOptions options = new RequestOptions()
+			.placeholder(R.mipmap.pic_loading)
+			.centerCrop()
+			.sizeMultiplier(0.5f)
+			.diskCacheStrategy(DiskCacheStrategy.ALL)
+			.error(R.mipmap.pic_loading)
+			.override(200, 200);
 
 	public TZPhotoBox(){}
 
@@ -148,7 +157,7 @@ public class TZPhotoBox {
 		if(!fileImage.exists()){
 			return;
 		}
-		Glide.with(context).load(file).placeholder(R.mipmap.pic_loading).error(R.mipmap.pic_loading).override(200, 200).centerCrop().into(ivPhoto);
+		Glide.with(context).asBitmap().load(file).apply(options).into(ivPhoto);
 		setMode(MODE_BROWSE);
 	}
 
@@ -158,7 +167,7 @@ public class TZPhotoBox {
 		}
 		this.url =  url;
 		ivPhoto.setEnabled(true);
-		Glide.with(context).load(url).placeholder(R.mipmap.pic_loading).error(R.mipmap.pic_loading).override(200, 200).centerCrop().into(ivPhoto);
+		Glide.with(context).asBitmap().load(url).apply(options).into(ivPhoto);
 		setMode(MODE_BROWSE);
 	}
 
@@ -176,7 +185,8 @@ public class TZPhotoBox {
 		return fileImage;
 	}
 
-	public static final int MODE_NULL = 0, MODE_ONLY_READ = 1, MODE_ADD = 2, MODE_READY_DELETE = 3,MODE_BROWSE = 4;
+	public static final int MODE_NULL = 0, MODE_ONLY_READ = 1, MODE_ADD = 2, MODE_READY_DELETE = 3
+			,MODE_BROWSE = 4;
 
 	@Override
 	 public String toString() {
@@ -215,4 +225,5 @@ public class TZPhotoBox {
 	public int getMode() {
 		return mode;
 	}
+
 }

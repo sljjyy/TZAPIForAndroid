@@ -3,6 +3,8 @@ package com.tianzunchina.android.api.widget.photo;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
@@ -13,17 +15,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
-import com.bumptech.glide.request.target.ImageViewTarget;
-import com.squareup.picasso.Picasso;
 import com.tianzunchina.android.api.R;
 import com.tianzunchina.android.api.widget.gesture.GestureImageView;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
-import static android.R.attr.path;
 
 /**
  * Created by admin on 2015/5/25.
@@ -37,6 +36,12 @@ public class PreviewActivity extends AppCompatActivity {
 
     private List<View> listViews = new ArrayList<>();
     private LinearLayout llPhoto;
+
+    RequestOptions options = new RequestOptions()
+            .error(R.mipmap.pic_loading)
+            .sizeMultiplier(0.5f)
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
+            .override(800, 600);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,10 +73,10 @@ public class PreviewActivity extends AppCompatActivity {
         String path = intent.getStringExtra(KEY_PATH);
         if(path == null){
             String url = intent.getStringExtra(KEY_URL);
-            Glide.with(this).load(url).error(R.mipmap.pic_loading).override(800, 600).into(imageView);
+            Glide.with(this).asBitmap().load(url).apply(options).into(imageView);
         } else {
             File file = new File(path);
-            Glide.with(this).load(file).error(R.mipmap.pic_loading).override(800, 600).into(imageView);
+            Glide.with(this).asBitmap().load(file).apply(options).into(imageView);
         }
         llPhoto.addView(imageView);
 
@@ -104,20 +109,14 @@ public class PreviewActivity extends AppCompatActivity {
             final GestureImageView imageView = getImageView();
             final LinearLayout linearLayout = getLinearLayout();
             File file = new File(paths[i]);
-            Glide.with(this).load(file).asBitmap().error(R.mipmap.pic_loading).override(800, 600).into(new BitmapImageViewTarget(imageView){
+            Glide.with(this).asBitmap().load(file).apply(options).into(new BitmapImageViewTarget(imageView){
                 @Override
-                protected void setResource(final Bitmap resource) {
-                    super.setResource(resource);
-                    Palette.generateAsync(resource, new Palette.PaletteAsyncListener() {
-                        @Override
-                        public void onGenerated(Palette palette) {
-                            Palette.Swatch swatch = palette.getSwatches().get(0);
-                            if (swatch != null) {
-                                linearLayout.setBackgroundColor(swatch.getRgb());
-                                swatch.getPopulation();
-                            }
-                        }
-                    });
+                protected void setResource(Bitmap resource) {
+                    RoundedBitmapDrawable circularBitmapDrawable =
+                            RoundedBitmapDrawableFactory.
+                                    create(getResources(), resource);
+                    circularBitmapDrawable.setCornerRadius(8);
+                    imageView.setImageDrawable(circularBitmapDrawable);
                 }
             });
             imageView.setLayoutParams(getLayoutParams());//配置文本显示组件的参数
@@ -132,20 +131,14 @@ public class PreviewActivity extends AppCompatActivity {
         for(int i = 0; i < url.length; i++){
             final GestureImageView imageView = getImageView();
             final LinearLayout linearLayout = getLinearLayout();
-            Glide.with(this).load(url[i]).asBitmap().error(R.mipmap.pic_loading).override(800, 600).into(new BitmapImageViewTarget(imageView){
+            Glide.with(this).asBitmap().load(url[i]).apply(options).into(new BitmapImageViewTarget(imageView){
                 @Override
-                protected void setResource(final Bitmap resource) {
-                    super.setResource(resource);
-                    Palette.generateAsync(resource, new Palette.PaletteAsyncListener() {
-                        @Override
-                        public void onGenerated(Palette palette) {
-                            Palette.Swatch swatch = palette.getLightMutedSwatch();
-                            if (swatch != null) {
-                                imageView.setBackgroundColor(swatch.getRgb());
-                                swatch.getPopulation();
-                            }
-                        }
-                    });
+                protected void setResource(Bitmap resource) {
+                    RoundedBitmapDrawable circularBitmapDrawable =
+                            RoundedBitmapDrawableFactory.
+                                    create(getResources(), resource);
+                    circularBitmapDrawable.setCornerRadius(8);
+                    imageView.setImageDrawable(circularBitmapDrawable);
                 }
             });
             imageView.setLayoutParams(getLayoutParams());//配置文本显示组件的参数

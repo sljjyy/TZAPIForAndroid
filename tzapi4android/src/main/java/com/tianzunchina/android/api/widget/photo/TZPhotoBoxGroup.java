@@ -28,6 +28,7 @@ import pl.aprilapps.easyphotopicker.EasyImage;
  * CreateTime 2016-4-6
  *
  * @author SunLiang
+ * @author SunLiang
  */
 public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListener {
     private int count = 2;
@@ -40,7 +41,7 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
     private boolean isCompress = false;//是否压缩，默认不压缩
     private float WIDTH = 1024;//压缩的宽度
     private float HEIGHT = 1024;//压缩的高度
-    private int quality = 90;//压缩的质量
+    private int quality = 80;//压缩的质量
     private boolean isLock = true;
     public static final int NO_ID = -1;
     int code = NO_ID ;//区分group
@@ -90,10 +91,13 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
                 height = (int) a.getDimension(attr, 100);
             } else if (attr == R.styleable.TZPhotoBoxGroup_boxIsLinear) {
                 isLinear = a.getBoolean(attr, true);
-            } else if (!isLinear && attr == R.styleable.TZPhotoBoxGroup_boxColumn) {
+            } else if ( attr == R.styleable.TZPhotoBoxGroup_boxColumn) {
                 column = a.getInt(attr, 2);
-            }else if (!isLinear && attr == R.styleable.TZPhotoBoxGroup_isCompress ){
+            }else if (attr == R.styleable.TZPhotoBoxGroup_isCompress ){
                 isCompress = a.getBoolean(attr,false);
+            }
+            else if ( attr == R.styleable.TZPhotoBoxGroup_quality ){
+                quality = a.getInt(attr,80);
             }
             else if (attr == R.styleable.TZPhotoBoxGroup_groupCode){
                 setCode(a.getInt(attr,1));
@@ -149,8 +153,8 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
                     case TZPhotoBox.MODE_BROWSE:
                     case TZPhotoBox.MODE_ONLY_READ:
 //                        photoBox.ivPhoto.callOnClick();
-                        showPhotos(position);
                         isLock = true;
+                        showPhotos(position);
                         break;
                 }
             }
@@ -244,7 +248,7 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
             @Override
             public void onImagePicked(File imageFile, EasyImage.ImageSource source, int type) {
                 if (type >= 10) type -= 10;
-                if(isCompress){
+                if(isCompress){//是否压缩
                     boxes.get(type).addPhoto(PhotoTools.getCompressImageFile(imageFile,WIDTH,HEIGHT,quality));
                     // PhotoTools.getFileFromBytes(PhotoTools.File2byte(PhotoTools.getCompressImageFile(imageFile,WIDTH,HEIGHT,quality).getPath()),"/sdcard/" + new Date().toString() +".jpg");
                 }else {
@@ -410,7 +414,6 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
         photoBox.invalid();
     }
 
-
     /**
      * 判断下一个box中是否已有图片
      *
@@ -423,7 +426,6 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
         if (photoBox.isBrowse()) return false;
         return true;
     }
-
 
     /**
      * 检查照片数量是否符合最少数量 minCount
@@ -466,15 +468,15 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
         }
         return def;
     }
-    /**
+   /* *//**
      * 设置压缩的值
      * @param width 宽度
      * @param height 高度
      * @param quality 质量
-     */
+     *//*
     public void set(float width,float height,int quality){
         this.WIDTH = width;
         this.HEIGHT = height;
         this.quality = quality;
-    }
+    }*/
 }

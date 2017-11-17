@@ -26,14 +26,14 @@ allprojects {
 
 //定义GroupID和Version，ArtefactID会自动使用Project名
 group = 'com.github.sljjyy'
-version = '1.7.4'
+version = '1.7.6'
 
 repositories {
     mavenCentral();
 }
 
 artifacts {
-    archives file('tzapi4android-1.7.4.aar')
+    archives file('tzapi4android-1.7.6.aar')
 }
 
 signing {

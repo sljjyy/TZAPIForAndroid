@@ -3,4 +3,7 @@
     <paths>
         <root-path path="." name="camera_photos" />
     </paths>
+
+    <external-cache-path name="picturesext" path="EasyImage/" />
+    <cache-path name="picturesint" path="EasyImage/" />
 </resources>
