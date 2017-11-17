@@ -9,6 +9,8 @@
         android:id="@+id/pbg1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        api:isCompress="true"
+        api:quality="80"
         api:groupCode="1"
         api:boxColumn="2"
         api:boxCount="5"
