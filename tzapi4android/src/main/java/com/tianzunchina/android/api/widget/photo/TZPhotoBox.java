@@ -29,13 +29,14 @@ public class TZPhotoBox {
 	String url;
 	private PhotoBoxChangeListener listener;
 	private PhotoTools pt = PhotoTools.getInstence();
-	RequestOptions options = new RequestOptions()
+	private RequestOptions options = new RequestOptions()
 			.placeholder(R.mipmap.pic_loading)
 			.centerCrop()
 			.sizeMultiplier(0.5f)
 			.diskCacheStrategy(DiskCacheStrategy.ALL)
 			.error(R.mipmap.pic_loading)
 			.override(200, 200);
+	private String date;//获取图片的拍摄时间
 
 	public TZPhotoBox(){}
 
@@ -226,4 +227,13 @@ public class TZPhotoBox {
 		return mode;
 	}
 
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+		setMode(MODE_BROWSE);
+
+	}
 }

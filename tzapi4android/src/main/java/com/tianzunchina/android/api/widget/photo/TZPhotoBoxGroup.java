@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.TypedArray;
+import android.media.ExifInterface;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,8 +20,12 @@ import com.tianzunchina.android.api.view.recycler.TZRecyclerViewAdapter;
 import com.tianzunchina.android.api.view.recycler.TZRecyclerViewHolder;
 import org.apache.commons.lang3.StringUtils;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 import pl.aprilapps.easyphotopicker.DefaultCallback;
 import pl.aprilapps.easyphotopicker.EasyImage;
 
@@ -248,11 +253,32 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
             @Override
             public void onImagePicked(File imageFile, EasyImage.ImageSource source, int type) {
                 if (type >= 10) type -= 10;
+                ExifInterface exif = null;
                 if(isCompress){//是否压缩
                     boxes.get(type).addPhoto(PhotoTools.getCompressImageFile(imageFile,WIDTH,HEIGHT,quality));
+                    try {
+                        exif = new ExifInterface(imageFile.getAbsolutePath());
+                        // 执行保存
+                        exif.saveAttributes();
+                        String dateTime = exif.getAttribute(ExifInterface.TAG_DATETIME);
+                        boxes.get(type).setDate(dateTime);//获取图片的拍摄时间
+                        //Log.e("拍照时间",dateTime.toString());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     // PhotoTools.getFileFromBytes(PhotoTools.File2byte(PhotoTools.getCompressImageFile(imageFile,WIDTH,HEIGHT,quality).getPath()),"/sdcard/" + new Date().toString() +".jpg");
                 }else {
                     boxes.get(type).addPhoto(imageFile);
+                    try {
+                        exif = new ExifInterface(imageFile.getAbsolutePath());
+                        //         执行保存
+                        exif.saveAttributes();
+                        String dateTime = exif.getAttribute(ExifInterface.TAG_DATETIME);
+                        boxes.get(type).setDate(dateTime);
+                        //Log.e("拍照时间",dateTime.toString());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
                 TZLog.e("Group",imageFile.toString());
                 if (type == 0 && !boxes.get(1).isBrowse()) {
@@ -279,6 +305,21 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
             }
         }
         return paths;
+    }
+
+    /**
+     * 获取所有照片的拍摄时间
+     *
+     * @return
+     */
+    public ArrayList<String> getDates() {
+        ArrayList<String> dates = new ArrayList<>();
+        for (TZPhotoBox box : boxes) {
+            if (box.mode == TZPhotoBox.MODE_BROWSE || box.mode == TZPhotoBox.MODE_ONLY_READ) {
+                dates.add(box.getDate());
+            }
+        }
+        return dates;
     }
 
     /**
@@ -352,7 +393,8 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
                     case TZPhotoBox.MODE_READY_DELETE:
                         holder.setImage(R.id.ivPhoto, pb.fileImage, pb.url, R.mipmap.pic_loading, width, height);
                         holder.setVisible(R.id.ivDel, true);
-                        break;
+
+                            break;
                     case TZPhotoBox.MODE_ADD:
                         holder.setImage(R.id.ivPhoto, R.mipmap.ico_add_photo, R.mipmap.ico_add_photo);
                         holder.setVisible(R.id.ivDel, false);
@@ -408,9 +450,10 @@ public class TZPhotoBoxGroup extends RecyclerView implements PhotoBoxChangeListe
      *
      * @param index
      */
-    private void deleted(int index) {
+    private void deleted(int index) {//TODO
         if (!isBrowse4next(index)) return;
         TZPhotoBox photoBox = boxes.get(index + 1);
+
         photoBox.invalid();
     }
 
